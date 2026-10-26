@@ -17,6 +17,12 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
       - run: pip install -q requests feedparser trafilatura opencc-python-reimplemented
+      - name: 檢查 GitHub 免費 AI 連線
+        env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' }
+        run: |
+          curl -s -m 60 -w "
+HTTP %{http_code}
+" https://models.github.ai/inference/chat/completions -H "Authorization: Bearer $GITHUB_TOKEN" -H "Content-Type: application/json" -H "Accept: application/vnd.github+json" -d '{"model":"openai/gpt-4.1-mini","messages":[{"role":"user","content":"hi"}]}' | head -c 600 || true
       - name: 抓新聞＋GitHub 免費 AI 寫摘要
         id: main
         env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' }

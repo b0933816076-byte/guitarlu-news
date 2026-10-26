@@ -7,7 +7,7 @@
        /guitar-news.php/rss.xml       RSS
    ■ 外框沿用 guitar-stories.html(選單、頁尾、樣式版本號自動跟著網站更新)。
    ■ 讀不到 GitHub 時用上次的快取,頁面不會壞。不想用了刪掉這個檔案和 guitar-news-cache 資料夾即可。 */
-const SRC = 'https://raw.githubusercontent.com/b0933816076-byte/guitarlu-news/main/data/news.json';
+define('SRC', getenv('GN_SRC') ?: 'https://raw.githubusercontent.com/b0933816076-byte/guitarlu-news/main/data/');   // 本機測試可用 GN_SRC 指到本機資料夾
 const SITE = 'https://www.guitarlu.net/';
 const SELF = 'https://www.guitarlu.net/guitar-news.php';
 const CATS = array('新琴・器材', '吉他手', '拍賣・名琴', '演出・活動', '效果器・科技', '教學・觀念');
@@ -15,22 +15,29 @@ const PER_PAGE = 30;
 
 function h($s){ return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 
-function news(){
+function fetch_json($name, $ttl){
     $dir = __DIR__ . '/guitar-news-cache';
     if(!is_dir($dir)) @mkdir($dir, 0755);
-    $f = $dir . '/news.json';
+    $f = $dir . '/' . str_replace('/', '_', $name);
     $age = file_exists($f) ? time() - filemtime($f) : 1e9;
-    if($age > 1800){                       // 30 分鐘更新一次
+    if($age > $ttl){
         $ctx = stream_context_create(array('http' => array('timeout' => 8, 'header' => "User-Agent: guitarlu-news\r\n")));
-        $j = @file_get_contents(SRC . '?t=' . floor(time() / 1800), false, $ctx);
+        $src = SRC . $name . (strpos(SRC, 'http') === 0 ? '?t=' . floor(time() / $ttl) : '');
+        $j = @file_get_contents($src, false, strpos(SRC, 'http') === 0 ? $ctx : null);
         if($j !== false && is_array(json_decode($j, true))) @file_put_contents($f, $j, LOCK_EX);
-        else @touch($f);                    // 失敗:沿用舊快取,30 分鐘後再試
+        elseif(file_exists($f)) @touch($f);   // 失敗:沿用舊快取,過一陣子再試
     }
     $a = file_exists($f) ? json_decode(file_get_contents($f), true) : array();
+    return is_array($a) ? $a : array();
+}
+function only_ok($a){                       // 只放通過全部審稿的(st=ok)
     $out = array();
-    foreach((array)$a as $it){ if(empty($it['raw']) && !empty($it['body'])) $out[] = $it; }   // 只放已寫好中文的
+    foreach($a as $it){ if(isset($it['st']) && $it['st'] === 'ok' && !empty($it['body'])) $out[] = $it; }
     return $out;
 }
+function news(){ return only_ok(fetch_json('news.json', 1800)); }
+function months(){ return fetch_json('months.json', 1800); }
+function month_news($m){ return preg_match('/^\d{4}-\d{2}$/', $m) ? only_ok(fetch_json('archive/' . $m . '.json', 21600)) : array(); }
 
 function cn_date($d){ $p = explode('-', $d); return count($p) == 3 ? intval($p[0]) . ' 年 ' . intval($p[1]) . ' 月 ' . intval($p[2]) . ' 日' : $d; }
 
@@ -73,14 +80,24 @@ if($path === 'rss.xml'){
 $one = null;
 if($path !== ''){
     foreach($all as $it){ if($it['id'] === $path){ $one = $it; break; } }
+    if(!$one) foreach(month_news(substr($path, 0, 7)) as $it){ if($it['id'] === $path){ $one = $it; break; } }
     if(!$one){ http_response_code(404); }
 }
+$mon = isset($_GET['m']) && preg_match('/^\d{4}-\d{2}$/', $_GET['m']) ? $_GET['m'] : '';
 $cat = isset($_GET['c']) && in_array($_GET['c'], CATS, true) ? $_GET['c'] : '';
 $pg = max(1, intval(isset($_GET['p']) ? $_GET['p'] : 1));
-$list = $cat ? array_values(array_filter($all, function($i) use ($cat){ return $i['cat'] === $cat; })) : $all;
+$list = $mon ? month_news($mon) : $all;
+$list = $cat ? array_values(array_filter($list, function($i) use ($cat){ return $i['cat'] === $cat; })) : $list;
 
 $side = '<aside class="gn-side"><div class="gn-box"><b>吉他新聞、故事館新文章第一時間看</b><br>加入盧家宏吉他音樂教室 LINE，有新文章就通知你。<br><a class="btn" href="https://line.me/ti/p/@434ttzne" target="_blank" rel="noopener">加入 LINE</a></div>'
-      . '<h3>逛逛吉他故事館</h3><ol><li><a href="' . SITE . 'course-legends.html">世界百大吉他手</a></li><li><a href="' . SITE . 'course-songs.html">世界百大吉他名曲</a></li><li><a href="' . SITE . 'course-history.html">世界吉他歷史</a></li><li><a href="' . SITE . 'course-oddities.html">吉他奇聞軼事</a></li><li><a href="' . SITE . 'guitar-stories.html">故事館大廳</a></li></ol></aside>';
+      . '<h3>逛逛吉他故事館</h3><ol><li><a href="' . SITE . 'course-legends.html">世界百大吉他手</a></li><li><a href="' . SITE . 'course-songs.html">世界百大吉他名曲</a></li><li><a href="' . SITE . 'course-history.html">世界吉他歷史</a></li><li><a href="' . SITE . 'course-oddities.html">吉他奇聞軼事</a></li><li><a href="' . SITE . 'guitar-stories.html">故事館大廳</a></li></ol>';
+$ms = months();
+if($ms){
+    $side .= '<h3>歷史新聞</h3><ul class="gn-months">';
+    foreach($ms as $m) $side .= '<li><a href="' . SELF . '?m=' . h($m['month']) . '">' . intval(substr($m['month'], 0, 4)) . ' 年 ' . intval(substr($m['month'], 5)) . ' 月</a> <small>' . intval($m['count']) . ' 則</small></li>';
+    $side .= '</ul>';
+}
+$side .= '</aside>';
 
 $main = '<main class="gn">';
 if($one){
@@ -98,19 +115,21 @@ if($one){
                 'author' => array('@type' => 'Person', 'name' => '盧家宏'), 'publisher' => array('@type' => 'Organization', 'name' => '盧家宏吉他音樂教室'),
                 'isBasedOn' => $one['url']);
 } else {
-    $title = $path !== '' ? '找不到這則新聞｜吉他新聞' : ($cat ? $cat . '｜吉他新聞' : '吉他新聞：每天整理國際吉他新聞｜盧家宏《吉他故事館》');
+    $mlabel = $mon ? intval(substr($mon, 0, 4)) . ' 年 ' . intval(substr($mon, 5)) . ' 月' : '';
+    $title = $path !== '' ? '找不到這則新聞｜吉他新聞' : ($mon ? $mlabel . '吉他新聞｜歷史新聞' : ($cat ? $cat . '｜吉他新聞' : '吉他新聞：每天整理國際吉他新聞｜盧家宏《吉他故事館》'));
     $desc = '每天整理國際吉他新聞：新琴、器材、吉他手動態、名琴拍賣、效果器科技，繁體中文重點整理，附原文出處與吉他故事館延伸閱讀。';
-    $canon = SELF . ($cat ? '?c=' . rawurlencode($cat) : '');
+    $canon = SELF . ($mon ? '?m=' . $mon : ($cat ? '?c=' . rawurlencode($cat) : ''));
     $upd = $all ? cn_date($all[0]['date']) : '';
     $main .= '<header class="gn-mast"><h1>吉他新聞<small>GUITAR NEWS · 吉他故事館</small></h1><p>每天整理國際吉他新聞・盧家宏 編撰' . ($upd ? '・最新 ' . $upd : '') . '</p></header>';
-    $main .= '<ul class="gn-tags"><li><a' . ($cat ? '' : ' class="on"') . ' href="' . SELF . '">全部</a></li>';
+    if($mon) $main .= '<h2 class="gn-h3">歷史新聞：' . h($mlabel) . '（' . count($list) . ' 則）</h2>';
+    $main .= '<ul class="gn-tags"><li><a' . ($cat || $mon ? '' : ' class="on"') . ' href="' . SELF . '">全部</a></li>';
     foreach(CATS as $c) $main .= '<li><a' . ($cat === $c ? ' class="on"' : '') . ' href="' . SELF . '?c=' . rawurlencode($c) . '">' . h($c) . '</a></li>';
     $main .= '</ul><div class="gn-grid"><div>';
     if($path !== '') $main .= '<p>找不到這則新聞，可能已下架。以下是最新吉他新聞：</p>';
     $chunk = array_slice($list, ($pg - 1) * PER_PAGE, PER_PAGE);
     if(!$chunk) $main .= '<p>新聞整理中，請稍後再來。</p>';
-    foreach($chunk as $i => $it) $main .= ($i === 0 && $pg === 1 && !$cat ? '<div class="gn-lead">' . item_html($it, false) . '</div>' : item_html($it, false));
-    $q = $cat ? 'c=' . rawurlencode($cat) . '&' : '';
+    foreach($chunk as $i => $it) $main .= ($i === 0 && $pg === 1 && !$cat && !$mon ? '<div class="gn-lead">' . item_html($it, false) . '</div>' : item_html($it, false));
+    $q = ($mon ? 'm=' . $mon . '&' : '') . ($cat ? 'c=' . rawurlencode($cat) . '&' : '');
     $main .= '<nav class="gn-pages">' . ($pg > 1 ? '<a href="' . SELF . '?' . $q . 'p=' . ($pg - 1) . '">← 較新</a>' : '') . (count($list) > $pg * PER_PAGE ? '<a href="' . SELF . '?' . $q . 'p=' . ($pg + 1) . '">較舊 →</a>' : '') . '</nav>';
     $main .= '</div>' . $side . '</div>';
     $ld = array('@context' => 'https://schema.org', '@type' => 'CollectionPage', 'name' => '吉他新聞', 'url' => SELF, 'inLanguage' => 'zh-TW');
@@ -156,6 +175,7 @@ $css = <<<'CSS'
 .gn-list{padding-left:20px}.gn-list li{margin:0 0 10px;font-size:16.5px;line-height:1.6}.gn-list small{color:var(--muted)}
 .gn-pages{display:flex;justify-content:space-between;margin-top:10px}.gn-pages a{font-weight:600}
 .gn-src a{color:inherit}
+.gn-months{list-style:none;padding:0;margin:0 0 26px}.gn-months li{margin:0 0 8px;font-size:16px}.gn-months small{color:var(--muted)}
 CSS;
 function rep($pat, $str, $tpl){ return preg_replace_callback($pat, function($m) use ($str){ return $str; }, $tpl, 1); }
 $tpl = preg_replace('#<script type="application/ld\+json">.*?</script>#s', '', $tpl);

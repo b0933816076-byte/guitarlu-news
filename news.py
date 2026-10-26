@@ -157,13 +157,16 @@ def ask_github(prompt, model='openai/gpt-4.1'):
         raise RuntimeError('沒有 GITHUB_TOKEN')
     for i in range(3):
         r = requests.post('https://models.github.ai/inference/chat/completions',
-                          headers={'Authorization': 'Bearer ' + tok, 'Content-Type': 'application/json'},
+                          headers={'Authorization': 'Bearer ' + tok, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2026-03-10'},
                           json={'model': model, 'temperature': 0.2, 'messages': [{'role': 'user', 'content': prompt}]}, timeout=180)
         if r.status_code == 429 and i < 2:
             time.sleep(30 * (i + 1))
             continue
         r.raise_for_status()
-        return r.json()['choices'][0]['message']['content']
+        try:
+            return r.json()['choices'][0]['message']['content']
+        except Exception:
+            raise RuntimeError('AI 回應不是 JSON:HTTP %s %s %r' % (r.status_code, r.headers.get('content-type'), r.text[:200]))
 
 def js(txt):
     return json.loads(re.search(r'\{.*\}', txt, re.S).group(0))
