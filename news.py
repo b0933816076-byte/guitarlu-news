@@ -222,6 +222,9 @@ def parse(txt):
     title = (o.get('title') or '').strip()
     if not title or not body:
         raise ValueError('AI 回覆不完整')
+    # 人名中間點統一成故事館用的「·」(U+00B7)
+    fixdot = lambda x: x.replace('‧', '·').replace('・', '·')
+    title, body = fixdot(title), [fixdot(p) for p in body]
     if o.get('cat') not in CATS:
         o['cat'] = '吉他手'
     return title, body, o['cat']
@@ -286,7 +289,9 @@ REVIEW_TEXT = """你是台灣出版社的資深校對。下面是一則要刊登
 - 簡體字、異體字、大陸用語(例如視頻、質量、信息、軟件)
 - 語句不通順、讀起來像機器翻譯、主詞不清楚
 - 標點錯誤(中文要用全形標點)
-找到任何一個就判不通過。只回 JSON:{{"ok":true或false,"problems":["原句→建議改法"]}}
+本站規定:外國人名中間點一律用「·」(故事館統一寫法,例如 約翰·梅爾),這不是錯誤,不要改成「‧」。
+只列「確定是錯」的地方;可改可不改的風格偏好、換個說法也行的句子,不要列。
+找到任何一個確定的錯誤就判不通過。只回 JSON:{{"ok":true或false,"problems":["原句→建議改法"]}}
 
 中文稿:
 {zh}"""
