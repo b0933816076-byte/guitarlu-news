@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
-      - run: pip install -q requests feedparser trafilatura
+      - run: pip install -q requests feedparser trafilatura opencc-python-reimplemented
       - name: 抓新聞＋GitHub 免費 AI 寫摘要
         id: main
         env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' }
@@ -24,13 +24,6 @@ jobs:
           set +e
           python news.py
           echo "code=$?" >> "$GITHUB_OUTPUT"
-      - name: 備援:GitHub AI 不能用 → 雲端電腦裝 Ollama 再寫
-        if: steps.main.outputs.code == '3'
-        run: |
-          curl -fsSL https://ollama.com/install.sh | sh
-          (ollama serve > /tmp/ollama.log 2>&1 &) ; sleep 5
-          ollama pull qwen2.5:7b
-          python news.py --ollama || true
       - name: 存檔
         run: |
           git config user.name "guitarlu-news-bot"
@@ -38,6 +31,6 @@ jobs:
           git add data
           git commit -m "吉他新聞 $(date -u +%F' '%H:%M)" || echo "沒有變動"
           git push
-      - name: 超過 2 天沒新新聞 → 標失敗(GitHub 寄信通知)
+      - name: 超過 7 天沒有新聞通過 → 標失敗(GitHub 寄信通知)
         if: steps.main.outputs.code == '2'
         run: exit 1

@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
-"""盧家宏《吉他故事館》吉他新聞:每天自動抓國外吉他新聞 → AI 寫繁體中文短摘要 → data/news.json。
-在 GitHub Actions 每天跑(電腦不用開)。不轉載原文:只寫自己的短摘要+出處+原文連結。
+"""盧家宏《吉他故事館》吉他新聞:每天自動抓國外吉他新聞 → AI 寫繁體中文短摘要 → 按月存檔。
+在 GitHub Actions 每天跑(電腦不用開、不用 Claude 額度)。不轉載原文:只寫自己的短摘要+出處+原文連結。
 
-AI 三層備援(老師 10-27:不用 Claude 額度、一切自動化、不能哪天停更):
-  1. GitHub Models(免費,用 GITHUB_TOKEN)
-  2. Ollama 本機模型(雲端電腦上臨時裝;本機測試時用老師 D 槽的 Ollama)
-  3. 都失敗 → 只放英文原標題+連結(raw=1),下次跑會自動補寫中文
-連續 2 天沒有新新聞 → 程式回傳失敗 → GitHub 寄信通知。
+老師 10-27:「新聞可以少、不能錯」「寧可更新慢也不能有錯字」「翻譯不好寧可不更新」。
+每則都要過全部關卡才發布(st=ok),任一關不過就不放:
+  1. GitHub Models(gpt-4.1)寫稿
+  2. 程式檢查:OpenCC 查簡體字/大陸用語、譯名照故事館 names.json、字數、全形標點
+  3. AI 對照英文原文審事實與人名
+  4. AI 校對錯字、通順
+  沒過 → 帶著問題重寫一次;再沒過 → rejected,永不發布。AI 連不上 → pending,下次再試。
+存檔:data/archive/YYYY-MM.json(全部,永久)、data/news.json(網站用,最新 200 則已通過)、data/months.json(歷史新聞月份)。
+7 天都沒有新聞通過 → 程式回傳失敗 → GitHub 寄信通知。
 
-用法: python news.py [--ollama] [--dry] [--max N]
+用法: python news.py [--dry] [--max N]
 """
 import os, re, sys, json, time, hashlib, difflib, datetime as dt
 import requests, feedparser
@@ -37,7 +41,7 @@ FEEDS = [  # (來源名稱, RSS, 是否只收吉他相關)
 SKIP = re.compile(r'\b(deal|deals|sale|discount|price drop|lowest[- ]ever|save \$|quiz|buying guide|best .{0,30} (for|under)|coupon|sponsored|giveaway|win a|black friday|cyber monday|prime day|newsletter|subscribe|podcast)\b', re.I)
 GUITARISH = re.compile(r'guitar|bass|amp\b|amplifier|pedal|fret|riff|strat|tele|les paul|luthier|pickup|string', re.I)
 CATS = ['新琴・器材', '吉他手', '拍賣・名琴', '演出・活動', '效果器・科技', '教學・觀念']
-PER_DAY = 6
+PER_RUN = 4   # 每次最多寫 4 則(一天兩次);GitHub 免費 AI 每天有次數上限
 
 def now():
     return dt.datetime.now(TZ)
@@ -147,44 +151,108 @@ PROMPT = """你是台灣吉他教室「盧家宏吉他音樂教室」網站《�
 內文:
 {text}"""
 
-def ask_github(prompt):
+def ask_github(prompt, model='openai/gpt-4.1'):
     tok = os.environ.get('GITHUB_TOKEN')
     if not tok:
         raise RuntimeError('沒有 GITHUB_TOKEN')
-    last = None
-    for model in ('openai/gpt-4.1-mini', 'openai/gpt-4o-mini'):
-        try:
-            r = requests.post('https://models.github.ai/inference/chat/completions',
-                              headers={'Authorization': 'Bearer ' + tok, 'Content-Type': 'application/json'},
-                              json={'model': model, 'temperature': 0.3, 'messages': [{'role': 'user', 'content': prompt}]}, timeout=120)
-            if r.status_code == 429:
-                time.sleep(20)
-                r = requests.post('https://models.github.ai/inference/chat/completions',
-                                  headers={'Authorization': 'Bearer ' + tok, 'Content-Type': 'application/json'},
-                                  json={'model': model, 'temperature': 0.3, 'messages': [{'role': 'user', 'content': prompt}]}, timeout=120)
-            r.raise_for_status()
-            return r.json()['choices'][0]['message']['content'], 'github:' + model
-        except Exception as e:
-            last = e
-    raise RuntimeError('GitHub Models 失敗: %s' % last)
+    for i in range(3):
+        r = requests.post('https://models.github.ai/inference/chat/completions',
+                          headers={'Authorization': 'Bearer ' + tok, 'Content-Type': 'application/json'},
+                          json={'model': model, 'temperature': 0.2, 'messages': [{'role': 'user', 'content': prompt}]}, timeout=180)
+        if r.status_code == 429 and i < 2:
+            time.sleep(30 * (i + 1))
+            continue
+        r.raise_for_status()
+        return r.json()['choices'][0]['message']['content']
 
-def ask_ollama(prompt):
-    r = requests.post('http://127.0.0.1:11434/api/generate',
-                      json={'model': os.environ.get('OLLAMA_MODEL', 'qwen2.5:7b'), 'prompt': prompt, 'stream': False,
-                            'format': 'json', 'options': {'temperature': 0.3, 'num_ctx': 8192}}, timeout=900)
-    r.raise_for_status()
-    return r.json()['response'], 'ollama'
+def js(txt):
+    return json.loads(re.search(r'\{.*\}', txt, re.S).group(0))
 
 def parse(txt):
-    m = re.search(r'\{.*\}', txt, re.S)
-    o = json.loads(m.group(0))
+    o = js(txt)
     body = [p.strip() for p in (o.get('body') or []) if p and p.strip()]
     title = (o.get('title') or '').strip()
-    if not title or not body or not re.search(r'[一-鿿]', title + ''.join(body)):
+    if not title or not body:
         raise ValueError('AI 回覆不完整')
     if o.get('cat') not in CATS:
         o['cat'] = '吉他手'
-    return title, body, o['cat'], o.get('names_en') or []
+    return title, body, o['cat']
+
+# ---------- 把關(老師 10-27:寧可慢也不能有錯字、翻不好就不放) ----------
+try:
+    from opencc import OpenCC
+    _cc = OpenCC('s2t')
+except Exception:
+    _cc = None
+# OpenCC 會改、但台灣繁體本來就這樣寫的字(人名「范」、「公里」「台灣」「岳飛」…)
+OK_CHARS = set('台吃岩峰托范干只里余后征群唇咸皂床秘栗祢厘岳')
+# 台灣不用的大陸用語(出現就退稿)
+CN_WORDS = ['視頻', '質量', '信息', '軟件', '硬件', '網絡', '默認', '屏幕', '鼠標', '博客', '短信', '打印', '激光', '光盤',
+            '互聯網', '數據庫', '音頻', '錄像', '帖子', '高清', '給力', '靠譜', '水平很', '優化了', '牛逼', '粉絲們紛紛', '小夥伴',
+            '吉他手們', '搖滾樂隊', '樂隊', '專輯封面照', '單曲循環', '演唱會門票']
+NAMES_STRICT = load(os.path.join(DATA, 'names_strict.json'), {})
+
+def rule_check(title, body):
+    """程式檢查:簡體字、大陸用語、吉他手譯名要照故事館、字數、全形標點。回傳問題清單(空=通過)。"""
+    txt = title + '\n' + '\n'.join(body)
+    bad = []
+    if _cc is None:
+        bad.append('OpenCC 沒裝,無法檢查簡體字')
+    else:
+        simp = sorted({ch for ch in re.findall(r'[一-鿿]', txt) if ch not in OK_CHARS and _cc.convert(ch) != ch})
+        if simp:
+            bad.append('有簡體字:' + ''.join(simp))
+    for w in CN_WORDS:
+        if w in txt:
+            bad.append('大陸用語:' + w)
+    for en, want in NAMES_STRICT.items():
+        for zh in re.findall(r'([一-鿿·]{1,14})（' + re.escape(en) + r'）', txt):
+            if not zh.endswith(want):
+                bad.append('譯名要跟故事館一樣:%s（%s）應為 %s' % (zh, en, want))
+    n = len(re.sub(r'\s', '', ''.join(body)))
+    if n < 120 or n > 480:
+        bad.append('字數 %d 不在 120～480' % n)
+    if not 10 <= len(title) <= 75:
+        bad.append('標題長度不對')
+    if re.search(r'[,;:?!](?=[一-鿿])|(?<=[一-鿿])[,;:?!]', txt):
+        bad.append('中文句子用了半形標點')
+    if '�' in txt or '??' in txt:
+        bad.append('有亂碼')
+    return bad
+
+REVIEW_FACT = """你是嚴格的新聞審稿編輯。下面是英文原文和一則繁體中文短新聞。逐句檢查中文稿:
+- 任何與原文不符的事實、數字、日期、人名、品牌、型號、地名
+- 原文沒有、中文卻寫出來的內容(包括把原文旁邊其他文章的內容混進來)
+- 翻錯意思、人名或專有名詞音譯明顯錯誤
+有任何一點問題就判不通過。只回 JSON:{{"ok":true或false,"problems":["具體問題"]}}
+
+英文原文標題:{title_en}
+英文原文:
+{text}
+
+中文稿:
+{zh}"""
+
+REVIEW_TEXT = """你是台灣出版社的資深校對。下面是一則要刊登的繁體中文短新聞,請只看中文本身,逐字檢查:
+- 錯字、別字、漏字、多字(例如「在/再」「的/得/地」「做/作」用錯)
+- 簡體字、異體字、大陸用語(例如視頻、質量、信息、軟件)
+- 語句不通順、讀起來像機器翻譯、主詞不清楚
+- 標點錯誤(中文要用全形標點)
+找到任何一個就判不通過。只回 JSON:{{"ok":true或false,"problems":["原句→建議改法"]}}
+
+中文稿:
+{zh}"""
+
+def review(c, text, title, body):
+    zh = title + '\n' + '\n'.join(body)
+    probs = rule_check(title, body)
+    if probs:
+        return probs
+    for tpl in (REVIEW_FACT, REVIEW_TEXT):
+        o = js(ask_github(tpl.format(title_en=c['title_en'], text=text, zh=zh)))
+        if not o.get('ok') or o.get('problems'):
+            return ['AI 審稿:' + '；'.join(map(str, o.get('problems') or ['不通過']))]
+    return []
 
 def story_links(text):
     out = []
@@ -203,75 +271,98 @@ def story_links(text):
             out.append({'url': u, 'title': t})
     return out[:3]
 
-def write_item(c, use_ollama):
+def write_item(c):
+    """寫稿→把關;最多寫兩次。st=ok 才會出現在網站;rejected 永不發布;pending=AI 連不上,下次再試。"""
     text = article_text(c['url'], c['rss'])
+    links = story_links(c['title_en'] + ' ' + text)
     prompt = PROMPT.format(hints=json.dumps(hints(c['title_en'] + ' ' + text), ensure_ascii=False),
                            cats='、'.join(CATS), title=c['title_en'], src=c['src'], text=text)
-    errs = []
-    for fn in ([ask_ollama] if use_ollama else [ask_github, ask_ollama]):
+    fix = ''
+    probs = []
+    for n in range(2):
         try:
-            raw, by = fn(prompt)
-            title, body, cat, _ = parse(raw)
-            return dict(title=title, body=body, cat=cat, by=by, raw=0), story_links(c['title_en'] + ' ' + text)
+            title, body, cat = parse(ask_github(prompt + fix))
+            probs = review(c, text, title, body)
         except Exception as e:
-            errs.append(str(e)[:120])
-    print('  AI 全失敗:', errs)
-    return dict(title=c['title_en'], body=[], cat='吉他手', by='none', raw=1), story_links(c['title_en'] + ' ' + text)
+            print('  AI 連不上/格式錯:', str(e)[:150])
+            return dict(st='pending', title='', body=[], cat='', problems=['AI 連不上']), links
+        if not probs:
+            return dict(st='ok', title=title, body=body, cat=cat, by='github:gpt-4.1', problems=[]), links
+        print('  第 %d 次沒過:' % (n + 1), probs[:3])
+        fix = '\n\n上一版被審稿退回,問題如下,這次務必避免:\n' + '\n'.join(probs[:8])
+    return dict(st='rejected', title='', body=[], cat='', problems=probs[:8]), links
+
+# ---------- 存檔:按月永久保存 ----------
+ARCH = os.path.join(DATA, 'archive')
+
+def load_all():
+    items = []
+    if os.path.isdir(ARCH):
+        for f in sorted(os.listdir(ARCH)):
+            if f.endswith('.json'):
+                items += load(os.path.join(ARCH, f), [])
+    return items
+
+def save_all(items):
+    os.makedirs(ARCH, exist_ok=True)
+    by = {}
+    for it in items:
+        by.setdefault(it['date'][:7], []).append(it)
+    months = []
+    for m, lst in sorted(by.items()):
+        lst.sort(key=lambda x: x['when'], reverse=True)
+        save(os.path.join(ARCH, m + '.json'), lst)
+        months.append({'month': m, 'count': sum(1 for x in lst if x['st'] == 'ok')})
+    ok = sorted([x for x in items if x['st'] == 'ok'], key=lambda x: x['when'], reverse=True)
+    save(NEWS, ok[:200])                      # 網站首頁用:最新 200 則(已通過把關)
+    save(os.path.join(DATA, 'months.json'), [m for m in reversed(months) if m['count']])
 
 # ---------- 主程式 ----------
 def main():
-    use_ollama = '--ollama' in sys.argv
     dry = '--dry' in sys.argv
-    mx = PER_DAY
+    mx = PER_RUN
     if '--max' in sys.argv:
         mx = int(sys.argv[sys.argv.index('--max') + 1])
-    items = load(NEWS, [])
+    items = load_all()
     st = load(STATUS, {})
-    ai_fail = 0
+    stats = {'ok': 0, 'rejected': 0, 'pending': 0}
 
-    # 先補寫之前 AI 失敗、只有英文標題的
+    # 先補寫上次 AI 連不上的(只補 3 天內的)
     for it in items:
-        if it.get('raw') and mx > 0:
-            w, links = write_item({'url': it['url'], 'rss': '', 'title_en': it['title_en'], 'src': it['src']}, use_ollama)
-            if not w['raw']:
-                it.update(w); it['links'] = links; mx -= 1
-                print('補寫', it['id'])
+        if it['st'] == 'pending' and mx > 0 and now() - dt.datetime.fromisoformat(it['when']) < dt.timedelta(days=3):
+            w, links = write_item({'url': it['url'], 'rss': '', 'title_en': it['title_en'], 'src': it['src']})
+            it.update(w); it['links'] = links; mx -= 1
+            stats[w['st']] += 1
+            print('補寫', it['id'], w['st'])
 
     seen_urls = {it['url'] for it in items}
-    seen_titles = [norm(it['title_en']) for it in items[:400]]
-    added = 0
+    seen_titles = [norm(it['title_en']) for it in sorted(items, key=lambda x: x['when'], reverse=True)[:400]]
     for c in fetch_candidates(seen_urls, seen_titles)[:max(mx, 0)]:
         print('寫', c['src'], c['title_en'][:70])
-        w, links = write_item(c, use_ollama)
-        ai_fail += w['raw']
+        w, links = write_item(c)
+        stats[w['st']] += 1
         day = c['when'][:10]
         it = {'id': day + '-' + slug(c['title_en']), 'date': day, 'when': c['when'], 'src': c['src'], 'url': c['url'],
               'title_en': c['title_en'], 'links': links, 'added': now().isoformat()}
         it.update(w)
-        items.insert(0, it)
-        added += 1
+        items.append(it)
 
-    items.sort(key=lambda x: x['when'], reverse=True)
-    items = items[:1500]
     t = now().isoformat()
     st['last_run'] = t
-    if added:
+    if stats['ok']:
         st['last_new'] = t
-    st['added_last_run'] = added
-    st['ai_fail_last_run'] = ai_fail
-    st['total'] = len(items)
+    st['last_run_stats'] = stats
+    st['total_ok'] = sum(1 for x in items if x['st'] == 'ok')
+    ln = st.get('last_new') or st.setdefault('first_run', t)
     if not dry:
-        save(NEWS, items)
+        save_all(items)
         save(STATUS, st)
-    print('新增', added, 'AI失敗', ai_fail, '總數', len(items))
+    print('本次 通過 %(ok)d、退稿 %(rejected)d、待補 %(pending)d' % stats, '總計已發布', st['total_ok'])
 
-    # 防停更:2 天沒新新聞 → 失敗 → GitHub 寄信
-    ln = st.get('last_new')
-    if ln and now() - dt.datetime.fromisoformat(ln) > dt.timedelta(days=2):
-        print('★超過 2 天沒有新新聞')
+    # 新聞可以少、不能錯;但 7 天都沒有任何一則通過 → 標失敗 → GitHub 寄信
+    if now() - dt.datetime.fromisoformat(ln) > dt.timedelta(days=7):
+        print('★超過 7 天沒有新新聞通過')
         sys.exit(2)
-    if ai_fail and ai_fail == added and not use_ollama:
-        sys.exit(3)   # GitHub Models 全掛 → 讓排程改用 Ollama 再跑一次
 
 if __name__ == '__main__':
     main()
