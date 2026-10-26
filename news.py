@@ -153,53 +153,65 @@ PROMPT = """你是台灣吉他教室「盧家宏吉他音樂教室」網站《�
 
 GEMINI = 'https://generativelanguage.googleapis.com/v1beta/'
 _model = None
+_models = None
 
-def gemini_model(key):
-    """用環境變數 GEMINI_MODEL;沒設就自動挑最新的 Flash 文字模型(Google 會換版本,不寫死)。"""
-    global _model
-    if _model:
-        return _model
-    _model = os.environ.get('GEMINI_MODEL')
-    if not _model:
-        r = requests.get(GEMINI + 'models', headers={'x-goog-api-key': key}, params={'pageSize': 200}, timeout=60)
-        r.raise_for_status()
-        names = [m['name'].split('/')[-1] for m in r.json().get('models', [])
-                 if 'generateContent' in m.get('supportedGenerationMethods', [])]
-        flash = [n for n in names if re.match(r'gemini-[\d.]+-flash$', n)] or \
-                [n for n in names if 'flash' in n and not re.search(r'lite|image|tts|audio|live|exp|preview|thinking', n)]
-        if not flash:
-            raise RuntimeError('找不到可用的 Gemini Flash 模型:%s' % names[:20])
-        flash.sort(key=lambda n: [float(x) if x.replace('.', '', 1).isdigit() else 0 for x in re.findall(r'[\d.]+', n)][:1], reverse=True)
-        _model = flash[0]
-    print('  使用模型', _model)
-    return _model
+def gemini_models(key):
+    """用環境變數 GEMINI_MODEL;沒設就列出可用的 Flash 文字模型,新版在前(Google 會換版本,不寫死)。"""
+    global _models
+    if _models is None:
+        if os.environ.get('GEMINI_MODEL'):
+            _models = [os.environ['GEMINI_MODEL']]
+        else:
+            r = requests.get(GEMINI + 'models', headers={'x-goog-api-key': key}, params={'pageSize': 200}, timeout=60)
+            r.raise_for_status()
+            names = [m['name'].split('/')[-1] for m in r.json().get('models', [])
+                     if 'generateContent' in m.get('supportedGenerationMethods', [])]
+            ver = lambda n: [float(x) if x.replace('.', '', 1).isdigit() else 0 for x in re.findall(r'[\d.]+', n)][:1]
+            exact = sorted([n for n in names if re.match(r'gemini-[\d.]+-flash$', n)], key=ver, reverse=True)
+            other = sorted([n for n in names if 'flash' in n and n not in exact
+                            and not re.search(r'lite|image|tts|audio|live|exp|preview|thinking', n)], key=ver, reverse=True)
+            flash = exact + other
+            if not flash:
+                raise RuntimeError('找不到可用的 Gemini Flash 模型:%s' % names[:20])
+            _models = flash[:4]
+        print('  可用模型', _models)
+    return _models
 
 class QuotaOut(Exception):
-    """Gemini 免費額度用完。"""
+    """Gemini 免費額度用完(或每個模型都忙)。"""
 
 def ask_ai(prompt):
-    """Google Gemini 免費額度(GitHub Models 已於 2026-07-30 停止服務)。金鑰放 GitHub Secrets 的 GEMINI_API_KEY。"""
+    """Google Gemini 免費額度(GitHub Models 已於 2026-07-30 停止服務)。金鑰放 GitHub Secrets 的 GEMINI_API_KEY。
+    一個模型額度用完/忙線/逾時 → 換下一個 Flash 模型;全部都不行 → QuotaOut,這次先停、下次再寫(老師 10-27:有額度再更新、沒有就等)。"""
+    global _model
     key = os.environ.get('GEMINI_API_KEY')
     if not key:
         raise RuntimeError('沒有 GEMINI_API_KEY')
-    model = gemini_model(key)
-    for i in range(4):
-        r = requests.post(GEMINI + 'models/%s:generateContent' % model, headers={'x-goog-api-key': key, 'Content-Type': 'application/json'},
-                          json={'contents': [{'role': 'user', 'parts': [{'text': prompt}]}],
-                                'generationConfig': {'temperature': 0.2, 'responseMimeType': 'application/json'}}, timeout=180)
-        if r.status_code == 429:
-            if i < 1:
-                time.sleep(35)            # 每分鐘上限:等一下再試一次
-                continue
-            raise QuotaOut()              # 老師 10-27:有額度再更新、沒有就等 → 這次先停,下次再寫
-        if r.status_code in (500, 503) and i < 3:
-            time.sleep(20 * (i + 1))
-            continue
-        r.raise_for_status()
-        try:
-            return ''.join(p.get('text', '') for p in r.json()['candidates'][0]['content']['parts'])
-        except Exception:
-            raise RuntimeError('AI 回應格式不對:HTTP %s %r' % (r.status_code, r.text[:200]))
+    models = gemini_models(key)
+    if _model not in models:
+        _model = models[0]
+    while True:
+        for i in range(2):
+            try:
+                r = requests.post(GEMINI + 'models/%s:generateContent' % _model, headers={'x-goog-api-key': key, 'Content-Type': 'application/json'},
+                                  json={'contents': [{'role': 'user', 'parts': [{'text': prompt}]}],
+                                        'generationConfig': {'temperature': 0.2, 'responseMimeType': 'application/json'}}, timeout=120)
+            except requests.exceptions.Timeout:
+                r = None
+            if r is not None and r.status_code == 200:
+                try:
+                    return ''.join(p.get('text', '') for p in r.json()['candidates'][0]['content']['parts'])
+                except Exception:
+                    raise RuntimeError('AI 回應格式不對:%r' % r.text[:200])
+            if r is not None and r.status_code not in (429, 500, 503):
+                r.raise_for_status()
+            if i == 0:
+                time.sleep(30)            # 每分鐘上限/暫時忙線:等一下再試一次
+        k = models.index(_model) + 1
+        print('  %s 沒回應(%s),換下一個模型' % (_model, 'timeout' if r is None else r.status_code))
+        if k >= len(models):
+            raise QuotaOut()
+        _model = models[k]
 
 def js(txt):
     return json.loads(re.search(r'\{.*\}', txt, re.S).group(0))
