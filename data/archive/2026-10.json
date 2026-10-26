@@ -21,12 +21,12 @@
    }
   ],
   "added": "2026-10-27T04:26:52.846264+08:00",
-  "st": "pending",
+  "st": "rejected",
   "title": "",
   "body": [],
   "cat": "",
   "problems": [
-   "AI 連不上"
+   "AI 審稿:誤將原文中的片語『from square one』（意為『從頭開始』、『從零開始』）錯誤翻譯/理解為『接近方波』。"
   ]
  },
  {
@@ -47,12 +47,12 @@
    }
   ],
   "added": "2026-10-27T04:26:53.208007+08:00",
-  "st": "pending",
+  "st": "rejected",
   "title": "",
   "body": [],
   "cat": "",
   "problems": [
-   "AI 連不上"
+   "譯名要跟故事館一樣:梅爾（John Mayer）應為 約翰·梅爾"
   ]
  },
  {
@@ -64,12 +64,12 @@
   "title_en": "“The world lost a beautiful soul today”: Jack White mourns his big brother Eddie",
   "links": [],
   "added": "2026-10-27T04:26:53.574537+08:00",
-  "st": "pending",
+  "st": "rejected",
   "title": "",
   "body": [],
   "cat": "",
   "problems": [
-   "AI 連不上"
+   "AI 審稿:傑克·懷特→傑克‧懷特（人名間隔號應使用全形「‧」而非半形「·」）；在抗癌後離世→與癌症搏鬥後離世（或「不敵病魔離世」，原句帶有西洋文法直譯感）；多明尼克·戴維斯→多明尼克‧戴維斯（人名間隔號應使用全形「‧」而非半形「·」）"
   ]
  },
  {
