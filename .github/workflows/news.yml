@@ -1,0 +1,43 @@
+name: 吉他新聞每日更新
+on:
+  schedule:
+    - cron: '10 22 * * *'   # 台灣 06:10
+    - cron: '10 10 * * *'   # 台灣 18:10(第二次,早上漏掉也會補)
+  workflow_dispatch:
+permissions:
+  contents: write
+  models: read
+concurrency: news
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install -q requests feedparser trafilatura
+      - name: 抓新聞＋GitHub 免費 AI 寫摘要
+        id: main
+        env: { GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}' }
+        run: |
+          set +e
+          python news.py
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+      - name: 備援:GitHub AI 不能用 → 雲端電腦裝 Ollama 再寫
+        if: steps.main.outputs.code == '3'
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          (ollama serve > /tmp/ollama.log 2>&1 &) ; sleep 5
+          ollama pull qwen2.5:7b
+          python news.py --ollama || true
+      - name: 存檔
+        run: |
+          git config user.name "guitarlu-news-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          git commit -m "吉他新聞 $(date -u +%F' '%H:%M)" || echo "沒有變動"
+          git push
+      - name: 超過 2 天沒新新聞 → 標失敗(GitHub 寄信通知)
+        if: steps.main.outputs.code == '2'
+        run: exit 1
