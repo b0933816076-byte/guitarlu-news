@@ -102,7 +102,7 @@ $side .= '</aside>';
 $main = '<main class="gn">';
 if($one){
     $title = $one['title'] . '｜吉他新聞';
-    $desc = mb_substr($one['body'][0], 0, 110, 'UTF-8');
+    $desc = preg_match('/^.{0,110}/us', $one['body'][0], $mm) ? $mm[0] : '';   // 不靠 mbstring,主機沒裝也能跑
     $canon = SELF . '/' . $one['id'];
     $main .= '<nav class="gn-crumb"><a href="' . SITE . '">首頁</a> › <a href="' . SITE . 'guitar-stories.html">吉他故事館</a> › <a href="' . SELF . '">吉他新聞</a></nav>';
     $main .= '<div class="gn-grid"><div class="gn-one">' . item_html($one, true);

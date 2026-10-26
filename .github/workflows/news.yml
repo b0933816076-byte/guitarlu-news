@@ -30,6 +30,3 @@ jobs:
           git add data
           git commit -m "吉他新聞 $(date -u +%F' '%H:%M)" || echo "沒有變動"
           git push
-      - name: 超過 7 天沒有新聞通過 → 標失敗(GitHub 寄信通知)
-        if: steps.main.outputs.code == '2'
-        run: exit 1

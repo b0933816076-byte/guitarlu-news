@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """盧家宏《吉他故事館》吉他新聞:每天自動抓國外吉他新聞 → AI 寫繁體中文短摘要 → 按月存檔。
-在 GitHub Actions 每天跑(電腦不用開、不用 Claude 額度)。不轉載原文:只寫自己的短摘要+出處+原文連結。
+在 GitHub Actions 排程跑(電腦不用開、不用 Claude 額度)。不轉載原文:只寫自己的短摘要+出處+原文連結。
 
 老師 10-27:「新聞可以少、不能錯」「寧可更新慢也不能有錯字」「翻譯不好寧可不更新」。
 每則都要過全部關卡才發布(st=ok),任一關不過就不放:
@@ -10,7 +10,7 @@
   4. AI 校對錯字、通順
   沒過 → 帶著問題重寫一次;再沒過 → rejected,永不發布。AI 連不上 → pending,下次再試。
 存檔:data/archive/YYYY-MM.json(全部,永久)、data/news.json(網站用,最新 200 則已通過)、data/months.json(歷史新聞月份)。
-7 天都沒有新聞通過 → 程式回傳失敗 → GitHub 寄信通知。
+Gemini 免費額度用完就停、下次再寫(老師 10-27:新聞不是義務,有額度再更新、沒有就等);不寄失敗信。
 
 用法: python news.py [--dry] [--max N]
 """
@@ -174,6 +174,9 @@ def gemini_model(key):
     print('  使用模型', _model)
     return _model
 
+class QuotaOut(Exception):
+    """Gemini 免費額度用完。"""
+
 def ask_ai(prompt):
     """Google Gemini 免費額度(GitHub Models 已於 2026-07-30 停止服務)。金鑰放 GitHub Secrets 的 GEMINI_API_KEY。"""
     key = os.environ.get('GEMINI_API_KEY')
@@ -184,8 +187,13 @@ def ask_ai(prompt):
         r = requests.post(GEMINI + 'models/%s:generateContent' % model, headers={'x-goog-api-key': key, 'Content-Type': 'application/json'},
                           json={'contents': [{'role': 'user', 'parts': [{'text': prompt}]}],
                                 'generationConfig': {'temperature': 0.2, 'responseMimeType': 'application/json'}}, timeout=180)
-        if r.status_code in (429, 500, 503) and i < 3:
-            time.sleep(40 * (i + 1))      # 免費額度每分鐘有上限,等一下再試
+        if r.status_code == 429:
+            if i < 1:
+                time.sleep(35)            # 每分鐘上限:等一下再試一次
+                continue
+            raise QuotaOut()              # 老師 10-27:有額度再更新、沒有就等 → 這次先停,下次再寫
+        if r.status_code in (500, 503) and i < 3:
+            time.sleep(20 * (i + 1))
             continue
         r.raise_for_status()
         try:
@@ -311,6 +319,8 @@ def write_item(c):
         try:
             title, body, cat = parse(ask_ai(prompt + fix))
             probs = review(c, text, title, body)
+        except QuotaOut:
+            raise
         except Exception as e:
             print('  AI 連不上/格式錯:', str(e)[:150])
             return dict(st='pending', title='', body=[], cat='', problems=['AI 連不上']), links
@@ -355,25 +365,30 @@ def main():
     st = load(STATUS, {})
     stats = {'ok': 0, 'rejected': 0, 'pending': 0}
 
-    # 先補寫上次 AI 連不上的(只補 3 天內的)
-    for it in items:
-        if it['st'] == 'pending' and mx > 0 and now() - dt.datetime.fromisoformat(it['when']) < dt.timedelta(days=3):
-            w, links = write_item({'url': it['url'], 'rss': '', 'title_en': it['title_en'], 'src': it['src']})
-            it.update(w); it['links'] = links; mx -= 1
-            stats[w['st']] += 1
-            print('補寫', it['id'], w['st'])
+    # 老師 10-27:新聞不是義務、不用天天更新;有額度再更新,沒有就等 → 額度用完就停,寫好的照存,下次再接著寫
+    try:
+        # 先補寫上次 AI 連不上的(只補 14 天內的)
+        for it in items:
+            if it['st'] == 'pending' and mx > 0 and now() - dt.datetime.fromisoformat(it['when']) < dt.timedelta(days=14):
+                w, links = write_item({'url': it['url'], 'rss': '', 'title_en': it['title_en'], 'src': it['src']})
+                it.update(w); it['links'] = links; mx -= 1
+                stats[w['st']] += 1
+                print('補寫', it['id'], w['st'])
 
-    seen_urls = {it['url'] for it in items}
-    seen_titles = [norm(it['title_en']) for it in sorted(items, key=lambda x: x['when'], reverse=True)[:400]]
-    for c in fetch_candidates(seen_urls, seen_titles)[:max(mx, 0)]:
-        print('寫', c['src'], c['title_en'][:70])
-        w, links = write_item(c)
-        stats[w['st']] += 1
-        day = c['when'][:10]
-        it = {'id': day + '-' + slug(c['title_en']), 'date': day, 'when': c['when'], 'src': c['src'], 'url': c['url'],
-              'title_en': c['title_en'], 'links': links, 'added': now().isoformat()}
-        it.update(w)
-        items.append(it)
+        seen_urls = {it['url'] for it in items}
+        seen_titles = [norm(it['title_en']) for it in sorted(items, key=lambda x: x['when'], reverse=True)[:400]]
+        for c in fetch_candidates(seen_urls, seen_titles)[:max(mx, 0)]:
+            print('寫', c['src'], c['title_en'][:70])
+            w, links = write_item(c)
+            stats[w['st']] += 1
+            day = c['when'][:10]
+            it = {'id': day + '-' + slug(c['title_en']), 'date': day, 'when': c['when'], 'src': c['src'], 'url': c['url'],
+                  'title_en': c['title_en'], 'links': links, 'added': now().isoformat()}
+            it.update(w)
+            items.append(it)
+    except QuotaOut:
+        print('Gemini 免費額度用完,這次先停,下次排程有額度再寫')
+        st['last_quota_out'] = now().isoformat()
 
     t = now().isoformat()
     st['last_run'] = t
@@ -387,10 +402,6 @@ def main():
         save(STATUS, st)
     print('本次 通過 %(ok)d、退稿 %(rejected)d、待補 %(pending)d' % stats, '總計已發布', st['total_ok'])
 
-    # 新聞可以少、不能錯;但 7 天都沒有任何一則通過 → 標失敗 → GitHub 寄信
-    if now() - dt.datetime.fromisoformat(ln) > dt.timedelta(days=7):
-        print('★超過 7 天沒有新新聞通過')
-        sys.exit(2)
 
 if __name__ == '__main__':
     main()
