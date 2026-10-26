@@ -4,7 +4,7 @@
 
 老師 10-27:「新聞可以少、不能錯」「寧可更新慢也不能有錯字」「翻譯不好寧可不更新」。
 每則都要過全部關卡才發布(st=ok),任一關不過就不放:
-  1. GitHub Models(gpt-4.1)寫稿
+  1. Google Gemini 免費額度寫稿(GitHub Models 已於 2026-07-30 停止服務)
   2. 程式檢查:OpenCC 查簡體字/大陸用語、譯名照故事館 names.json、字數、全形標點
   3. AI 對照英文原文審事實與人名
   4. AI 校對錯字、通順
@@ -41,7 +41,7 @@ FEEDS = [  # (來源名稱, RSS, 是否只收吉他相關)
 SKIP = re.compile(r'\b(deal|deals|sale|discount|price drop|lowest[- ]ever|save \$|quiz|buying guide|best .{0,30} (for|under)|coupon|sponsored|giveaway|win a|black friday|cyber monday|prime day|newsletter|subscribe|podcast)\b', re.I)
 GUITARISH = re.compile(r'guitar|bass|amp\b|amplifier|pedal|fret|riff|strat|tele|les paul|luthier|pickup|string', re.I)
 CATS = ['新琴・器材', '吉他手', '拍賣・名琴', '演出・活動', '效果器・科技', '教學・觀念']
-PER_RUN = 4   # 每次最多寫 4 則(一天兩次);GitHub 免費 AI 每天有次數上限
+PER_RUN = 4   # 每次最多寫 4 則(一天兩次);Gemini 免費額度每天有次數上限
 
 def now():
     return dt.datetime.now(TZ)
@@ -151,22 +151,47 @@ PROMPT = """你是台灣吉他教室「盧家宏吉他音樂教室」網站《�
 內文:
 {text}"""
 
-def ask_github(prompt, model='openai/gpt-4.1'):
-    tok = os.environ.get('GITHUB_TOKEN')
-    if not tok:
-        raise RuntimeError('沒有 GITHUB_TOKEN')
-    for i in range(3):
-        r = requests.post('https://models.github.ai/inference/chat/completions',
-                          headers={'Authorization': 'Bearer ' + tok, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2026-03-10'},
-                          json={'model': model, 'temperature': 0.2, 'messages': [{'role': 'user', 'content': prompt}]}, timeout=180)
-        if r.status_code == 429 and i < 2:
-            time.sleep(30 * (i + 1))
+GEMINI = 'https://generativelanguage.googleapis.com/v1beta/'
+_model = None
+
+def gemini_model(key):
+    """用環境變數 GEMINI_MODEL;沒設就自動挑最新的 Flash 文字模型(Google 會換版本,不寫死)。"""
+    global _model
+    if _model:
+        return _model
+    _model = os.environ.get('GEMINI_MODEL')
+    if not _model:
+        r = requests.get(GEMINI + 'models', headers={'x-goog-api-key': key}, params={'pageSize': 200}, timeout=60)
+        r.raise_for_status()
+        names = [m['name'].split('/')[-1] for m in r.json().get('models', [])
+                 if 'generateContent' in m.get('supportedGenerationMethods', [])]
+        flash = [n for n in names if re.match(r'gemini-[\d.]+-flash$', n)] or \
+                [n for n in names if 'flash' in n and not re.search(r'lite|image|tts|audio|live|exp|preview|thinking', n)]
+        if not flash:
+            raise RuntimeError('找不到可用的 Gemini Flash 模型:%s' % names[:20])
+        flash.sort(key=lambda n: [float(x) if x.replace('.', '', 1).isdigit() else 0 for x in re.findall(r'[\d.]+', n)][:1], reverse=True)
+        _model = flash[0]
+    print('  使用模型', _model)
+    return _model
+
+def ask_ai(prompt):
+    """Google Gemini 免費額度(GitHub Models 已於 2026-07-30 停止服務)。金鑰放 GitHub Secrets 的 GEMINI_API_KEY。"""
+    key = os.environ.get('GEMINI_API_KEY')
+    if not key:
+        raise RuntimeError('沒有 GEMINI_API_KEY')
+    model = gemini_model(key)
+    for i in range(4):
+        r = requests.post(GEMINI + 'models/%s:generateContent' % model, headers={'x-goog-api-key': key, 'Content-Type': 'application/json'},
+                          json={'contents': [{'role': 'user', 'parts': [{'text': prompt}]}],
+                                'generationConfig': {'temperature': 0.2, 'responseMimeType': 'application/json'}}, timeout=180)
+        if r.status_code in (429, 500, 503) and i < 3:
+            time.sleep(40 * (i + 1))      # 免費額度每分鐘有上限,等一下再試
             continue
         r.raise_for_status()
         try:
-            return r.json()['choices'][0]['message']['content']
+            return ''.join(p.get('text', '') for p in r.json()['candidates'][0]['content']['parts'])
         except Exception:
-            raise RuntimeError('AI 回應不是 JSON:HTTP %s %s %r' % (r.status_code, r.headers.get('content-type'), r.text[:200]))
+            raise RuntimeError('AI 回應格式不對:HTTP %s %r' % (r.status_code, r.text[:200]))
 
 def js(txt):
     return json.loads(re.search(r'\{.*\}', txt, re.S).group(0))
@@ -252,7 +277,7 @@ def review(c, text, title, body):
     if probs:
         return probs
     for tpl in (REVIEW_FACT, REVIEW_TEXT):
-        o = js(ask_github(tpl.format(title_en=c['title_en'], text=text, zh=zh)))
+        o = js(ask_ai(tpl.format(title_en=c['title_en'], text=text, zh=zh)))
         if not o.get('ok') or o.get('problems'):
             return ['AI 審稿:' + '；'.join(map(str, o.get('problems') or ['不通過']))]
     return []
@@ -284,13 +309,13 @@ def write_item(c):
     probs = []
     for n in range(2):
         try:
-            title, body, cat = parse(ask_github(prompt + fix))
+            title, body, cat = parse(ask_ai(prompt + fix))
             probs = review(c, text, title, body)
         except Exception as e:
             print('  AI 連不上/格式錯:', str(e)[:150])
             return dict(st='pending', title='', body=[], cat='', problems=['AI 連不上']), links
         if not probs:
-            return dict(st='ok', title=title, body=body, cat=cat, by='github:gpt-4.1', problems=[]), links
+            return dict(st='ok', title=title, body=body, cat=cat, by='gemini:' + (_model or ''), problems=[]), links
         print('  第 %d 次沒過:' % (n + 1), probs[:3])
         fix = '\n\n上一版被審稿退回,問題如下,這次務必避免:\n' + '\n'.join(probs[:8])
     return dict(st='rejected', title='', body=[], cat='', problems=probs[:8]), links
