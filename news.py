@@ -171,10 +171,12 @@ def gemini_models(key):
             exact = sorted([n for n in names if re.match(r'gemini-[\d.]+-flash$', n)], key=ver, reverse=True)
             other = sorted([n for n in names if 'flash' in n and n not in exact
                             and not re.search(r'lite|image|tts|audio|live|exp|preview|thinking', n)], key=ver, reverse=True)
-            flash = exact + other
-            if not flash:
+            flash = (exact + other)[:4]
+            # 10-28:新 Flash 常忙線、舊 Flash 免費每天次數很少 → 後面接 Flash-Lite(免費額度分開算);寫得好不好仍由審稿關卡決定
+            lite = sorted([n for n in names if re.match(r'gemini-[\d.]+-flash-lite$', n)], key=ver, reverse=True)[:2]
+            if not flash + lite:
                 raise RuntimeError('找不到可用的 Gemini Flash 模型:%s' % names[:20])
-            _models = flash[:4]
+            _models = flash + lite
         print('  可用模型', _models)
     return _models
 
