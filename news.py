@@ -42,6 +42,7 @@ FEEDS = [  # (來源名稱, RSS, 是否只收吉他相關)
 SKIP = re.compile(r'\b(deal|deals|sale|discount|price drop|lowest[- ]ever|save \$|quiz|buying guide|best .{0,30} (for|under)|coupon|sponsored|giveaway|win a|black friday|cyber monday|prime day|newsletter|subscribe|podcast)\b', re.I)
 GUITARISH = re.compile(r'guitar|bass|amp\b|amplifier|pedal|fret|riff|strat|tele|les paul|luthier|pickup|string', re.I)
 CATS = ['新琴・器材', '吉他手', '拍賣・名琴', '演出・活動', '效果器・科技', '教學・觀念']
+AD = re.compile(r'\b(ad feature|advertorial|sponsored|paid content|partner content|in partnership with|brought to you by)\b', re.I)
 PER_RUN = 4   # 每次最多寫 4 則(一天兩次);Gemini 免費額度每天有次數上限
 
 def now():
@@ -131,7 +132,8 @@ LINKS = load(os.path.join(DATA, 'story-links.json'), {'people': {}, 'articles': 
 def hints(text):
     h = {}
     for en, zh in NAMES.items():
-        if len(en) > 3 and re.search(r'\b' + re.escape(en) + r'\b', text):
+        # 原文常把 and 寫成 &(Derek & the Dominos),兩種都要認得(10-28 沒認到 → 譯名跟故事館不一樣)
+        if len(en) > 3 and re.search(r'\b' + re.escape(en).replace(r'\ and\ ', r'\ (?:and|&)\ ') + r'\b', text):
             h[en] = zh
         if len(h) >= 40:
             break
@@ -145,6 +147,8 @@ PROMPT = """你是台灣吉他教室「盧家宏吉他音樂教室」網站《�
 4. 譯名一律照這份對照表(表裡沒有的再自己音譯):{hints}
 5. 標題 18～40 字,吸引人但不誇大。內文 2～3 段,共 150～260 字。
 6. 分類只能選一個:{cats}
+7. 舊訪談、舊事件要寫出年份,不能寫得像最近才發生;原文說「首次推出」和「原有產品」要分清楚。
+8. 同一個外文名字(例如姓氏 Powers)在全文只能有一種譯法。
 只回 JSON,不要其他文字:{{"title":"...","body":["第一段","第二段"],"cat":"...","names_en":["文中提到的英文人名或品牌"]}}
 
 英文新聞標題:{title}
@@ -300,6 +304,8 @@ REVIEW_FACT = """你是嚴格的新聞審稿編輯。下面是英文原文和一
 - 任何與原文不符的事實、數字、日期、人名、品牌、型號、地名
 - 原文沒有、中文卻寫出來的內容(包括把原文旁邊其他文章的內容混進來)
 - 翻錯意思、人名或專有名詞音譯明顯錯誤
+- 原文是舊訪談或舊事件,中文卻沒寫年份、讀起來像最近發生
+- 把原有產品寫成新品,或把新品寫成原有產品
 有任何一點問題就判不通過。只回 JSON:{{"ok":true或false,"problems":["具體問題"]}}
 
 英文原文標題:{title_en}
@@ -314,6 +320,7 @@ REVIEW_TEXT = """你是台灣出版社的資深校對。下面是一則要刊登
 - 簡體字、異體字、大陸用語(例如視頻、質量、信息、軟件)
 - 語句不通順、讀起來像機器翻譯、主詞不清楚
 - 標點錯誤(中文要用全形標點)
+- 同一個外文名字前後譯法不一致(例如同一個 Powers 一處寫鮑爾斯、一處寫寶爾斯)
 本站規定:外國人名中間點一律用「·」(故事館統一寫法,例如 約翰·梅爾),這不是錯誤,不要改成「‧」。
 只列「確定是錯」的地方;可改可不改的風格偏好、換個說法也行的句子,不要列。
 找到任何一個確定的錯誤就判不通過。只回 JSON:{{"ok":true或false,"problems":["原句→建議改法"]}}
@@ -384,7 +391,7 @@ def story_links(text):
     topic = [(r'\bauction|Heritage Auctions|Christie|Sotheby|Bonhams|Julien', 'lesson-hist-140-rare-auction-records.html', '吉他拍賣天價紀錄'),
              (r'\bFender\b', 'lesson-hist-20-brand-fender.html', '芬達（Fender）品牌故事'),
              (r'\bGibson\b|\bEpiphone\b', 'lesson-hist-19-brand-gibson.html', '吉布森（Gibson）品牌故事'),
-             (r'\bpedal|effects|NAM\b|modeler', 'lesson-hist-06-effects-pedal-history.html', '效果器的歷史'),
+             (r'\bpedals?\b|\beffects\b|\bNAM\b|modeler', 'lesson-hist-06-effects-pedal-history.html', '效果器的歷史'),
              (r'\bamp\b|amplifier|Marshall|Vox\b', 'lesson-hist-05-amplifier-history.html', '音箱的歷史')]
     for pat, u, t in topic:
         if len(out) >= 3:
@@ -398,6 +405,10 @@ def write_item(c):
     st=ok 才會出現在網站;rejected 永不發布;pending=AI 連不上,下次再試。"""
     text = article_text(c['url'], c['rss'])
     links = story_links(c['title_en'] + ' ' + text)
+    # 業配/贊助文不是新聞(10-28 Powers Electric 那篇原文寫 Ad feature,被寫成新聞上了網站)
+    if AD.search(c['title_en'] + ' ' + text[:1000]):
+        print('  業配文,不寫')
+        return dict(st='rejected', title='', body=[], cat='', problems=['業配/贊助內容,不當新聞']), links
     hint = json.dumps(hints(c['title_en'] + ' ' + text), ensure_ascii=False)
     prompt = PROMPT.format(hints=hint, cats='、'.join(CATS), title=c['title_en'], src=c['src'], text=text)
     probs = []
