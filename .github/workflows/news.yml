@@ -2,6 +2,7 @@ name: 吉他新聞每日更新
 on:
   schedule:
     - cron: '10 22 * * *'   # 台灣 06:10
+    - cron: '40 7 * * *'    # 台灣 15:40(Gemini 免費額度約 15:00 重置後)
     - cron: '10 10 * * *'   # 台灣 18:10(第二次,早上漏掉也會補)
   workflow_dispatch:
 permissions:
