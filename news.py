@@ -8,7 +8,8 @@
   2. 程式檢查:OpenCC 查簡體字/大陸用語、譯名照故事館 names.json、字數、全形標點
   3. AI 對照英文原文審事實與人名
   4. AI 校對錯字、通順
-  沒過 → 帶著問題重寫一次;再沒過 → rejected,永不發布。AI 連不上 → pending,下次再試。
+  沒過 → 校對給的「原句→改法」直接套用、其他問題請 AI 修這一篇(不重寫),每次修完都從第 2 關重審;
+  審 5 輪還沒過 → rejected,永不發布。AI 連不上 → pending,下次再試。
 存檔:data/archive/YYYY-MM.json(全部,永久)、data/news.json(網站用,最新 200 則已通過)、data/months.json(歷史新聞月份)。
 Gemini 免費額度用完就停、下次再寫(老師 10-27:新聞不是義務,有額度再更新、沒有就等);不寄失敗信。
 
@@ -178,40 +179,59 @@ def gemini_models(key):
     return _models
 
 class QuotaOut(Exception):
-    """Gemini 免費額度用完(或每個模型都忙)。"""
+    """Gemini 今天的免費額度用完,或每個模型都一直忙線。"""
+
+START = time.time()
+_dead = set()       # 這次執行裡「今天額度已用完」的模型
+_last_call = [0.0]
 
 def ask_ai(prompt):
     """Google Gemini 免費額度(GitHub Models 已於 2026-07-30 停止服務)。金鑰放 GitHub Secrets 的 GEMINI_API_KEY。
-    一個模型額度用完/忙線/逾時 → 換下一個 Flash 模型;全部都不行 → QuotaOut,這次先停、下次再寫(老師 10-27:有額度再更新、沒有就等)。"""
+    10-28 修:以前 503 忙線就永久換掉模型、四個輪完就說「額度用完」→ 其實額度還在,從來沒發出新聞。
+    現在:忙線(500/503/逾時)→ 同一個模型等一下再試(20/60/120 秒),還不行這一次換別的模型,下次呼叫仍從最新的開始;
+    429 每分鐘上限 → 等 65 秒再試;只有 Google 說「每天額度」用完的模型才停用。全部停用或全部一直忙 → QuotaOut,下次排程再寫。"""
     global _model
     key = os.environ.get('GEMINI_API_KEY')
     if not key:
         raise RuntimeError('沒有 GEMINI_API_KEY')
     models = gemini_models(key)
-    if _model not in models:
-        _model = models[0]
-    while True:
-        for i in range(2):
+    if time.time() - START > 45 * 60:
+        raise QuotaOut('這次已跑 45 分鐘')      # 雲端一次最多 60 分鐘,留時間存檔
+    last = None
+    for m in [x for x in models if x not in _dead]:
+        for wait in (20, 60, 120, None):
+            gap = time.time() - _last_call[0]
+            if gap < 6:
+                time.sleep(6 - gap)       # 免費版每分鐘次數少,呼叫之間至少隔 6 秒
+            _last_call[0] = time.time()
             try:
-                r = requests.post(GEMINI + 'models/%s:generateContent' % _model, headers={'x-goog-api-key': key, 'Content-Type': 'application/json'},
+                r = requests.post(GEMINI + 'models/%s:generateContent' % m, headers={'x-goog-api-key': key, 'Content-Type': 'application/json'},
                                   json={'contents': [{'role': 'user', 'parts': [{'text': prompt}]}],
-                                        'generationConfig': {'temperature': 0.2, 'responseMimeType': 'application/json'}}, timeout=120)
-            except requests.exceptions.Timeout:
+                                        'generationConfig': {'temperature': 0.2, 'responseMimeType': 'application/json'}}, timeout=180)
+            except (requests.exceptions.Timeout, requests.exceptions.ConnectionError):
                 r = None
             if r is not None and r.status_code == 200:
                 try:
+                    _model = m
                     return ''.join(p.get('text', '') for p in r.json()['candidates'][0]['content']['parts'])
                 except Exception:
                     raise RuntimeError('AI 回應格式不對:%r' % r.text[:200])
-            if r is not None and r.status_code not in (429, 500, 503):
+            last = 'timeout' if r is None else r.status_code
+            if r is not None and r.status_code not in (429, 500, 502, 503, 504):
                 r.raise_for_status()
-            if i == 0:
-                time.sleep(30)            # 每分鐘上限/暫時忙線:等一下再試一次
-        k = models.index(_model) + 1
-        print('  %s 沒回應(%s),換下一個模型' % (_model, 'timeout' if r is None else r.status_code))
-        if k >= len(models):
-            raise QuotaOut()
-        _model = models[k]
+            if r is not None and r.status_code == 429:
+                if re.search(r'PerDay|per day|daily', r.text, re.I):
+                    print('  %s 今天的免費額度用完' % m)
+                    _dead.add(m)
+                    break
+                wait = 65 if wait else None   # 每分鐘上限:等過這一分鐘
+            if wait is None:
+                break
+            print('  %s 忙線(%s),等 %d 秒再試' % (m, last, wait))
+            time.sleep(wait)
+        if m not in _dead:
+            print('  %s 一直沒回應(%s),這次先換下一個模型' % (m, last))
+    raise QuotaOut('全部模型額度用完' if len(_dead) == len(models) else '全部模型一直忙線(%s)' % last)
 
 def js(txt):
     return json.loads(re.search(r'\{.*\}', txt, re.S).group(0))
@@ -296,16 +316,60 @@ REVIEW_TEXT = """你是台灣出版社的資深校對。下面是一則要刊登
 中文稿:
 {zh}"""
 
+REVISE = """你是《吉他故事館》新聞編輯。下面這則中文短新聞被審稿退回,請「修改這一篇」,不要整篇重寫:
+只改審稿指出的地方(必要時連同那一句一起改順),其他沒問題的句子一個字都不要動。
+修改時仍要遵守:只寫英文原文裡有的事實、台灣繁體中文、全形標點、外國人名中間點用「·」、
+人名品牌第一次出現寫「中文（English）」、譯名照這份對照表:{hints}
+只回 JSON,不要其他文字:{{"title":"...","body":["第一段","第二段"],"cat":"{cat}"}}
+
+審稿問題:
+{probs}
+
+英文原文標題:{title_en}
+英文原文:
+{text}
+
+被退回的中文稿(JSON):
+{draft}"""
+
 def review(c, text, title, body):
+    """回傳 (問題清單, 哪一關):'rule' 程式檢查、'fact' 對照原文、'text' 校對;沒問題回 ([], '')。"""
     zh = title + '\n' + '\n'.join(body)
     probs = rule_check(title, body)
     if probs:
-        return probs
-    for tpl in (REVIEW_FACT, REVIEW_TEXT):
+        return probs, 'rule'
+    for kind, tpl in (('fact', REVIEW_FACT), ('text', REVIEW_TEXT)):
         o = js(ask_ai(tpl.format(title_en=c['title_en'], text=text, zh=zh)))
         if not o.get('ok') or o.get('problems'):
-            return ['AI 審稿:' + '；'.join(map(str, o.get('problems') or ['不通過']))]
-    return []
+            return [str(p) for p in (o.get('problems') or ['不通過'])], kind
+    return [], ''
+
+def apply_fixes(title, body, probs):
+    """校對給的「原句→改法」直接套進稿子(10-28:以前退稿就整篇重寫,新稿又冒新錯字,永遠過不了)。
+    每一條都要在稿子裡找得到原句才套;有一條套不上就回 None,改請 AI 修稿。套完一樣要從頭再審一次。"""
+    strip = lambda s: s.strip().strip('「」『』"\'“”').strip()
+    t, b = title, list(body)
+    for p in probs:
+        q = re.findall(r'「([^」]+)」', p)
+        if '→' in p:
+            old, new = (strip(x) for x in p.split('→', 1))
+        elif len(q) == 2:                       # 「態在大變」是錯字,應為「態度大變」
+            old, new = q
+        else:
+            return None
+        if len(q) == 2 and old not in t + ''.join(b):
+            old, new = q
+        old = re.sub(r'^.*?[:：]', '', old) if old not in t + ''.join(b) else old   # 去掉「錯字:」這類前綴
+        if not old or not new or old == new or abs(len(old) - len(new)) > 20:
+            return None
+        if old in t:
+            t = t.replace(old, new, 1)
+        elif any(old in x for x in b):
+            i = next(i for i, x in enumerate(b) if old in x)
+            b[i] = b[i].replace(old, new, 1)
+        else:
+            return None
+    return t, b
 
 def story_links(text):
     out = []
@@ -325,26 +389,38 @@ def story_links(text):
     return out[:3]
 
 def write_item(c):
-    """寫稿→把關;最多寫兩次。st=ok 才會出現在網站;rejected 永不發布;pending=AI 連不上,下次再試。"""
+    """寫稿→把關→沒過就照審稿意見修這一篇(不是重寫)→再從頭審;最多審 5 輪、AI 修稿最多 2 次。
+    st=ok 才會出現在網站;rejected 永不發布;pending=AI 連不上,下次再試。"""
     text = article_text(c['url'], c['rss'])
     links = story_links(c['title_en'] + ' ' + text)
-    prompt = PROMPT.format(hints=json.dumps(hints(c['title_en'] + ' ' + text), ensure_ascii=False),
-                           cats='、'.join(CATS), title=c['title_en'], src=c['src'], text=text)
-    fix = ''
+    hint = json.dumps(hints(c['title_en'] + ' ' + text), ensure_ascii=False)
+    prompt = PROMPT.format(hints=hint, cats='、'.join(CATS), title=c['title_en'], src=c['src'], text=text)
     probs = []
-    for n in range(2):
-        try:
-            title, body, cat = parse(ask_ai(prompt + fix))
-            probs = review(c, text, title, body)
-        except QuotaOut:
-            raise
-        except Exception as e:
-            print('  AI 連不上/格式錯:', str(e)[:150])
-            return dict(st='pending', title='', body=[], cat='', problems=['AI 連不上']), links
-        if not probs:
-            return dict(st='ok', title=title, body=body, cat=cat, by='gemini:' + (_model or ''), problems=[]), links
-        print('  第 %d 次沒過:' % (n + 1), probs[:3])
-        fix = '\n\n上一版被審稿退回,問題如下,這次務必避免:\n' + '\n'.join(probs[:8])
+    revised = 0
+    try:
+        title, body, cat = parse(ask_ai(prompt))
+        for n in range(5):
+            probs, kind = review(c, text, title, body)
+            if not probs:
+                return dict(st='ok', title=title, body=body, cat=cat, by='gemini:' + (_model or ''), problems=[]), links
+            print('  第 %d 輪沒過(%s):' % (n + 1, kind), probs[:3])
+            fixed = apply_fixes(title, body, probs) if kind == 'text' else None
+            if fixed:
+                title, body = fixed
+                print('  照校對改法修正,再審一次')
+                continue
+            if revised >= 2:
+                break
+            revised += 1
+            draft = json.dumps({'title': title, 'body': body, 'cat': cat}, ensure_ascii=False)
+            title, body, cat = parse(ask_ai(REVISE.format(hints=hint, cat=cat, probs='\n'.join(probs[:8]),
+                                                          title_en=c['title_en'], text=text, draft=draft)))
+            print('  AI 照審稿意見修稿,再審一次')
+    except QuotaOut:
+        raise
+    except Exception as e:
+        print('  AI 連不上/格式錯:', str(e)[:150])
+        return dict(st='pending', title='', body=[], cat='', problems=['AI 連不上']), links
     return dict(st='rejected', title='', body=[], cat='', problems=probs[:8]), links
 
 # ---------- 存檔:按月永久保存 ----------
@@ -403,8 +479,8 @@ def main():
                   'title_en': c['title_en'], 'links': links, 'added': now().isoformat()}
             it.update(w)
             items.append(it)
-    except QuotaOut:
-        print('Gemini 免費額度用完,這次先停,下次排程有額度再寫')
+    except QuotaOut as e:
+        print('Gemini 不能用(%s),這次先停,下次排程再寫' % e)
         st['last_quota_out'] = now().isoformat()
 
     t = now().isoformat()
