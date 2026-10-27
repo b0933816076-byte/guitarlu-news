@@ -185,6 +185,7 @@ class QuotaOut(Exception):
 
 START = time.time()
 _dead = set()       # 這次執行裡「今天額度已用完」的模型
+_busy = {}          # 這次執行裡各模型「一直忙線」的次數
 _last_call = [0.0]
 
 def ask_ai(prompt):
@@ -200,7 +201,8 @@ def ask_ai(prompt):
     if time.time() - START > 45 * 60:
         raise QuotaOut('這次已跑 45 分鐘')      # 雲端一次最多 60 分鐘,留時間存檔
     last = None
-    for m in [x for x in models if x not in _dead]:
+    # 這次執行裡一直忙線的模型排到最後,先用有回應的(免得每次呼叫都白等 3 分鐘)
+    for m in sorted([x for x in models if x not in _dead], key=lambda x: _busy.get(x, 0)):
         for wait in (20, 60, 120, None):
             gap = time.time() - _last_call[0]
             if gap < 6:
@@ -232,6 +234,7 @@ def ask_ai(prompt):
             print('  %s 忙線(%s),等 %d 秒再試' % (m, last, wait))
             time.sleep(wait)
         if m not in _dead:
+            _busy[m] = _busy.get(m, 0) + 1
             print('  %s 一直沒回應(%s),這次先換下一個模型' % (m, last))
     raise QuotaOut('全部模型額度用完' if len(_dead) == len(models) else '全部模型一直忙線(%s)' % last)
 
