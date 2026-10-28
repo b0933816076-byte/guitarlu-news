@@ -146,7 +146,8 @@
    "licurl": "https://creativecommons.org/licenses/by-sa/3.0",
    "page": "https://commons.wikimedia.org/wiki/File:Jimmy_Page_at_the_Echo_music_award_2013.jpg",
    "en": "Jimmy Page"
-  }
+  },
+  "listen": "Jimmy Page"
  },
  {
   "id": "2026-10-28-joe-bonamassa-makes-plea-after-amp-goes-missing-there-is-a-g",
@@ -178,7 +179,8 @@
   ],
   "cat": "吉他手",
   "by": "gemini:gemini-3.5-flash",
-  "problems": []
+  "problems": [],
+  "listen": "Joe Bonamassa"
  },
  {
   "id": "2026-10-28-the-almighty-dreadnought-the-design-players-and-music-that-s",
@@ -296,7 +298,8 @@
   ],
   "cat": "新琴・器材",
   "by": "gemini:gemini-3.5-flash-lite",
-  "problems": []
+  "problems": [],
+  "listen": "Joe Bonamassa"
  },
  {
   "id": "2026-10-28-how-to-nail-a-blues-rock-solo-in-the-style-of-eric-johnson",
@@ -339,7 +342,8 @@
    "licurl": "https://creativecommons.org/licenses/by/4.0",
    "page": "https://commons.wikimedia.org/wiki/File:Eric_Johnson_(55288020769).jpg",
    "en": "Eric Johnson"
-  }
+  },
+  "listen": "Eric Johnson"
  },
  {
   "id": "2026-10-28-eric-clapton-watched-his-younger-self-play-guitar-and-didn-t",
@@ -383,7 +387,8 @@
    "licurl": "https://creativecommons.org/licenses/by/2.0",
    "page": "https://commons.wikimedia.org/wiki/File:JeffBeckTribute1RAH220523_(106_of_136)_(52920038844)_(Eric_Clapton).jpg",
    "en": "Eric Clapton"
-  }
+  },
+  "listen": "Eric Clapton"
  },
  {
   "id": "2026-10-28-how-les-paul-planned-to-prolonged-his-playing-days-after-a-c",

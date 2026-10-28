@@ -421,9 +421,13 @@ def photo_for(title_en):
 LISTEN = load(os.path.join(DATA, 'people-listen.json'), {})
 
 def listen_for(it):
+    # 10-29 Les Paul 也是琴款名:「Gibson/Epiphone/Prophecy Les Paul」「Les Paul Standard/Custom…」是講琴不是講人,不算主角
+    MODEL = re.compile(r'(?:Gibson|Epiphone|Prophecy|Signature|Tribute|Gretsch|Fender|Ibanez|PRS)[\s’\'s]*$', re.I)
+    MODEL2 = re.compile(r'^[\s’\'s-]*(?:Standard|Custom|Junior|Special|Studio|Classic|Supreme|Modern|Traditional|Deluxe|Jr|guitars?|models?|series|style|copy|-style)\b', re.I)
     def first(t):
         hits = [(m.start(), en) for en in LISTEN if re.match(r'[A-Za-z]', en)
-                for m in [re.search(r'(?<![A-Za-z])' + re.escape(en) + r'(?![A-Za-z])', t)] if m]
+                for m in re.finditer(r'(?<![A-Za-z])' + re.escape(en) + r'(?![A-Za-z])', t)
+                if not MODEL.search(t[max(0, m.start() - 20):m.start()]) and not MODEL2.match(t[m.end():m.end() + 20])]
         return min(hits)[1] if hits else None
     t = it.get('title_en', '')
     en = first(t)
@@ -434,6 +438,8 @@ def listen_for(it):
     if not en:
         body = it.get('body') or []
         en = first(' '.join(body) if isinstance(body, list) else str(body))
+        if en in ('Les Paul',):   # 中文內文的「萊斯·保羅（Les Paul）」多半是琴款,只認英文標題裡的人
+            en = None
     return en
 
 def write_item(c):
