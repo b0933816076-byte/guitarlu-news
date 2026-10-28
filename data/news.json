@@ -104,7 +104,18 @@
   ],
   "cat": "教學・觀念",
   "by": "gemini:gemini-3.5-flash-lite",
-  "problems": []
+  "problems": [],
+  "photo": {
+   "zh": "艾瑞克·強森",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Eric_Johnson_%2855288020769%29.jpg/500px-Eric_Johnson_%2855288020769%29.jpg",
+   "w": 500,
+   "h": 400,
+   "artist": "Ian Abbott",
+   "license": "CC BY 4.0",
+   "licurl": "https://creativecommons.org/licenses/by/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Eric_Johnson_(55288020769).jpg",
+   "en": "Eric Johnson"
+  }
  },
  {
   "id": "2026-10-28-eric-clapton-watched-his-younger-self-play-guitar-and-didn-t",
@@ -137,7 +148,18 @@
   ],
   "cat": "吉他手",
   "by": "gemini:gemini-3.5-flash-lite+人工修訂",
-  "problems": []
+  "problems": [],
+  "photo": {
+   "zh": "艾瑞克·克萊普頓",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/JeffBeckTribute1RAH220523_%28106_of_136%29_%2852920038844%29_%28Eric_Clapton%29.jpg/500px-JeffBeckTribute1RAH220523_%28106_of_136%29_%2852920038844%29_%28Eric_Clapton%29.jpg",
+   "w": 500,
+   "h": 644,
+   "artist": "Raph_PH",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:JeffBeckTribute1RAH220523_(106_of_136)_(52920038844)_(Eric_Clapton).jpg",
+   "en": "Eric Clapton"
+  }
  },
  {
   "id": "2026-10-28-seymour-duncan-unveils-iron-maiden-pickup-collection",

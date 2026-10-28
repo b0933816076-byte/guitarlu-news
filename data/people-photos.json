@@ -1,0 +1,775 @@
+{
+ "_說明": "吉他新聞配圖(老師 10-28:相關但沒版權的照片,不是那則新聞的也可以,但絕不能誤植,不確定寧可不放)。只收百大吉他手各篇已人工核對過的本人單人照:Commons 檔名/圖說有本人名字、線上照片和原檔影像比對相同、Commons 授權為公有領域/CC0/CC BY/CC BY-SA(不收 NC/ND)。排除合照、器材照,以及英文名會撞到別的意思的 John Williams/Prince/Slash/The Edge。只比對新聞英文標題(大小寫要相同)。",
+ "people": {
+  "Jimi Hendrix": {
+   "zh": "吉米·罕醉克斯",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Jimi_Hendrix_%281967%29_%28cropped%29.jpg/500px-Jimi_Hendrix_%281967%29_%28cropped%29.jpg",
+   "w": 500,
+   "h": 712,
+   "artist": "Original photographer unknown",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Jimi_Hendrix_(1967)_(cropped).jpg"
+  },
+  "Eric Clapton": {
+   "zh": "艾瑞克·克萊普頓",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/JeffBeckTribute1RAH220523_%28106_of_136%29_%2852920038844%29_%28Eric_Clapton%29.jpg/500px-JeffBeckTribute1RAH220523_%28106_of_136%29_%2852920038844%29_%28Eric_Clapton%29.jpg",
+   "w": 500,
+   "h": 644,
+   "artist": "Raph_PH",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:JeffBeckTribute1RAH220523_(106_of_136)_(52920038844)_(Eric_Clapton).jpg"
+  },
+  "Jimmy Page": {
+   "zh": "吉米·佩吉",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Jimmy_Page_at_the_Echo_music_award_2013.jpg/500px-Jimmy_Page_at_the_Echo_music_award_2013.jpg",
+   "w": 500,
+   "h": 750,
+   "artist": "Avda",
+   "license": "CC BY-SA 3.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Jimmy_Page_at_the_Echo_music_award_2013.jpg"
+  },
+  "Eddie Van Halen": {
+   "zh": "艾迪·范·海倫",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Eddie_Van_Halen_at_the_New_Haven_Coliseum.jpg/500px-Eddie_Van_Halen_at_the_New_Haven_Coliseum.jpg",
+   "w": 500,
+   "h": 739,
+   "artist": "Carl Lender",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Eddie_Van_Halen_at_the_New_Haven_Coliseum.jpg"
+  },
+  "Chuck Berry": {
+   "zh": "查克·貝瑞",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Chuck_Berry_1957.jpg/500px-Chuck_Berry_1957.jpg",
+   "w": 500,
+   "h": 631,
+   "artist": "Universal Attractions (management)",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Chuck_Berry_1957.jpg"
+  },
+  "Django Reinhardt": {
+   "zh": "姜戈·萊恩哈特",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Django_Reinhardt_%28Gottlieb_07301%29.jpg/500px-Django_Reinhardt_%28Gottlieb_07301%29.jpg",
+   "w": 500,
+   "h": 525,
+   "artist": "William P. Gottlieb / Adam Cuerden",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Django_Reinhardt_(Gottlieb_07301).jpg"
+  },
+  "Tony Rice": {
+   "zh": "湯尼·萊斯",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Tonyrice-fls.jpg/500px-Tonyrice-fls.jpg",
+   "w": 500,
+   "h": 407,
+   "artist": "Filberthockey at en.wikipedia",
+   "license": "CC BY-SA 3.0",
+   "licurl": "http://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://commons.wikimedia.org/wiki/File:Tonyrice-fls.jpg"
+  },
+  "Neil Young": {
+   "zh": "尼爾·楊",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Neil_Young_for_Fairy_Creek.jpg/500px-Neil_Young_for_Fairy_Creek.jpg",
+   "w": 500,
+   "h": 543,
+   "artist": "Billyshiverstick",
+   "license": "CC0",
+   "licurl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "page": "https://commons.wikimedia.org/wiki/File:Neil_Young_for_Fairy_Creek.jpg"
+  },
+  "Angus Young": {
+   "zh": "安格斯·楊",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/ACDCWembley030724_%28115_of_169%29_%2853844255247%29_%28cropped%29.jpg/500px-ACDCWembley030724_%28115_of_169%29_%2853844255247%29_%28cropped%29.jpg",
+   "w": 500,
+   "h": 667,
+   "artist": "Raph_PH",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:ACDCWembley030724_(115_of_169)_(53844255247)_(cropped).jpg"
+  },
+  "Ritchie Blackmore": {
+   "zh": "里奇·布萊克摩爾",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Ritchie_Blackmore%27s_Rainbow_headlining_the_Stone_Free_2017_Festival_at_the_O2_%2834994158240%29.jpg/500px-Ritchie_Blackmore%27s_Rainbow_headlining_the_Stone_Free_2017_Festival_at_the_O2_%2834994158240%29.jpg",
+   "w": 500,
+   "h": 638,
+   "artist": "kitmasterbloke",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Ritchie_Blackmore%27s_Rainbow_headlining_the_Stone_Free_2017_Festival_at_the_O2_(34994158240).jpg"
+  },
+  "Jerry Garcia": {
+   "zh": "傑瑞·賈西亞",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Jerry-Garcia-01cropped.jpg/500px-Jerry-Garcia-01cropped.jpg",
+   "w": 500,
+   "h": 641,
+   "artist": "Carl Lender",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Jerry-Garcia-01cropped.jpg"
+  },
+  "Frank Zappa": {
+   "zh": "法蘭克·札帕",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Zappa_16011977_01_300.jpg",
+   "w": 500,
+   "h": 700,
+   "artist": "Helge Øverås",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Zappa_16011977_01_300.jpg"
+  },
+  "Sister Rosetta Tharpe": {
+   "zh": "羅賽塔·薩普修女",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Sister_Rosetta_Tharpe_%281938_publicity_photo_-_headshot%29.jpg/500px-Sister_Rosetta_Tharpe_%281938_publicity_photo_-_headshot%29.jpg",
+   "w": 500,
+   "h": 557,
+   "artist": "James J. Kriegsmann",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Sister_Rosetta_Tharpe_(1938_publicity_photo_-_headshot).jpg"
+  },
+  "Tom Morello": {
+   "zh": "湯姆·莫瑞羅",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Tom_Morello.jpg/500px-Tom_Morello.jpg",
+   "w": 500,
+   "h": 667,
+   "artist": "Dario De Marco",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Tom_Morello.jpg"
+  },
+  "John Frusciante": {
+   "zh": "約翰·弗魯西安特",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/John_Frusciante_%2852279457795%29.jpg/500px-John_Frusciante_%2852279457795%29.jpg",
+   "w": 500,
+   "h": 667,
+   "artist": "Hel Davies from United Kingdom",
+   "license": "CC BY-SA 2.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:John_Frusciante_(52279457795).jpg"
+  },
+  "Chet Atkins": {
+   "zh": "切特·阿特金斯",
+   "img": "https://upload.wikimedia.org/wikipedia/commons/0/00/Chet_Atkins.jpg",
+   "w": 500,
+   "h": 614,
+   "artist": "Gretsch Guitar News",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Chet_Atkins.jpg"
+  },
+  "Tak Matsumoto": {
+   "zh": "松本孝弘",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/B%27Z_at_Best_Buy_Theater_NYC_-_9-30-12_-_22.jpg/500px-B%27Z_at_Best_Buy_Theater_NYC_-_9-30-12_-_22.jpg",
+   "w": 500,
+   "h": 714,
+   "artist": "May S. Young",
+   "license": "CC BY-SA 2.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:B%27Z_at_Best_Buy_Theater_NYC_-_9-30-12_-_22.jpg"
+  },
+  "Tommy Emmanuel": {
+   "zh": "湯米·伊曼紐",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/2024-09-18_Concert_of_Tommy_Emmanuel_and_Mike_Dawes_at_UdK_Berlin_Konzertsaal_%28Martin_Rulsch%29_096.jpg/500px-2024-09-18_Concert_of_Tommy_Emmanuel_and_Mike_Dawes_at_UdK_Berlin_Konzertsaal_%28Martin_Rulsch%29_096.jpg",
+   "w": 500,
+   "h": 689,
+   "artist": "Martin Rulsch, Wikimedia Commons",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:2024-09-18_Concert_of_Tommy_Emmanuel_and_Mike_Dawes_at_UdK_Berlin_Konzertsaal_(Martin_Rulsch)_096.jpg"
+  },
+  "Jeff Beck": {
+   "zh": "傑夫·貝克",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Jeff_Beck_in_Amsterdam_1979_%28cropped%29.jpg/500px-Jeff_Beck_in_Amsterdam_1979_%28cropped%29.jpg",
+   "w": 500,
+   "h": 702,
+   "artist": "Chris Hakkens",
+   "license": "CC BY-SA 2.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Jeff_Beck_in_Amsterdam_1979_(cropped).jpg"
+  },
+  "Keith Richards": {
+   "zh": "基斯·理查茲",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/RStonesHydePark030722_%2863_of_125%29_%28Keith_Richards%29.jpg/500px-RStonesHydePark030722_%2863_of_125%29_%28Keith_Richards%29.jpg",
+   "w": 500,
+   "h": 747,
+   "artist": "Raph_PH",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:RStonesHydePark030722_(63_of_125)_(Keith_Richards).jpg"
+  },
+  "Brian May": {
+   "zh": "布萊恩·梅",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Brian_May_%2854760284093%29.jpg/500px-Brian_May_%2854760284093%29.jpg",
+   "w": 500,
+   "h": 750,
+   "artist": "Gage Skidmore",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Brian_May_(54760284093).jpg"
+  },
+  "David Gilmour": {
+   "zh": "大衛·吉爾摩",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/DGilmourRAH111024_%2821_of_63%29_%28cropped%29.jpg/500px-DGilmourRAH111024_%2821_of_63%29_%28cropped%29.jpg",
+   "w": 500,
+   "h": 666,
+   "artist": "Raph_PH",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:DGilmourRAH111024_(21_of_63)_(cropped).jpg"
+  },
+  "Tony Iommi": {
+   "zh": "東尼·艾歐米",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Tony-Iommi_2009-06-11_Chicago_photoby_Adam-Bielawski.jpg/500px-Tony-Iommi_2009-06-11_Chicago_photoby_Adam-Bielawski.jpg",
+   "w": 500,
+   "h": 747,
+   "artist": "Photobra (Adam Bielawski)",
+   "license": "CC BY-SA 3.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Tony-Iommi_2009-06-11_Chicago_photoby_Adam-Bielawski.jpg"
+  },
+  "Randy Rhoads": {
+   "zh": "蘭迪·羅德斯",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/RandyRhoads1980.jpg/500px-RandyRhoads1980.jpg",
+   "w": 500,
+   "h": 750,
+   "artist": "Jet Records",
+   "license": "CC0",
+   "licurl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "page": "https://commons.wikimedia.org/wiki/File:RandyRhoads1980.jpg"
+  },
+  "Steve Vai": {
+   "zh": "史提夫·范",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Steve_Vai%2C_3-Maj%C3%B3wka_2023_08.jpg/500px-Steve_Vai%2C_3-Maj%C3%B3wka_2023_08.jpg",
+   "w": 500,
+   "h": 333,
+   "artist": "Wojciech Pędzich",
+   "license": "CC BY 4.0",
+   "licurl": "https://creativecommons.org/licenses/by/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Steve_Vai,_3-Maj%C3%B3wka_2023_08.jpg"
+  },
+  "Joe Satriani": {
+   "zh": "喬·沙翠亞尼",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Satriani_2010_13_12_1112.jpg/500px-Satriani_2010_13_12_1112.jpg",
+   "w": 500,
+   "h": 667,
+   "artist": "Shape Prior",
+   "license": "CC BY-SA 3.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Satriani_2010_13_12_1112.jpg"
+  },
+  "Yngwie Malmsteen": {
+   "zh": "英格威·瑪姆斯汀",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Yngwie_Malmsteen_1.jpg/500px-Yngwie_Malmsteen_1.jpg",
+   "w": 500,
+   "h": 887,
+   "artist": "Alterna2 http://www.alterna2.com",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Yngwie_Malmsteen_1.jpg"
+  },
+  "Pete Townshend": {
+   "zh": "彼特·湯森",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Pete_Townshend_%282012%29.jpg/500px-Pete_Townshend_%282012%29.jpg",
+   "w": 500,
+   "h": 683,
+   "artist": "Ross Belot",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Pete_Townshend_(2012).jpg"
+  },
+  "Kirk Hammett": {
+   "zh": "柯克·哈米特",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Kirk_Hammett_2025_Marvel_Stadium_%284%29.jpg/500px-Kirk_Hammett_2025_Marvel_Stadium_%284%29.jpg",
+   "w": 500,
+   "h": 750,
+   "artist": "4TheWynne",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Kirk_Hammett_2025_Marvel_Stadium_(4).jpg"
+  },
+  "George Harrison": {
+   "zh": "喬治·哈里森",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/George-wa-portrait.jpg/500px-George-wa-portrait.jpg",
+   "w": 500,
+   "h": 733,
+   "artist": "John Kelly",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:George-wa-portrait.jpg"
+  },
+  "Eric Johnson": {
+   "zh": "艾瑞克·強森",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Eric_Johnson_%2855288020769%29.jpg/500px-Eric_Johnson_%2855288020769%29.jpg",
+   "w": 500,
+   "h": 400,
+   "artist": "Ian Abbott",
+   "license": "CC BY 4.0",
+   "licurl": "https://creativecommons.org/licenses/by/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Eric_Johnson_(55288020769).jpg"
+  },
+  "Les Paul": {
+   "zh": "萊斯·保羅",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Les_Paul%2C_ca._Jan._1947_%28William_P._Gottlieb_07001%29.jpg/500px-Les_Paul%2C_ca._Jan._1947_%28William_P._Gottlieb_07001%29.jpg",
+   "w": 500,
+   "h": 536,
+   "artist": "William P. Gottlieb",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Les_Paul,_ca._Jan._1947_(William_P._Gottlieb_07001).jpg"
+  },
+  "Nile Rodgers": {
+   "zh": "奈爾·羅傑斯",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/NileRodgers-byPhilipRomano.jpg/500px-NileRodgers-byPhilipRomano.jpg",
+   "w": 500,
+   "h": 751,
+   "artist": "PhilipRomanoPhoto",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:NileRodgers-byPhilipRomano.jpg"
+  },
+  "Steve Lukather": {
+   "zh": "史提夫·路克瑟",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Steve_Lukather_of_Toto.jpg/500px-Steve_Lukather_of_Toto.jpg",
+   "w": 500,
+   "h": 608,
+   "artist": "Ryanhuntmuzik",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Steve_Lukather_of_Toto.jpg"
+  },
+  "Larry Carlton": {
+   "zh": "賴瑞·卡爾頓",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Larry_Carlton.png/500px-Larry_Carlton.png",
+   "w": 500,
+   "h": 667,
+   "artist": "LiveJazz Fan",
+   "license": "CC BY 3.0",
+   "licurl": "https://creativecommons.org/licenses/by/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Larry_Carlton.png"
+  },
+  "Lee Ritenour": {
+   "zh": "李·瑞特納",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/LeeRitenour_Stockholm20090715.jpg/500px-LeeRitenour_Stockholm20090715.jpg",
+   "w": 500,
+   "h": 407,
+   "artist": "Kotoviski photographed by Henryk Kotowski",
+   "license": "CC BY-SA 3.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:LeeRitenour_Stockholm20090715.jpg"
+  },
+  "John Mayer": {
+   "zh": "約翰·梅爾",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/JohnMayerin2019.jpg/500px-JohnMayerin2019.jpg",
+   "w": 500,
+   "h": 750,
+   "artist": "Thatcommonkid",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:JohnMayerin2019.jpg"
+  },
+  "Mark Knopfler": {
+   "zh": "馬克·諾弗勒",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Mar-Knopfler-Pensa-Blue.jpg/500px-Mar-Knopfler-Pensa-Blue.jpg",
+   "w": 500,
+   "h": 714,
+   "artist": "Sebastien.gross",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Mar-Knopfler-Pensa-Blue.jpg"
+  },
+  "Masayoshi Takanaka": {
+   "zh": "高中正義",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Masayoshi_Takanaka_Brooklyn_Paramount_2026.png/500px-Masayoshi_Takanaka_Brooklyn_Paramount_2026.png",
+   "w": 500,
+   "h": 889,
+   "artist": "Luminous Meadow",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Masayoshi_Takanaka_Brooklyn_Paramount_2026.png"
+  },
+  "Stevie Ray Vaughan": {
+   "zh": "史提夫·雷·沃恩",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Stevie_Ray_Vaughan_Live_1983.jpg/500px-Stevie_Ray_Vaughan_Live_1983.jpg",
+   "w": 500,
+   "h": 687,
+   "artist": "Bbadventure",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Stevie_Ray_Vaughan_Live_1983.jpg"
+  },
+  "Albert King": {
+   "zh": "亞伯特·金",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/Albert_King_1976_press_photo.jpg/500px-Albert_King_1976_press_photo.jpg",
+   "w": 500,
+   "h": 400,
+   "artist": "Utopia Records; Distributed by RCA",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Albert_King_1976_press_photo.jpg"
+  },
+  "Freddie King": {
+   "zh": "佛萊迪·金",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Freddie_King_1975_4.jpg/500px-Freddie_King_1975_4.jpg",
+   "w": 500,
+   "h": 684,
+   "artist": "Lionel Decoster",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Freddie_King_1975_4.jpg"
+  },
+  "Buddy Guy": {
+   "zh": "巴弟·蓋",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Buddy_Guy_2008_%283x4_cropped%29.jpg/500px-Buddy_Guy_2008_%283x4_cropped%29.jpg",
+   "w": 500,
+   "h": 663,
+   "artist": "Tom Beetz",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Buddy_Guy_2008_(3x4_cropped).jpg"
+  },
+  "Muddy Waters": {
+   "zh": "馬帝·瓦特斯",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Muddy_Waters_november_1976.jpg/500px-Muddy_Waters_november_1976.jpg",
+   "w": 500,
+   "h": 721,
+   "artist": "Lionel Decoster",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Muddy_Waters_november_1976.jpg"
+  },
+  "Robert Johnson": {
+   "zh": "羅伯特·強生",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Robert_Johnson.png/500px-Robert_Johnson.png",
+   "w": 500,
+   "h": 722,
+   "artist": "Hooks Brothers Photographers studio",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Robert_Johnson.png"
+  },
+  "T-Bone Walker": {
+   "zh": "提朋·沃克",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ee/T-Bone_Walker_1972.jpg/500px-T-Bone_Walker_1972.jpg",
+   "w": 500,
+   "h": 333,
+   "artist": "Heinrich Klaffs",
+   "license": "CC BY-SA 2.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:T-Bone_Walker_1972.jpg"
+  },
+  "Duane Allman": {
+   "zh": "杜安·歐曼",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Duane_Allman.jpg/500px-Duane_Allman.jpg",
+   "w": 500,
+   "h": 685,
+   "artist": "Ed Berman",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Duane_Allman.jpg"
+  },
+  "Albert Collins": {
+   "zh": "亞伯特·柯林斯",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/AlbertCollins1990.jpg/500px-AlbertCollins1990.jpg",
+   "w": 500,
+   "h": 461,
+   "artist": "Masahiro Sumori",
+   "license": "CC BY-SA 3.0",
+   "licurl": "http://creativecommons.org/licenses/by-sa/3.0/",
+   "page": "https://commons.wikimedia.org/wiki/File:AlbertCollins1990.jpg"
+  },
+  "Wes Montgomery": {
+   "zh": "韋斯·蒙哥馬利",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Wes_Montgomery_%281967_Gibson_portrait%29.jpg/500px-Wes_Montgomery_%281967_Gibson_portrait%29.jpg",
+   "w": 500,
+   "h": 625,
+   "artist": "佚名",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Wes_Montgomery_(1967_Gibson_portrait).jpg"
+  },
+  "Charlie Christian": {
+   "zh": "查理·克里斯汀",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Charlie_Christian_%281939-10_Waldorf-Astoria_portrait%29.jpg/500px-Charlie_Christian_%281939-10_Waldorf-Astoria_portrait%29.jpg",
+   "w": 500,
+   "h": 587,
+   "artist": "佚名",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Charlie_Christian_(1939-10_Waldorf-Astoria_portrait).jpg"
+  },
+  "Joe Pass": {
+   "zh": "喬·帕斯",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Joe_Pass_%28jazz%29_%28cropped%29.jpg/500px-Joe_Pass_%28jazz%29_%28cropped%29.jpg",
+   "w": 500,
+   "h": 569,
+   "artist": "Tom Marcello Webster, New York, USA",
+   "license": "CC BY-SA 2.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Joe_Pass_(jazz)_(cropped).jpg"
+  },
+  "Pat Metheny": {
+   "zh": "派特·麥席尼",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Pat_metheny_orch2.jpg/500px-Pat_metheny_orch2.jpg",
+   "w": 500,
+   "h": 560,
+   "artist": "R. Steven Rainwater from Dallas, US",
+   "license": "CC BY-SA 2.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Pat_metheny_orch2.jpg"
+  },
+  "George Benson": {
+   "zh": "喬治·班森",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/GeorgeBensonSept2011.jpg/500px-GeorgeBensonSept2011.jpg",
+   "w": 500,
+   "h": 488,
+   "artist": "Angela George",
+   "license": "CC BY-SA 3.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:GeorgeBensonSept2011.jpg"
+  },
+  "Jim Hall": {
+   "zh": "吉姆·霍爾",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Guitarist_jim_hall.jpg/500px-Guitarist_jim_hall.jpg",
+   "w": 500,
+   "h": 333,
+   "artist": "tom.beetz",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Guitarist_jim_hall.jpg"
+  },
+  "John McLaughlin": {
+   "zh": "約翰·麥克勞夫林",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/John_McLaughlin_Blue_Note_2016.JPG/500px-John_McLaughlin_Blue_Note_2016.JPG",
+   "w": 500,
+   "h": 702,
+   "artist": "Hantsheroes",
+   "license": "CC0",
+   "licurl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "page": "https://commons.wikimedia.org/wiki/File:John_McLaughlin_Blue_Note_2016.JPG"
+  },
+  "Kenny Burrell": {
+   "zh": "肯尼·布瑞爾",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Kenny_Burrell%2C_1977.jpg/500px-Kenny_Burrell%2C_1977.jpg",
+   "w": 500,
+   "h": 754,
+   "artist": "Tom Marcello Webster, New York, USA",
+   "license": "CC BY-SA 2.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Kenny_Burrell,_1977.jpg"
+  },
+  "Fernando Sor": {
+   "zh": "費爾南多·索爾",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Fernando_Sor.jpg/500px-Fernando_Sor.jpg",
+   "w": 500,
+   "h": 547,
+   "artist": "Godefroy Engelmann the Elder / After Joseph Bordes",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Fernando_Sor.jpg"
+  },
+  "Julian Bream": {
+   "zh": "朱利安·布林",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Julian_Bream.jpg/500px-Julian_Bream.jpg",
+   "w": 500,
+   "h": 607,
+   "artist": "Photograph: Christina Arenella, New York, 3 October 1989",
+   "license": "CC0",
+   "licurl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "page": "https://commons.wikimedia.org/wiki/File:Julian_Bream.jpg"
+  },
+  "Narciso Yepes": {
+   "zh": "納西索·葉佩斯",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Narciso_yepes_teatrocolon_1962.jpg/500px-Narciso_yepes_teatrocolon_1962.jpg",
+   "w": 500,
+   "h": 669,
+   "artist": "Unknown authorUnknown author",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Narciso_yepes_teatrocolon_1962.jpg"
+  },
+  "Manuel Barrueco": {
+   "zh": "曼努埃爾·巴魯埃科",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Manuel_Barrueco_au_salle_Bourgie.jpg/500px-Manuel_Barrueco_au_salle_Bourgie.jpg",
+   "w": 500,
+   "h": 612,
+   "artist": "Bull-Doser",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Manuel_Barrueco_au_salle_Bourgie.jpg"
+  },
+  "Ida Presti": {
+   "zh": "艾達·普雷斯蒂",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Ida_Presti.jpg/500px-Ida_Presti.jpg",
+   "w": 500,
+   "h": 735,
+   "artist": "ma photothèque personnelle",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Ida_Presti.jpg"
+  },
+  "Tomatito": {
+   "zh": "托馬蒂托",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Tomatito_in_2016.jpg/500px-Tomatito_in_2016.jpg",
+   "w": 500,
+   "h": 499,
+   "artist": "NotimexTV",
+   "license": "CC BY 3.0",
+   "licurl": "https://creativecommons.org/licenses/by/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Tomatito_in_2016.jpg"
+  },
+  "Vicente Amigo": {
+   "zh": "維森特·阿米哥",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Aliment%C3%A1is_nuestra_vida_-_VICENTE_AMIGO.png/500px-Aliment%C3%A1is_nuestra_vida_-_VICENTE_AMIGO.png",
+   "w": 500,
+   "h": 608,
+   "artist": "Ministry of Agriculture, Food and Environment (Spain)",
+   "license": "CC BY 3.0",
+   "licurl": "https://creativecommons.org/licenses/by/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Aliment%C3%A1is_nuestra_vida_-_VICENTE_AMIGO.png"
+  },
+  "Carlos Santana": {
+   "zh": "卡洛斯·山塔那",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Santana_Acer_Arena_%285558151833%29_%28cropped%29.jpg/500px-Santana_Acer_Arena_%285558151833%29_%28cropped%29.jpg",
+   "w": 500,
+   "h": 704,
+   "artist": "Eva Rinaldi",
+   "license": "CC BY-SA 2.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Santana_Acer_Arena_(5558151833)_(cropped).jpg"
+  },
+  "Yamandu Costa": {
+   "zh": "亞曼度·科斯塔",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Yamandu_Costa_2009.jpg/500px-Yamandu_Costa_2009.jpg",
+   "w": 500,
+   "h": 333,
+   "artist": "Colin Knowles",
+   "license": "CC BY-SA 2.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Yamandu_Costa_2009.jpg"
+  },
+  "Al Di Meola": {
+   "zh": "艾爾·迪·梅奧拉",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Al_Di_Meola_2006_1.jpg/500px-Al_Di_Meola_2006_1.jpg",
+   "w": 500,
+   "h": 390,
+   "artist": "chascar",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Al_Di_Meola_2006_1.jpg"
+  },
+  "Leo Kottke": {
+   "zh": "李奧·柯特基",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Leo_Kottke_6-16-07_Photo_by_Anthony_Pepitone.jpg/500px-Leo_Kottke_6-16-07_Photo_by_Anthony_Pepitone.jpg",
+   "w": 500,
+   "h": 375,
+   "artist": "Anthony Pepitone",
+   "license": "CC BY-SA 3.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Leo_Kottke_6-16-07_Photo_by_Anthony_Pepitone.jpg"
+  },
+  "John Fahey": {
+   "zh": "約翰·費伊",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Scan_J_Fahey_1_Paris_1984_web.jpg/500px-Scan_J_Fahey_1_Paris_1984_web.jpg",
+   "w": 500,
+   "h": 740,
+   "artist": "Pascal P Chassin",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Scan_J_Fahey_1_Paris_1984_web.jpg"
+  },
+  "Bert Jansch": {
+   "zh": "伯特·詹許",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/BertJansch.jpg/500px-BertJansch.jpg",
+   "w": 500,
+   "h": 337,
+   "artist": "Chris Barber from Dartford, England",
+   "license": "CC BY-SA 2.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:BertJansch.jpg"
+  },
+  "Don Ross": {
+   "zh": "唐·羅斯",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Don_Ross_2009.jpg/500px-Don_Ross_2009.jpg",
+   "w": 500,
+   "h": 335,
+   "artist": "Matthias Tietz",
+   "license": "CC BY-SA 3.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Don_Ross_2009.jpg"
+  },
+  "Andy McKee": {
+   "zh": "安迪·麥基",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Andy_Mckee%C7%83%C7%83.JPG/500px-Andy_Mckee%C7%83%C7%83.JPG",
+   "w": 500,
+   "h": 333,
+   "artist": "Qwsxza123890",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Andy_Mckee%C7%83%C7%83.JPG"
+  },
+  "Martin Taylor": {
+   "zh": "馬丁·泰勒",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Martin_Taylor_03.jpg/500px-Martin_Taylor_03.jpg",
+   "w": 500,
+   "h": 333,
+   "artist": "Schorle",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Martin_Taylor_03.jpg"
+  },
+  "Merle Travis": {
+   "zh": "梅爾·崔維斯",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Merle_Travis_in_Five_Minutes_to_Live_%281961%29.jpg/500px-Merle_Travis_in_Five_Minutes_to_Live_%281961%29.jpg",
+   "w": 500,
+   "h": 594,
+   "artist": "Film screenshot (Sutton Pictures)",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Merle_Travis_in_Five_Minutes_to_Live_(1961).jpg"
+  },
+  "Doc Watson": {
+   "zh": "道克·華森",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Doc_Watson_Sugar_Grove.jpg/500px-Doc_Watson_Sugar_Grove.jpg",
+   "w": 500,
+   "h": 752,
+   "artist": "boonejag75",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Doc_Watson_Sugar_Grove.jpg"
+  },
+  "Jerry Reed": {
+   "zh": "傑瑞·里德",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Jerry_Reed_cropped.jpg/500px-Jerry_Reed_cropped.jpg",
+   "w": 500,
+   "h": 657,
+   "artist": "SSGT Lee Schading",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Jerry_Reed_cropped.jpg"
+  },
+  "Albert Lee": {
+   "zh": "亞伯特·李",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Albert_Lee_2019_by_Glenn_Francis.jpg/500px-Albert_Lee_2019_by_Glenn_Francis.jpg",
+   "w": 500,
+   "h": 750,
+   "artist": "Toglenn",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Albert_Lee_2019_by_Glenn_Francis.jpg"
+  },
+  "Clarence White": {
+   "zh": "克萊倫斯·懷特",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/ClarenceWhiteKralingen1970_%28cropped%29.jpg/500px-ClarenceWhiteKralingen1970_%28cropped%29.jpg",
+   "w": 500,
+   "h": 443,
+   "artist": "Fotoburo de Boer",
+   "license": "CC0",
+   "licurl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "page": "https://commons.wikimedia.org/wiki/File:ClarenceWhiteKralingen1970_(cropped).jpg"
+  }
+ }
+}

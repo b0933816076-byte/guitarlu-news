@@ -104,7 +104,18 @@
   ],
   "cat": "教學・觀念",
   "by": "gemini:gemini-3.5-flash-lite",
-  "problems": []
+  "problems": [],
+  "photo": {
+   "zh": "艾瑞克·強森",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Eric_Johnson_%2855288020769%29.jpg/500px-Eric_Johnson_%2855288020769%29.jpg",
+   "w": 500,
+   "h": 400,
+   "artist": "Ian Abbott",
+   "license": "CC BY 4.0",
+   "licurl": "https://creativecommons.org/licenses/by/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Eric_Johnson_(55288020769).jpg",
+   "en": "Eric Johnson"
+  }
  },
  {
   "id": "2026-10-28-eric-clapton-watched-his-younger-self-play-guitar-and-didn-t",
@@ -137,7 +148,18 @@
   ],
   "cat": "吉他手",
   "by": "gemini:gemini-3.5-flash-lite+人工修訂",
-  "problems": []
+  "problems": [],
+  "photo": {
+   "zh": "艾瑞克·克萊普頓",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/JeffBeckTribute1RAH220523_%28106_of_136%29_%2852920038844%29_%28Eric_Clapton%29.jpg/500px-JeffBeckTribute1RAH220523_%28106_of_136%29_%2852920038844%29_%28Eric_Clapton%29.jpg",
+   "w": 500,
+   "h": 644,
+   "artist": "Raph_PH",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:JeffBeckTribute1RAH220523_(106_of_136)_(52920038844)_(Eric_Clapton).jpg",
+   "en": "Eric Clapton"
+  }
  },
  {
   "id": "2026-10-28-how-les-paul-planned-to-prolonged-his-playing-days-after-a-c",
@@ -164,7 +186,18 @@
   "problems": [
    "中文稿最後一段提到『2025年3月開幕的萊斯·保原文為 March 2025，但在新聞語境中2025年3月尚未到來，且原文並未明言是已開幕或未來開幕，屬於時態或資訊解讀落差』",
    "原文夾雜了作者介紹與網站留言提示等無關內容（如 Phil、Prognosis、You must confirm your public display name 等），中文稿雖未翻譯這些內容，但原文本身存在排版雜訊，需留意審稿範圍。不過最主要的實質問題是原文提到車禍日期為 January 2, 1948，中文對應正確；但錄音室開幕時間原文寫於 March 2025，中文寫『2025年3月開幕』，以發表時間點來看可能有誤（未來時間點作為過去完成事）。另外檢查無其他明顯事實錯誤。"
-  ]
+  ],
+  "photo": {
+   "zh": "萊斯·保羅",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Les_Paul%2C_ca._Jan._1947_%28William_P._Gottlieb_07001%29.jpg/500px-Les_Paul%2C_ca._Jan._1947_%28William_P._Gottlieb_07001%29.jpg",
+   "w": 500,
+   "h": 536,
+   "artist": "William P. Gottlieb",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Les_Paul,_ca._Jan._1947_(William_P._Gottlieb_07001).jpg",
+   "en": "Les Paul"
+  }
  },
  {
   "id": "2026-10-28-seymour-duncan-unveils-iron-maiden-pickup-collection",
@@ -209,7 +242,18 @@
   "cat": "",
   "problems": [
    "AI 審稿:憑藉融合油漬搖滾與鄉村（Country）風格的短句《If You Know Me》爆紅→憑藉融合油漬搖滾與鄉村（Country）風格的樂句《If You Know Me》爆紅"
-  ]
+  ],
+  "photo": {
+   "zh": "約翰·梅爾",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/JohnMayerin2019.jpg/500px-JohnMayerin2019.jpg",
+   "w": 500,
+   "h": 750,
+   "artist": "Thatcommonkid",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:JohnMayerin2019.jpg",
+   "en": "John Mayer"
+  }
  },
  {
   "id": "2026-10-27-how-californian-car-surf-and-skate-culture-inspired-powers-e",
@@ -265,7 +309,18 @@
   "cat": "",
   "problems": [
    "AI 審稿:誤將原文中的片語『from square one』（意為『從頭開始』、『從零開始』）錯誤翻譯/理解為『接近方波』。"
-  ]
+  ],
+  "photo": {
+   "zh": "吉米·佩吉",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Jimmy_Page_at_the_Echo_music_award_2013.jpg/500px-Jimmy_Page_at_the_Echo_music_award_2013.jpg",
+   "w": 500,
+   "h": 750,
+   "artist": "Avda",
+   "license": "CC BY-SA 3.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Jimmy_Page_at_the_Echo_music_award_2013.jpg",
+   "en": "Jimmy Page"
+  }
  },
  {
   "id": "2026-10-27-guitarist-responds-to-john-mayer-covering-his-viral-guitar-r",
@@ -291,7 +346,18 @@
   "cat": "",
   "problems": [
    "譯名要跟故事館一樣:梅爾（John Mayer）應為 約翰·梅爾"
-  ]
+  ],
+  "photo": {
+   "zh": "約翰·梅爾",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/JohnMayerin2019.jpg/500px-JohnMayerin2019.jpg",
+   "w": 500,
+   "h": 750,
+   "artist": "Thatcommonkid",
+   "license": "CC BY-SA 4.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:JohnMayerin2019.jpg",
+   "en": "John Mayer"
+  }
  },
  {
   "id": "2026-10-26-the-world-lost-a-beautiful-soul-today-jack-white-mourns-his",

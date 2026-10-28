@@ -48,10 +48,22 @@ function share($url, $title){
          . '<a href="#" onclick="navigator.clipboard&&navigator.clipboard.writeText(\'' . h($url) . '\');this.textContent=\'已複製\';return false">複製連結</a></div>';
 }
 
+/* 10-28 老師:相關但沒版權的照片(不是那則新聞的 OK,但不能誤植,不然寧可不放)。
+   照片由 news.py 從 people-photos.json 挑:只有吉他手本人、人工核對過、Commons 可轉載授權;圖說一律寫「相關資料照」＋作者與授權 */
+function photo_html($it){
+    if(empty($it['photo']['img']) || empty($it['photo']['zh'])) return '';
+    $p = $it['photo'];
+    $name = h($p['zh']) . (empty($p['en']) ? '' : '（' . h($p['en']) . '）');
+    $lic = empty($p['licurl']) ? h($p['license']) : '<a href="' . h($p['licurl']) . '" target="_blank" rel="noopener nofollow">' . h($p['license']) . '</a>';
+    return '<figure class="gn-ph"><img src="' . h($p['img']) . '" alt="相關資料照：' . $name . '" width="' . intval($p['w']) . '" height="' . intval($p['h']) . '" loading="lazy" decoding="async">'
+         . '<figcaption>相關資料照：' . $name . '<br>照片：' . h($p['artist']) . '／' . $lic . '／<a href="' . h($p['page']) . '" target="_blank" rel="noopener nofollow">Wikimedia Commons</a></figcaption></figure>';
+}
+
 function item_html($it, $full){
     $url = SELF . '/' . $it['id'];
     $o = '<article class="gn-item"><div class="gn-meta"><b>' . h($it['cat']) . '</b>' . h($it['date']) . '</div>';
     $o .= $full ? '<h1>' . h($it['title']) . '</h1>' : '<h2><a href="' . h($url) . '">' . h($it['title']) . '</a></h2>';
+    $o .= photo_html($it);
     foreach($it['body'] as $p) $o .= '<p>' . h($p) . '</p>';
     if(!empty($it['links'])){
         $ls = array();
@@ -176,6 +188,12 @@ $css = <<<'CSS'
 .gn-pages{display:flex;justify-content:space-between;margin-top:10px}.gn-pages a{font-weight:600}
 .gn-src a{color:inherit}
 .gn-months{list-style:none;padding:0;margin:0 0 26px}.gn-months li{margin:0 0 8px;font-size:16px}.gn-months small{color:var(--muted)}
+.gn-ph{float:right;width:min(38%,260px);margin:4px 0 10px 18px}
+.gn-ph img{display:block;width:100%;height:auto;border-radius:6px}
+.gn-ph figcaption{font-size:14px;line-height:1.5;color:var(--muted);margin-top:5px;text-wrap:wrap}.gn-ph figcaption a{color:inherit;font-size:inherit!important}
+.gn-one .gn-ph{width:min(42%,320px)}
+.gn-item::after{content:"";display:block;clear:both}
+@media(max-width:560px){.gn-ph,.gn-one .gn-ph{float:none;width:auto;max-width:360px;margin:6px auto 12px}}
 CSS;
 function rep($pat, $str, $tpl){ return preg_replace_callback($pat, function($m) use ($str){ return $str; }, $tpl, 1); }
 $tpl = preg_replace('#<script type="application/ld\+json">.*?</script>#s', '', $tpl);
@@ -185,6 +203,7 @@ $tpl = rep('#<link rel="canonical"[^>]*>#', '<link rel="canonical" href="' . h($
 $tpl = rep('#<meta property="og:title"[^>]*>#', '<meta property="og:title" content="' . h($title) . '">', $tpl);
 $tpl = rep('#<meta property="og:description"[^>]*>#', '<meta property="og:description" content="' . h($desc) . '">', $tpl);
 $tpl = rep('#<meta property="og:type"[^>]*>#', '<meta property="og:type" content="' . ($one ? 'article' : 'website') . '">', $tpl);
+if($one && !empty($one['photo']['img'])) $tpl = rep('#<meta property="og:image" [^>]*>#', '<meta property="og:image" content="' . h($one['photo']['img']) . '">', $tpl);
 $tpl = preg_replace('#<meta property="og:url"[^>]*>#', '', $tpl);
 $head = '<base href="' . SITE . '"><meta property="og:url" content="' . h($canon) . '"><link rel="alternate" type="application/rss+xml" title="吉他新聞" href="' . SELF . '/rss.xml">'
       . '<script type="application/ld+json">' . json_encode($ld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</script><style>' . $css . '</style>';

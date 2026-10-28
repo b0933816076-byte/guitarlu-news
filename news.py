@@ -400,6 +400,21 @@ def story_links(text):
             out.append({'url': u, 'title': t})
     return out[:3]
 
+# 10-28 老師:「加相關但沒版權照片,不是那則新聞的 OK,但也不要誤植照片,不然寧可不放」
+# → 只用 people-photos.json 裡人工核對過的吉他手本人照;只看英文標題、大小寫要相同;多人時取標題裡最先出現的那位;沒有就不放
+PHOTOS = load(os.path.join(DATA, 'people-photos.json'), {}).get('people', {})
+
+def photo_for(title_en):
+    hits = [(m.start(), en) for en in PHOTOS for m in [re.search(r'(?<![A-Za-z])' + re.escape(en) + r'(?![A-Za-z])', title_en)] if m]
+    if not hits:
+        return None
+    en = min(hits)[1]
+    first, last = en.split()[0], en.split()[-1]
+    # 同姓的家人也在標題裡(例:Dweezil Zappa 談 Frank Zappa)→ 讀者可能以為照片是新聞主角,不放
+    if len(en.split()) > 1 and any(f != first for f in re.findall(r'\b([A-Z][a-z]+) ' + re.escape(last) + r'\b', title_en)):
+        return None
+    return dict(PHOTOS[en], en=en)
+
 def write_item(c):
     """寫稿→把關→沒過就照審稿意見修這一篇(不是重寫)→再從頭審;最多審 5 輪、AI 修稿最多 2 次。
     st=ok 才會出現在網站;rejected 永不發布;pending=AI 連不上,下次再試。"""
@@ -454,6 +469,11 @@ def save_all(items):
     os.makedirs(ARCH, exist_ok=True)
     by = {}
     for it in items:
+        p = photo_for(it.get('title_en', ''))   # 每次存檔都照最新照片表重配(舊新聞也會補上/拿掉)
+        if p:
+            it['photo'] = p
+        else:
+            it.pop('photo', None)
         by.setdefault(it['date'][:7], []).append(it)
     months = []
     for m, lst in sorted(by.items()):
