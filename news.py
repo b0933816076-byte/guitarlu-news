@@ -415,6 +415,27 @@ def photo_for(title_en):
         return None
     return dict(PHOTOS[en], en=en)
 
+# 10-29 老師:「吉他新聞也要有影片,影片就是該吉他新聞的主角的歌曲」
+# → people-listen.json(吉他手 → YouTube Music 熱門歌曲,可嵌入;團員用樂團;不確定是本人的不收)。先找英文標題、沒有再找內文的「（English Name）」,
+#   取最先出現的那位;同姓家人也在標題(Dweezil/Frank Zappa)不放。新聞頁讀 listen 名字 → 右欄「邊讀邊聽」放他的歌
+LISTEN = load(os.path.join(DATA, 'people-listen.json'), {})
+
+def listen_for(it):
+    def first(t):
+        hits = [(m.start(), en) for en in LISTEN if re.match(r'[A-Za-z]', en)
+                for m in [re.search(r'(?<![A-Za-z])' + re.escape(en) + r'(?![A-Za-z])', t)] if m]
+        return min(hits)[1] if hits else None
+    t = it.get('title_en', '')
+    en = first(t)
+    if en and len(en.split()) > 1:
+        a, z = en.split()[0], en.split()[-1]
+        if any(f != a for f in re.findall(r'\b([A-Z][a-z]+) ' + re.escape(z) + r'\b', t)):
+            return None
+    if not en:
+        body = it.get('body') or []
+        en = first(' '.join(body) if isinstance(body, list) else str(body))
+    return en
+
 def write_item(c):
     """寫稿→把關→沒過就照審稿意見修這一篇(不是重寫)→再從頭審;最多審 5 輪、AI 修稿最多 2 次。
     st=ok 才會出現在網站;rejected 永不發布;pending=AI 連不上,下次再試。"""
@@ -474,6 +495,11 @@ def save_all(items):
             it['photo'] = p
         else:
             it.pop('photo', None)
+        ln = listen_for(it) if it.get('st') == 'ok' else None   # 主角的歌(舊新聞也照最新名單重配)
+        if ln:
+            it['listen'] = ln
+        else:
+            it.pop('listen', None)
         by.setdefault(it['date'][:7], []).append(it)
     months = []
     for m, lst in sorted(by.items()):
