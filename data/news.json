@@ -1,5 +1,112 @@
 [
  {
+  "id": "2026-10-28-recording-dojo-what-is-phantom-power",
+  "date": "2026-10-28",
+  "when": "2026-10-28T05:30:02+08:00",
+  "src": "Premier Guitar",
+  "url": "https://www.premierguitar.com/columns/diy/recording-dojo-what-is-phantom-power",
+  "title_en": "Recording Dojo: What Is Phantom Power?",
+  "links": [],
+  "added": "2026-10-28T09:24:19.964247+08:00",
+  "st": "ok",
+  "title": "錄音介面上的 +48V 是什麼？解析幻象電源原理與安全使用觀念",
+  "body": [
+   "現代混音台與錄音介面上常設有「+48V」按鈕，此技術稱為「幻象電源（Phantom Power）」。1960年代電晶體麥克風問世後，工程師開發出透過平衡導線傳輸電力的機制，並演化為 48 伏特直流電標準。電容式麥克風因內部電路需求必須供電，部分主動式（Active）麥克風亦同。",
+   "使用時需注意安全規範，絕不能對被動式鋁帶麥克風開啟 +48V，以免線路異常造成損壞。開啟或關閉幻象電源前，應先關小監聽音量與增益，並在接好麥克風後再切換電源，以防開關時產生的爆音傷害設備與聽力。"
+  ],
+  "cat": "教學・觀念",
+  "by": "gemini:gemini-3.5-flash-lite",
+  "problems": []
+ },
+ {
+  "id": "2026-10-28-paul-simon-s-you-can-call-me-al-has-one-of-the-most-unusual",
+  "date": "2026-10-28",
+  "when": "2026-10-28T03:06:14+08:00",
+  "src": "Guitar Player",
+  "url": "https://www.guitarplayer.com/guitarists/paul-simons-you-can-call-me-al-has-one-of-the-most-unusual-bass-hooks-in-pop-i-just-played-and-they-loved-it",
+  "title_en": "Paul Simon’s “You Can Call Me Al” has one of the most unusual bass hooks in pop",
+  "links": [
+   {
+    "url": "lesson-legend-89-bert-jansch.html",
+    "title": "伯特·詹許（Bert Jansch）：英國民謠吉他的傳奇"
+   },
+   {
+    "url": "lesson-hist-06-effects-pedal-history.html",
+    "title": "效果器的歷史"
+   }
+  ],
+  "added": "2026-10-28T09:24:49.806134+08:00",
+  "st": "ok",
+  "title": "保羅·賽門名曲經典貝斯填空樂句幕後揭密",
+  "body": [
+   "在保羅·賽門（Paul Simon）1986年發行的專輯《葛萊賽園》（Graceland）中，貝斯手巴吉提·庫瑪洛（Bakithi Kumalo）在錄製歌曲「You Can Call Me Al」時即興發揮。當時適逢他的生日，他在錄音室彈奏了一段流暢的貝斯樂句。",
+   "專輯錄音師羅伊·海利（Roy Halee）靈機一動，將這段原音與倒放的音軌拼接在一起，創造出獨特的二小節過場。這項極具創意的錄音手法，造就了歌曲中極具辨識度的經典貝斯樂句。"
+  ],
+  "cat": "吉他手",
+  "by": "gemini:gemini-3.5-flash-lite",
+  "problems": []
+ },
+ {
+  "id": "2026-10-28-joe-bonamassa-promises-a-generous-reward-for-the-return-of-j",
+  "date": "2026-10-28",
+  "when": "2026-10-28T01:41:21+08:00",
+  "src": "Guitar.com",
+  "url": "https://guitar.com/news/music-news/joe-bonamassa-josh-smith-stolen-amp-reward/",
+  "title_en": "Joe Bonamassa promises a “generous reward” for the return of Josh Smith’s lost Two-Rock amp head",
+  "links": [
+   {
+    "url": "lesson-hist-20-brand-fender.html",
+    "title": "芬達（Fender）品牌故事"
+   },
+   {
+    "url": "lesson-hist-05-amplifier-history.html",
+    "title": "音箱的歷史"
+   }
+  ],
+  "added": "2026-10-28T09:25:19.891711+08:00",
+  "st": "ok",
+  "title": "藍調吉他手喬·博納馬薩懸賞尋找喬許·史密斯遺失的擴大機",
+  "body": [
+   "藍調吉他手喬·博納馬薩（Joe Bonamassa）在社群平台上表示，其音樂夥伴喬許·史密斯（Josh Smith）的Two-Rock擴大機音箱頭不幸遺失，並懷疑遭到竊取。這件裝備最後一次被看見是在德國科隆的演出地點，裝在印有「JS」字樣的黑色Two-Rock專用航空箱中。",
+   "為了找回這顆音箱頭，博納馬薩懸賞豐厚報酬請大眾協助提供線索。回顧2021年時，博納馬薩的芬達（Fender）Custom Shop 1951 #6 Nocaster吉他曾在運送途中失竊，當時也是透過公開發文協尋，在短短兩天內便順利尋回。若民眾有關於此次失竊音箱頭的任何消息，可直接發送電子郵件至 rachael@jr-adventures.com 聯繫。"
+  ],
+  "cat": "新琴・器材",
+  "by": "gemini:gemini-3.5-flash-lite",
+  "problems": []
+ },
+ {
+  "id": "2026-10-28-how-to-nail-a-blues-rock-solo-in-the-style-of-eric-johnson",
+  "date": "2026-10-28",
+  "when": "2026-10-28T01:26:04+08:00",
+  "src": "Guitar World",
+  "url": "https://www.guitarworld.com/lessons/eric-johnson-blues-rock-solo",
+  "title_en": "How to nail a blues-rock solo in the style of Eric Johnson",
+  "links": [
+   {
+    "url": "lesson-legend-36-eric-johnson.html",
+    "title": "艾瑞克·強森（Eric Johnson）：追求完美音色的德州吉他手"
+   },
+   {
+    "url": "lesson-hist-19-brand-gibson.html",
+    "title": "吉布森（Gibson）品牌故事"
+   },
+   {
+    "url": "lesson-hist-05-amplifier-history.html",
+    "title": "音箱的歷史"
+   }
+  ],
+  "added": "2026-10-28T09:25:37.919600+08:00",
+  "st": "ok",
+  "title": "艾瑞克·強森的藍調搖滾風格解析：融合爵士與搖滾的獨特電吉他魅力",
+  "body": [
+   "美國吉他手艾瑞克·強森（Eric Johnson）以融合藍調、爵士與搖滾的獨特風格聞名，其演奏橫跨乾淨和弦、強烈節奏與破音獨奏。他的音箱系統與配置自 1986 年首張個人專輯《Tones》發行以來幾乎沒有改變，展現出他對音色與藝術表現的堅持。",
+   "教學文章中將藍調搖滾獨奏拆解為四個段落，示範如何運用五聲音階、琶音與德州藍調元素來建構樂句。內容涵蓋了模擬其標誌性演奏的移位技巧、複合撥弦以及雙音配置，並提及他在《Cliffs Of Dover》、《Desert Rose》與《Camel's Night Out》（據傳曾使用吉布森（Gibson）Flying V）等經典作品中的表現。"
+  ],
+  "cat": "教學・觀念",
+  "by": "gemini:gemini-3.5-flash-lite",
+  "problems": []
+ },
+ {
   "id": "2026-10-28-eric-clapton-watched-his-younger-self-play-guitar-and-didn-t",
   "date": "2026-10-28",
   "when": "2026-10-28T01:11:33+08:00",
