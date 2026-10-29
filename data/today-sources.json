@@ -1,0 +1,852 @@
+[
+{
+"wiki": "Jimi Hendrix",
+"story": "lesson-legend-02-jimi-hendrix.html",
+"zh": "吉米·罕醉克斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Jimmy Page",
+"story": "lesson-legend-05-jimmy-page.html",
+"zh": "吉米·佩吉",
+"kind": "guitarist"
+},
+{
+"wiki": "Eddie Van Halen",
+"story": "lesson-legend-06-eddie-van-halen.html",
+"zh": "艾迪·范·海倫",
+"kind": "guitarist"
+},
+{
+"wiki": "Chuck Berry",
+"story": "lesson-legend-07-chuck-berry.html",
+"zh": "查克·貝瑞",
+"kind": "guitarist"
+},
+{
+"wiki": "Jeff Beck",
+"story": "lesson-legend-22-jeff-beck.html",
+"zh": "傑夫·貝克",
+"kind": "guitarist"
+},
+{
+"wiki": "Keith Richards",
+"story": "lesson-legend-23-keith-richards.html",
+"zh": "基斯·理查茲",
+"kind": "guitarist"
+},
+{
+"wiki": "Brian May",
+"story": "lesson-legend-24-brian-may.html",
+"zh": "布萊恩·梅",
+"kind": "guitarist"
+},
+{
+"wiki": "David Gilmour",
+"story": "lesson-legend-25-david-gilmour.html",
+"zh": "大衛·吉爾摩",
+"kind": "guitarist"
+},
+{
+"wiki": "Tony Iommi",
+"story": "lesson-legend-26-tony-iommi.html",
+"zh": "東尼·艾歐米",
+"kind": "guitarist"
+},
+{
+"wiki": "Randy Rhoads",
+"story": "lesson-legend-27-randy-rhoads.html",
+"zh": "蘭迪·羅德斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Slash (musician)",
+"story": "lesson-legend-28-slash.html",
+"zh": "史萊許",
+"kind": "guitarist"
+},
+{
+"wiki": "Steve Vai",
+"story": "lesson-legend-29-steve-vai.html",
+"zh": "史提夫·范",
+"kind": "guitarist"
+},
+{
+"wiki": "Joe Satriani",
+"story": "lesson-legend-30-joe-satriani.html",
+"zh": "喬·沙翠亞尼",
+"kind": "guitarist"
+},
+{
+"wiki": "Yngwie Malmsteen",
+"story": "lesson-legend-31-yngwie-malmsteen.html",
+"zh": "英格威·瑪姆斯汀",
+"kind": "guitarist"
+},
+{
+"wiki": "Pete Townshend",
+"story": "lesson-legend-32-pete-townshend.html",
+"zh": "彼特·湯森",
+"kind": "guitarist"
+},
+{
+"wiki": "The Edge",
+"story": "lesson-legend-33-the-edge.html",
+"zh": "刀鋒",
+"kind": "guitarist"
+},
+{
+"wiki": "Kirk Hammett",
+"story": "lesson-legend-34-kirk-hammett.html",
+"zh": "柯克·哈米特",
+"kind": "guitarist"
+},
+{
+"wiki": "George Harrison",
+"story": "lesson-legend-35-george-harrison.html",
+"zh": "喬治·哈里森",
+"kind": "guitarist"
+},
+{
+"wiki": "Eric Johnson (guitarist)",
+"story": "lesson-legend-36-eric-johnson.html",
+"zh": "艾瑞克·強森",
+"kind": "guitarist"
+},
+{
+"wiki": "Neil Young",
+"story": "lesson-legend-102-neil-young.html",
+"zh": "尼爾·楊",
+"kind": "guitarist"
+},
+{
+"wiki": "Angus Young",
+"story": "lesson-legend-103-angus-young.html",
+"zh": "安格斯·楊",
+"kind": "guitarist"
+},
+{
+"wiki": "Ritchie Blackmore",
+"story": "lesson-legend-104-ritchie-blackmore.html",
+"zh": "里奇·布萊克摩爾",
+"kind": "guitarist"
+},
+{
+"wiki": "Jerry Garcia",
+"story": "lesson-legend-105-jerry-garcia.html",
+"zh": "傑瑞·賈西亞",
+"kind": "guitarist"
+},
+{
+"wiki": "Frank Zappa",
+"story": "lesson-legend-106-frank-zappa.html",
+"zh": "法蘭克·札帕",
+"kind": "guitarist"
+},
+{
+"wiki": "Tom Morello",
+"story": "lesson-legend-108-tom-morello.html",
+"zh": "湯姆·莫瑞羅",
+"kind": "guitarist"
+},
+{
+"wiki": "Eric Clapton",
+"story": "lesson-legend-03-eric-clapton.html",
+"zh": "艾瑞克·克萊普頓",
+"kind": "guitarist"
+},
+{
+"wiki": "B. B. King",
+"story": "lesson-legend-04-bb-king.html",
+"zh": "B.B.金",
+"kind": "guitarist"
+},
+{
+"wiki": "Stevie Ray Vaughan",
+"story": "lesson-legend-52-stevie-ray-vaughan.html",
+"zh": "史提夫·雷·沃恩",
+"kind": "guitarist"
+},
+{
+"wiki": "Albert King",
+"story": "lesson-legend-53-albert-king.html",
+"zh": "亞伯特·金",
+"kind": "guitarist"
+},
+{
+"wiki": "Freddie King",
+"story": "lesson-legend-54-freddie-king.html",
+"zh": "佛萊迪·金",
+"kind": "guitarist"
+},
+{
+"wiki": "Buddy Guy",
+"story": "lesson-legend-55-buddy-guy.html",
+"zh": "巴弟·蓋",
+"kind": "guitarist"
+},
+{
+"wiki": "Muddy Waters",
+"story": "lesson-legend-56-muddy-waters.html",
+"zh": "馬帝·瓦特斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Duane Allman",
+"story": "lesson-legend-59-duane-allman.html",
+"zh": "杜安·歐曼",
+"kind": "guitarist"
+},
+{
+"wiki": "Albert Collins",
+"story": "lesson-legend-60-albert-collins.html",
+"zh": "亞伯特·柯林斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Sister Rosetta Tharpe",
+"story": "lesson-legend-107-sister-rosetta-tharpe.html",
+"zh": "羅賽塔·薩普修女",
+"kind": "guitarist"
+},
+{
+"wiki": "Django Reinhardt",
+"story": "lesson-legend-09-django-reinhardt.html",
+"zh": "姜戈·萊恩哈特",
+"kind": "guitarist"
+},
+{
+"wiki": "Wes Montgomery",
+"story": "lesson-legend-62-wes-montgomery.html",
+"zh": "韋斯·蒙哥馬利",
+"kind": "guitarist"
+},
+{
+"wiki": "Charlie Christian",
+"story": "lesson-legend-63-charlie-christian.html",
+"zh": "查理·克里斯汀",
+"kind": "guitarist"
+},
+{
+"wiki": "Joe Pass",
+"story": "lesson-legend-64-joe-pass.html",
+"zh": "喬·帕斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Pat Metheny",
+"story": "lesson-legend-65-pat-metheny.html",
+"zh": "派特·麥席尼",
+"kind": "guitarist"
+},
+{
+"wiki": "George Benson",
+"story": "lesson-legend-66-george-benson.html",
+"zh": "喬治·班森",
+"kind": "guitarist"
+},
+{
+"wiki": "Jim Hall (musician)",
+"story": "lesson-legend-67-jim-hall.html",
+"zh": "吉姆·霍爾",
+"kind": "guitarist"
+},
+{
+"wiki": "John McLaughlin (musician)",
+"story": "lesson-legend-68-john-mclaughlin.html",
+"zh": "約翰·麥克勞夫林",
+"kind": "guitarist"
+},
+{
+"wiki": "Allan Holdsworth",
+"story": "lesson-legend-69-allan-holdsworth.html",
+"zh": "艾倫·霍茲沃斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Kenny Burrell",
+"story": "lesson-legend-71-kenny-burrell.html",
+"zh": "肯尼·布瑞爾",
+"kind": "guitarist"
+},
+{
+"wiki": "Andrés Segovia",
+"story": "lesson-legend-08-andres-segovia.html",
+"zh": "安德烈斯·塞哥維亞",
+"kind": "guitarist"
+},
+{
+"wiki": "John Williams (guitarist)",
+"story": "lesson-legend-17-john-williams.html",
+"zh": "約翰·威廉斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Agustín Barrios",
+"story": "lesson-legend-21-agustin-barrios.html",
+"zh": "奧古斯丁·巴里奧斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Francisco Tárrega",
+"story": "lesson-legend-72-francisco-tarrega.html",
+"zh": "塔雷加",
+"kind": "guitarist"
+},
+{
+"wiki": "Fernando Sor",
+"story": "lesson-legend-73-fernando-sor.html",
+"zh": "費爾南多·索爾",
+"kind": "guitarist"
+},
+{
+"wiki": "Julian Bream",
+"story": "lesson-legend-74-julian-bream.html",
+"zh": "朱利安·布林",
+"kind": "guitarist"
+},
+{
+"wiki": "Narciso Yepes",
+"story": "lesson-legend-75-narciso-yepes.html",
+"zh": "納西索·葉佩斯",
+"kind": "guitarist"
+},
+{
+"wiki": "David Russell (guitarist)",
+"story": "lesson-legend-76-david-russell.html",
+"zh": "大衛·羅素",
+"kind": "guitarist"
+},
+{
+"wiki": "Manuel Barrueco",
+"story": "lesson-legend-77-manuel-barrueco.html",
+"zh": "曼努埃爾·巴魯埃科",
+"kind": "guitarist"
+},
+{
+"wiki": "Ida Presti",
+"story": "lesson-legend-78-ida-presti.html",
+"zh": "艾達·普雷斯蒂",
+"kind": "guitarist"
+},
+{
+"wiki": "Tommy Emmanuel",
+"story": "lesson-legend-16-tommy-emmanuel.html",
+"zh": "湯米·伊曼紐",
+"kind": "guitarist"
+},
+{
+"wiki": "Michael Hedges",
+"story": "lesson-legend-86-michael-hedges.html",
+"zh": "麥可·赫吉斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Leo Kottke",
+"story": "lesson-legend-87-leo-kottke.html",
+"zh": "李奧·柯特基",
+"kind": "guitarist"
+},
+{
+"wiki": "John Fahey (musician)",
+"story": "lesson-legend-88-john-fahey.html",
+"zh": "約翰·費伊",
+"kind": "guitarist"
+},
+{
+"wiki": "Bert Jansch",
+"story": "lesson-legend-89-bert-jansch.html",
+"zh": "伯特·詹許",
+"kind": "guitarist"
+},
+{
+"wiki": "Pierre Bensusan",
+"story": "lesson-legend-90-pierre-bensusan.html",
+"zh": "皮耶·班蘇珊",
+"kind": "guitarist"
+},
+{
+"wiki": "Don Ross (guitarist)",
+"story": "lesson-legend-91-don-ross.html",
+"zh": "唐·羅斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Andy McKee",
+"story": "lesson-legend-92-andy-mckee.html",
+"zh": "安迪·麥基",
+"kind": "guitarist"
+},
+{
+"wiki": "Paco de Lucía",
+"story": "lesson-legend-10-paco-de-lucia.html",
+"zh": "帕可·德·路西亞",
+"kind": "guitarist"
+},
+{
+"wiki": "Baden Powell (guitarist)",
+"story": "lesson-legend-18-baden-powell.html",
+"zh": "巴登·包威爾",
+"kind": "guitarist"
+},
+{
+"wiki": "João Gilberto",
+"story": "lesson-legend-19-joao-gilberto.html",
+"zh": "若昂·吉爾貝托",
+"kind": "guitarist"
+},
+{
+"wiki": "Ali Farka Touré",
+"story": "lesson-legend-20-ali-farka-toure.html",
+"zh": "阿里·法爾卡·杜爾",
+"kind": "guitarist"
+},
+{
+"wiki": "Sabicas",
+"story": "lesson-legend-79-sabicas.html",
+"zh": "薩比卡斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Tomatito",
+"story": "lesson-legend-80-tomatito.html",
+"zh": "托馬蒂托",
+"kind": "guitarist"
+},
+{
+"wiki": "Vicente Amigo",
+"story": "lesson-legend-81-vicente-amigo.html",
+"zh": "維森特·阿米哥",
+"kind": "guitarist"
+},
+{
+"wiki": "Carlos Santana",
+"story": "lesson-legend-82-carlos-santana.html",
+"zh": "卡洛斯·山塔那",
+"kind": "guitarist"
+},
+{
+"wiki": "Raphael Rabello",
+"story": "lesson-legend-83-raphael-rabello.html",
+"zh": "拉斐爾·拉貝洛",
+"kind": "guitarist"
+},
+{
+"wiki": "Yamandu Costa",
+"story": "lesson-legend-84-yamandu-costa.html",
+"zh": "亞曼度·科斯塔",
+"kind": "guitarist"
+},
+{
+"wiki": "Al Di Meola",
+"story": "lesson-legend-85-al-di-meola.html",
+"zh": "艾爾·迪·梅奧拉",
+"kind": "guitarist"
+},
+{
+"wiki": "Chet Atkins",
+"story": "lesson-legend-11-chet-atkins.html",
+"zh": "切特·阿特金斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Merle Travis",
+"story": "lesson-legend-94-merle-travis.html",
+"zh": "梅爾·崔維斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Doc Watson",
+"story": "lesson-legend-95-doc-watson.html",
+"zh": "道克·華森",
+"kind": "guitarist"
+},
+{
+"wiki": "Jerry Reed",
+"story": "lesson-legend-96-jerry-reed.html",
+"zh": "傑瑞·里德",
+"kind": "guitarist"
+},
+{
+"wiki": "Albert Lee",
+"story": "lesson-legend-97-albert-lee.html",
+"zh": "亞伯特·李",
+"kind": "guitarist"
+},
+{
+"wiki": "Clarence White",
+"story": "lesson-legend-99-clarence-white.html",
+"zh": "克萊倫斯·懷特",
+"kind": "guitarist"
+},
+{
+"wiki": "Tony Rice",
+"story": "lesson-legend-100-tony-rice.html",
+"zh": "湯尼·萊斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Danny Gatton",
+"story": "lesson-legend-101-danny-gatton.html",
+"zh": "丹尼·蓋頓",
+"kind": "guitarist"
+},
+{
+"wiki": "Les Paul",
+"story": "lesson-legend-37-les-paul.html",
+"zh": "萊斯·保羅",
+"kind": "guitarist"
+},
+{
+"wiki": "Nile Rodgers",
+"story": "lesson-legend-38-nile-rodgers.html",
+"zh": "奈爾·羅傑斯",
+"kind": "guitarist"
+},
+{
+"wiki": "Prince (musician)",
+"story": "lesson-legend-39-prince.html",
+"zh": "王子",
+"kind": "guitarist"
+},
+{
+"wiki": "Steve Lukather",
+"story": "lesson-legend-40-steve-lukather.html",
+"zh": "史提夫·路克瑟",
+"kind": "guitarist"
+},
+{
+"wiki": "Larry Carlton",
+"story": "lesson-legend-41-larry-carlton.html",
+"zh": "賴瑞·卡爾頓",
+"kind": "guitarist"
+},
+{
+"wiki": "Lee Ritenour",
+"story": "lesson-legend-42-lee-ritenour.html",
+"zh": "李·瑞特納",
+"kind": "guitarist"
+},
+{
+"wiki": "Mark Knopfler",
+"story": "lesson-legend-44-mark-knopfler.html",
+"zh": "馬克·諾弗勒",
+"kind": "guitarist"
+},
+{
+"wiki": "Jimmy Nolen",
+"story": "lesson-legend-45-jimmy-nolen.html",
+"zh": "吉米·諾倫",
+"kind": "guitarist"
+},
+{
+"wiki": "Tommy Tedesco",
+"story": "lesson-legend-46-tommy-tedesco.html",
+"zh": "湯米·泰德斯科",
+"kind": "guitarist"
+},
+{
+"wiki": "John Frusciante",
+"story": "lesson-legend-109-john-frusciante.html",
+"zh": "約翰·弗魯西安特",
+"kind": "guitarist"
+},
+{
+"wiki": "Tak Matsumoto",
+"story": "lesson-legend-13-tak-matsumoto.html",
+"zh": "松本孝弘",
+"kind": "guitarist"
+},
+{
+"wiki": "Masayoshi Takanaka",
+"story": "lesson-legend-47-masayoshi-takanaka.html",
+"zh": "高中正義",
+"kind": "guitarist"
+},
+{
+"wiki": "Brent Mason",
+"story": "lesson-legend-98-brent-mason.html",
+"zh": "布蘭特·梅森",
+"kind": "guitarist"
+},
+{
+"wiki": "Johnny B. Goode",
+"story": "lesson-song-01-johnny-b-goode.html",
+"zh": "〈Johnny B. Goode〉",
+"kind": "song",
+"desc": "1958 single by Chuck Berry"
+},
+{
+"wiki": "Walk, Don't Run (instrumental)",
+"story": "lesson-song-02-walk-dont-run.html",
+"zh": "〈Walk, Don't Run〉",
+"kind": "song",
+"desc": "1954 composition by Johnny Smith"
+},
+{
+"wiki": "Misirlou",
+"story": "lesson-song-03-misirlou.html",
+"zh": "〈Misirlou〉",
+"kind": "song",
+"desc": "Eastern Mediterranean folk song"
+},
+{
+"wiki": "You Really Got Me",
+"story": "lesson-song-04-you-really-got-me.html",
+"zh": "〈You Really Got Me〉",
+"kind": "song",
+"desc": "1964 single by the Kinks"
+},
+{
+"wiki": "(I Can't Get No) Satisfaction",
+"story": "lesson-song-05-satisfaction.html",
+"zh": "〈(I Can't Get No) Satisfaction〉",
+"kind": "song",
+"desc": "1965 single by The Rolling Stones"
+},
+{
+"wiki": "Little Wing",
+"story": "lesson-song-06-little-wing.html",
+"zh": "〈Little Wing〉",
+"kind": "song",
+"desc": "1967 song by Jimi Hendrix"
+},
+{
+"wiki": "While My Guitar Gently Weeps",
+"story": "lesson-song-07-while-my-guitar-gently-weeps.html",
+"zh": "〈While My Guitar Gently Weeps〉",
+"kind": "song",
+"desc": "1968 song by the Beatles"
+},
+{
+"wiki": "Layla",
+"story": "lesson-song-08-layla.html",
+"zh": "〈Layla〉",
+"kind": "song",
+"desc": "1970 song written by Eric Clapton and Jim Gordon"
+},
+{
+"wiki": "Stairway to Heaven",
+"story": "lesson-song-09-stairway-to-heaven.html",
+"zh": "〈Stairway to Heaven〉",
+"kind": "song",
+"desc": "1971 song by Led Zeppelin"
+},
+{
+"wiki": "Free Bird",
+"story": "lesson-song-10-free-bird.html",
+"zh": "〈Free Bird〉",
+"kind": "song",
+"desc": "1974 single by Lynyrd Skynyrd"
+},
+{
+"wiki": "Bohemian Rhapsody",
+"story": "lesson-song-11-bohemian-rhapsody.html",
+"zh": "〈Bohemian Rhapsody〉",
+"kind": "song",
+"desc": "1975 single by Queen"
+},
+{
+"wiki": "Sultans of Swing",
+"story": "lesson-song-13-sultans-of-swing.html",
+"zh": "〈Sultans of Swing〉",
+"kind": "song",
+"desc": "1978 single by Dire Straits"
+},
+{
+"wiki": "Comfortably Numb",
+"story": "lesson-song-14-comfortably-numb.html",
+"zh": "〈Comfortably Numb〉",
+"kind": "song",
+"desc": "1980 single by Pink Floyd"
+},
+{
+"wiki": "Where the Streets Have No Name",
+"story": "lesson-song-15-where-the-streets-have-no-name.html",
+"zh": "〈Where the Streets Have No Name〉",
+"kind": "song",
+"desc": "1987 single by U2"
+},
+{
+"wiki": "Smells Like Teen Spirit",
+"story": "lesson-song-16-smells-like-teen-spirit.html",
+"zh": "〈Smells Like Teen Spirit〉",
+"kind": "song",
+"desc": "1991 single by Nirvana"
+},
+{
+"wiki": "Under the Bridge",
+"story": "lesson-song-17-under-the-bridge.html",
+"zh": "〈Under the Bridge〉",
+"kind": "song",
+"desc": "1992 single by Red Hot Chili Peppers"
+},
+{
+"wiki": "Iron Man (song)",
+"story": "lesson-song-20-iron-man.html",
+"zh": "〈Iron Man〉",
+"kind": "song",
+"desc": "1970 single by Black Sabbath"
+},
+{
+"wiki": "Eruption (instrumental)",
+"story": "lesson-song-22-eruption.html",
+"zh": "〈Eruption〉",
+"kind": "song",
+"desc": "1978 instrumental by Van Halen"
+},
+{
+"wiki": "Back in Black (song)",
+"story": "lesson-song-23-back-in-black.html",
+"zh": "〈Back in Black〉",
+"kind": "song",
+"desc": "1980 single by AC/DC"
+},
+{
+"wiki": "Crazy Train",
+"story": "lesson-song-24-crazy-train.html",
+"zh": "〈Crazy Train〉",
+"kind": "song",
+"desc": "1980 single by Ozzy Osbourne"
+},
+{
+"wiki": "The Trooper",
+"story": "lesson-song-25-the-trooper.html",
+"zh": "〈The Trooper〉",
+"kind": "song",
+"desc": "1983 single by Iron Maiden"
+},
+{
+"wiki": "Sweet Child o' Mine",
+"story": "lesson-song-28-sweet-child-o-mine.html",
+"zh": "〈Sweet Child o' Mine〉",
+"kind": "song",
+"desc": "1988 single by Guns N' Roses"
+},
+{
+"wiki": "For the Love of God (instrumental)",
+"story": "lesson-song-29-for-the-love-of-god.html",
+"zh": "〈For the Love of God〉",
+"kind": "song",
+"desc": "1990 instrumental by Steve Vai"
+},
+{
+"wiki": "Killing in the Name",
+"story": "lesson-song-30-killing-in-the-name.html",
+"zh": "〈Killing in the Name〉",
+"kind": "song",
+"desc": "1992 single by Rage Against the Machine"
+},
+{
+"wiki": "Cross Road Blues",
+"story": "lesson-song-31-cross-road-blues.html",
+"zh": "〈Cross Road Blues〉",
+"kind": "song",
+"desc": "1936 blues song by Robert Johnson"
+},
+{
+"wiki": "Hide Away (instrumental)",
+"story": "lesson-song-35-hide-away.html",
+"zh": "〈Hide Away〉",
+"kind": "song",
+"desc": "Instrumental blues standard first recorded by Freddie King"
+},
+{
+"wiki": "Pride and Joy (Marvin Gaye song)",
+"story": "lesson-song-39-pride-and-joy.html",
+"zh": "〈Pride and Joy〉",
+"kind": "song",
+"desc": "1963 single by Marvin Gaye"
+},
+{
+"wiki": "Still Got the Blues (For You)",
+"story": "lesson-song-40-still-got-the-blues.html",
+"zh": "〈Still Got the Blues〉",
+"kind": "song",
+"desc": "1990 single by Gary Moore"
+},
+{
+"wiki": "Green Onions",
+"story": "lesson-song-41-green-onions.html",
+"zh": "〈Green Onions〉",
+"kind": "song",
+"desc": "1962 instrumental composition by Booker T. & the M.G.'s"
+},
+{
+"wiki": "My Girl (The Temptations song)",
+"story": "lesson-song-42-my-girl.html",
+"zh": "〈My Girl〉",
+"kind": "song",
+"desc": "1964 single by the Temptations"
+},
+{
+"wiki": "Papa's Got a Brand New Bag",
+"story": "lesson-song-43-papas-got-a-brand-new-bag.html",
+"zh": "〈Papa's Got a Brand New Bag〉",
+"kind": "song",
+"desc": "1965 single by James Brown"
+},
+{
+"wiki": "Entre dos aguas (song)",
+"story": "lesson-song-56-entre-dos-aguas.html",
+"zh": "〈Entre dos aguas〉",
+"kind": "song",
+"desc": "Composition by Paco de Lucía"
+},
+{
+"wiki": "Mediterranean Sundance",
+"story": "lesson-song-57-mediterranean-sundance.html",
+"zh": "〈Mediterranean Sundance〉",
+"kind": "song",
+"desc": "1977 song by Al Di Meola"
+},
+{
+"wiki": "Bamboléo",
+"story": "lesson-song-58-bamboleo.html",
+"zh": "〈Bamboléo〉",
+"kind": "song",
+"desc": "1987 single by Gipsy Kings"
+},
+{
+"wiki": "Manhã de Carnaval",
+"story": "lesson-song-63-manha-de-carnaval.html",
+"zh": "〈Manhã de Carnaval〉",
+"kind": "song",
+"desc": "Portuguese-language song by Luiz Bonfá and Antônio Maria"
+},
+{
+"wiki": "Solo Flight (composition)",
+"story": "lesson-song-67-solo-flight.html",
+"zh": "〈Solo Flight〉",
+"kind": "song",
+"desc": "1943 single by Benny Goodman and His Orchestra"
+},
+{
+"wiki": "Peg (song)",
+"story": "lesson-song-74-peg.html",
+"zh": "〈Peg〉",
+"kind": "song",
+"desc": "1977 single by Steely Dan"
+},
+{
+"wiki": "Beat It",
+"story": "lesson-song-75-beat-it.html",
+"zh": "〈Beat It〉",
+"kind": "song",
+"desc": "1983 single by Michael Jackson"
+},
+{
+"wiki": "More Than Words",
+"story": "lesson-song-77-more-than-words.html",
+"zh": "〈More Than Words〉",
+"kind": "song",
+"desc": "1991 single by Extreme"
+},
+{
+"wiki": "Wonderwall",
+"story": "lesson-song-78-wonderwall.html",
+"zh": "〈Wonderwall〉",
+"kind": "song",
+"desc": "1995 single by Oasis"
+}
+]

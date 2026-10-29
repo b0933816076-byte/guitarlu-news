@@ -1,0 +1,34 @@
+name: 吉他史上的今天
+on:
+  schedule:
+    - cron: '50 23 * * *'   # 台灣 07:50(新聞 06:10 先跑完)
+    - cron: '50 11 * * *'   # 台灣 19:50(新聞 18:10 先跑完)
+  workflow_dispatch:
+    inputs:
+      args: { description: 'today.py 參數(例如 --dry --max 2)', required: false, default: '' }
+permissions:
+  contents: write
+concurrency: news
+jobs:
+  today:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install -q requests feedparser trafilatura opencc-python-reimplemented
+      - name: 從英文維基找吉他史大事＋Gemini 免費 AI 挑選改寫＋多關審稿
+        env: { GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}' }
+        run: |
+          set +e
+          python today.py ${{ github.event.inputs.args }}
+          echo "code=$?"
+      - name: 存檔
+        run: |
+          git config user.name "guitarlu-news-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          git commit -m "吉他史上的今天 $(date -u +%F' '%H:%M)" || echo "沒有變動"
+          git pull --rebase -q || true
+          git push
