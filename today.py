@@ -39,6 +39,21 @@ JUDGE = """你是台灣《吉他故事館》「吉他史上的今天」的編輯
 {lines}"""
 
 
+WRITE = """你是台灣《吉他故事館》「吉他史上的今天」的編輯。下面是英文維基百科「{wiki}」裡的一段原文,其中這一句講的是 {date} 發生的事:
+「{sent}」
+請用台灣繁體中文寫 1～2 句(40～110 字)介紹這件事:
+- 第一句:發生了什麼事(誰、在哪裡、做了什麼),寫具體,讓沒聽過的人也看得懂
+- 第二句(可省略):只有這段原文「明白寫到」這件事帶來的結果或影響時才寫,而且只能寫原文說的結果;原文沒寫就不要第二句
+- 絕對不要加原文沒有的形容或評價(例如劃時代、傳奇、震撼、里程碑、改寫歷史),不要猜、不要加數字
+- 不要寫日期和年份,不要用「今天」開頭
+- 國外人名、樂團、地名第一次出現寫「中文（English）」,譯名照這份對照表:{hints};歌名、專輯名保留英文並用〈〉或《》
+- 全形標點,外國人名中間點用「·」
+只回 JSON:{{"zh":"中文"}}
+
+原文段落:
+{para}"""
+
+
 def load(p, d):
     return N.load(p, d)
 
@@ -62,23 +77,23 @@ def wiki_text(title):
 def candidates(text):
     """有完整日期、不是生日忌日的句子。回傳 [(月, 日, 年, 句子, 前後文)]"""
     text = re.split(r'\n== ?(See also|References|Notes|External links|Further reading|Bibliography|Discography) ?==', text)[0]
-    sents = re.split(r'(?<=[.!?])\s+(?=[A-Z"“])', re.sub(r'\n+', ' ', text))
+    paras = [x.strip() for x in text.split('\n') if len(x.strip()) > 40 and not x.strip().startswith('=')]
     out, seen = [], set()
-    for i, s in enumerate(sents):
-        if len(s) > 400 or SKIP.search(s):
-            continue
-        for m in DATE.finditer(s):
-            mon = m.group(1) or m.group(5)
-            day = int(m.group(2) or m.group(4))
-            yr = int(m.group(3) or m.group(6))
-            if not 1500 <= yr <= 2030 or day > 31:
+    for para in paras:
+        for s in re.split(r'(?<=[.!?])\s+(?=[A-Z"“])', para):
+            if len(s) > 400 or SKIP.search(s):
                 continue
-            k = (mon, day, yr)
-            if k in seen:
-                continue
-            seen.add(k)
-            ctx = ' '.join(sents[max(0, i - 1):i + 2])
-            out.append((MON.index(mon) + 1, day, yr, s, ctx[:900]))
+            for m in DATE.finditer(s):
+                mon = m.group(1) or m.group(5)
+                day = int(m.group(2) or m.group(4))
+                yr = int(m.group(3) or m.group(6))
+                if not 1500 <= yr <= 2030 or day > 31:
+                    continue
+                k = (mon, day, yr)
+                if k in seen:
+                    continue
+                seen.add(k)
+                out.append((MON.index(mon) + 1, day, yr, s, para[:2500]))   # 前後文=整段;「為什麼重要」只能用這段裡有的事實
     return out[:40]
 
 
@@ -156,7 +171,14 @@ def main():
                     if eid in have:
                         continue
                     stats['pick'] += 1
-                    print('  候選 %d/%s %d分 %s:%s' % (yr, k, sc, cat, zh[:40]))
+                    try:   # 挑選時只看到一句;改用整段原文重寫,重要性只能照原文
+                        w = N.js(N.ask_ai(WRITE.format(wiki=s['wiki'], date='%d 年 %d 月 %d 日' % (yr, mo, dy), sent=sent, para=ctx, hints=hint)))
+                        zh = (w.get('zh') or '').strip() or zh
+                    except N.QuotaOut:
+                        raise
+                    except Exception:
+                        pass
+                    print('  候選 %d/%s %d分 %s:%s' % (yr, k, sc, cat, zh))
                     ok = False
                     for rnd in range(3):
                         probs, kind = review(zh, s['wiki'], ctx, '%d 年 %d 月 %d 日' % (yr, mo, dy))
@@ -171,6 +193,7 @@ def main():
                         data.setdefault(k, []).append({'y': str(yr), 't': zh, 'cat': cat, 'score': sc, 'src': 'https://en.wikipedia.org/wiki/' + s['wiki'].replace(' ', '_'),
                                                        'story': s['story'], 'en': sent, 'id': eid, 'added': N.now().isoformat()})
                         have.add(eid); stats['ok'] += 1
+                        print('   通過:', zh)
                     else:
                         stats['rejected'] += 1
             state['done'][s['wiki']] = {'rev': rev, 'at': N.now().isoformat()}
