@@ -123,11 +123,17 @@ REVIEW_FACT = """你是嚴格的審稿編輯。下面是英文維基百科原文
 {zh}"""
 
 
+# 10-29 試跑:「寶麗多唱片」「丹佛」沒附英文也過了 → 校對加一條中英對照
+REVIEW_TEXT = N.REVIEW_TEXT.replace('- 同一個外文名字', '- 國外人名、樂團、唱片公司、錄音室、場地、地名第一次出現沒寫成「中文（English）」(例如只寫「寶麗多唱片」沒附（Polydor）);本來就是英文的歌名、專輯名不算
+- 同一個外文名字', 1)
+assert REVIEW_TEXT != N.REVIEW_TEXT
+
+
 def review(zh, src, ctx, date):
     probs = check_zh(zh, None)
     if probs:
         return probs, 'rule'
-    for kind, tpl in (('fact', REVIEW_FACT), ('text', N.REVIEW_TEXT)):
+    for kind, tpl in (('fact', REVIEW_FACT), ('text', REVIEW_TEXT)):
         o = N.js(N.ask_ai(tpl.format(date=date, src=src, text=ctx, zh=zh)))
         if not o.get('ok') or o.get('problems'):
             return [str(p) for p in (o.get('problems') or ['不通過'])], kind
