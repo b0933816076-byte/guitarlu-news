@@ -57,8 +57,11 @@ def load(p, d):
 
 def save(p, o):
     tmp = p + '.tmp'
-    with open(tmp, 'w', encoding='utf-8') as f:
-        json.dump(o, f, ensure_ascii=False, indent=1)
+    with open(tmp, 'w', encoding='utf-8', newline='\n') as f:
+        if p.endswith('people-listen.json'):   # 這份原本就是一行,維持原格式(git 差異才看得懂)
+            json.dump(o, f, ensure_ascii=False, separators=(',', ':'))
+        else:
+            json.dump(o, f, ensure_ascii=False, indent=1)
     os.replace(tmp, p)
 
 def norm(t):
@@ -425,7 +428,7 @@ def listen_for(it):
     MODEL = re.compile(r'(?:Gibson|Epiphone|Prophecy|Signature|Tribute|Gretsch|Fender|Ibanez|PRS)[\s’\'s]*$', re.I)
     MODEL2 = re.compile(r'^[\s’\'s-]*(?:Standard|Custom|Junior|Special|Studio|Classic|Supreme|Modern|Traditional|Deluxe|Jr|guitars?|models?|series|style|copy|-style)\b', re.I)
     def first(t):
-        hits = [(m.start(), en) for en in LISTEN if re.match(r'[A-Za-z]', en)
+        hits = [(m.start(), en) for en in LISTEN if re.match(r'[A-Za-z]', en) and (LISTEN[en] or {}).get('v')
                 for m in re.finditer(r'(?<![A-Za-z])' + re.escape(en) + r'(?![A-Za-z])', t)
                 if not MODEL.search(t[max(0, m.start() - 20):m.start()]) and not MODEL2.match(t[m.end():m.end() + 20])]
         return min(hits)[1] if hits else None
@@ -440,7 +443,125 @@ def listen_for(it):
         en = first(' '.join(body) if isinstance(body, list) else str(body))
         if en in ('Les Paul',):   # 中文內文的「萊斯·保羅（Les Paul）」多半是琴款,只認英文標題裡的人
             en = None
+    if not en:   # 名單裡沒有 → 用 AI 判斷出的「文章提到的音樂人」,依序找第一個抓得到歌的(找歌見 find_artist)
+        for w in it.get('who') or []:
+            if (LISTEN.get(w['name']) or {}).get('v'):
+                return w['name']
     return en
+
+# 10-29 老師:「吉他新聞也一樣要影片,影片是那個新聞吉他手的相關音樂」「AI 要自己去抓取那個人的歌曲」「相關很籠統,你就找能找到的就好」
+# → 每則新聞請 Gemini 列出文章提到的音樂人(吉他手優先;團員給樂團名),不在 people-listen.json 的就自動到 YouTube Music
+#   找他的藝人頁熱門歌曲(名字要完全相同才算本人)、只留可嵌入且台灣可播的,補進 people-listen.json;都找不到才不放影片
+WHO = """下面是一則吉他新聞。請列出文章裡提到的音樂人或樂團(吉他手優先,依在文章裡的重要程度排序,最多 5 個)。
+- name:英文本名(例如 Janick Gers、Noel Gallagher)。
+- artist:這個人的音樂在 YouTube Music / Spotify 上用的藝人名;他主要是樂團團員、沒有個人作品時填樂團名(例如 Janick Gers → Iron Maiden),有個人作品就填本人。
+- 只列真的是音樂人/樂團的;公司、品牌、琴款、工廠師傅、記者、主持人都不要列。文章完全沒提到音樂人就回空陣列。
+只回 JSON:{{"who":[{{"name":"...","artist":"..."}}]}}
+
+英文標題:{title}
+中文摘要:{body}
+英文原文(節錄):{text}"""
+WHO_PER_RUN = 8                   # 每次最多幫幾則新聞判斷音樂人(新的先、再補舊的;Gemini 免費額度)
+MISS = os.path.join(DATA, 'listen-miss.json')   # 找不到歌的藝人名 → 30 天內不重找
+_ytm = None
+
+def who_for(it, text=''):
+    """AI 判斷文章提到的音樂人 → [{'name','artist'}];AI 連不上就回 None(下次再判斷)。"""
+    body = it.get('body') or []
+    p = WHO.format(title=it.get('title_en', ''), body='\n'.join(body) if isinstance(body, list) else body, text=(text or '')[:6000])
+    try:
+        o = js(ask_ai(p))
+    except QuotaOut:
+        raise
+    except Exception as e:
+        print('  判斷音樂人失敗:', str(e)[:120])
+        return None
+    out, seen = [], set()
+    for w in o.get('who') or []:
+        n = re.sub(r'\s+', ' ', str(w.get('name') or '')).strip()
+        a = re.sub(r'\s+', ' ', str(w.get('artist') or n)).strip()
+        if n and re.match(r'[A-Za-z0-9]', n) and n.lower() not in seen:
+            seen.add(n.lower())
+            out.append({'name': n, 'artist': a or n})
+    return out[:5]
+
+def _norm(s):
+    import unicodedata
+    s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode() or s
+    return re.sub(r'[^a-z0-9]+', ' ', s.lower().replace('&', 'and')).strip()
+
+def _tw_ok(v):
+    """可嵌入(oEmbed)+ 台灣在可播國家內。雲端在美國,不能直接試播;availableCountries 是 YouTube 自己標的可播國家。"""
+    try:
+        r = requests.get('https://www.youtube.com/oembed', params={'format': 'json', 'url': 'https://www.youtube.com/watch?v=' + v}, headers=UA, timeout=20)
+        if r.status_code != 200:
+            return False
+        ac = _ytm.get_song(v).get('microformat', {}).get('microformatDataRenderer', {}).get('availableCountries')
+        return ac is None or 'TW' in ac
+    except Exception:
+        return False
+
+def find_artist(name, artist):
+    """YouTube Music 藝人頁熱門歌曲 → people-listen.json 格式 {'as','v':[[videoId,歌名],...]};名字對不上/沒歌 → None。"""
+    global _ytm
+    try:
+        if _ytm is None:
+            from ytmusicapi import YTMusic
+            _ytm = YTMusic()
+        for q in dict.fromkeys([artist, name]):
+            art = next((a for a in _ytm.search(q, filter='artists')[:5] if _norm(a.get('artist', '')) == _norm(q)), None)
+            if not art:
+                continue
+            s = _ytm.get_artist(art['browseId']).get('songs') or {}
+            tr = _ytm.get_playlist(s['browseId'], limit=40)['tracks'] if s.get('browseId') else s.get('results', [])
+            out, seen = [], set()
+            for t in tr:
+                v, ti = t.get('videoId'), t.get('title', '')
+                k = _norm(re.sub(r'\(.*?\)|\[.*?\]|-.*$', '', ti))
+                # 講課型/伴奏/重混不放;explicit 要年齡驗證,嵌入播不了
+                if not v or k in seen or t.get('isExplicit') or re.search(r'christmas|remix|karaoke|instrumental version|lesson|tutorial|interview', ti, re.I):
+                    continue
+                seen.add(k)
+                if _tw_ok(v):
+                    out.append([v, ti])
+                if len(out) >= 25:
+                    break
+            if len(out) >= 3:
+                return {'as': art['artist'], 'v': out, 'auto': now().date().isoformat()}
+    except Exception as e:
+        print('  YouTube Music 找歌失敗:', name, str(e)[:120])
+    return None
+
+def fill_listen(items):
+    """AI 判斷音樂人(還沒判斷過的,新的先)→ 不在名單的自動找歌補進 people-listen.json。"""
+    miss = load(MISS, {})
+    n = 0
+    for it in sorted([x for x in items if x.get('st') == 'ok'], key=lambda x: x['when'], reverse=True):
+        if 'who' not in it and not listen_for(it):
+            if n >= WHO_PER_RUN:
+                continue
+            n += 1
+            w = who_for(it, article_text(it['url'], '') if it.get('url') else '')
+            if w is None:
+                continue
+            it['who'] = w
+            print('  音樂人', it['id'][:50], [x['name'] for x in w])
+        for w in it.get('who') or []:
+            if (LISTEN.get(w['name']) or {}).get('v'):
+                break
+            if w['name'] in LISTEN:       # 名單裡刻意留空的(同名同姓、不確定是本人)不自動找
+                continue
+            m = miss.get(w['artist'])
+            if m and now() - dt.datetime.fromisoformat(m) < dt.timedelta(days=30):
+                continue
+            r = find_artist(w['name'], w['artist'])
+            if r:
+                LISTEN[w['name']] = r
+                print('  補歌', w['name'], '→', r['as'], len(r['v']), '首')
+                break
+            miss[w['artist']] = now().isoformat()
+    save(os.path.join(DATA, 'people-listen.json'), LISTEN)
+    save(MISS, miss)
 
 def write_item(c):
     """寫稿→把關→沒過就照審稿意見修這一篇(不是重寫)→再從頭審;最多審 5 輪、AI 修稿最多 2 次。
@@ -550,6 +671,11 @@ def main():
     except QuotaOut as e:
         print('Gemini 不能用(%s),這次先停,下次排程再寫' % e)
         st['last_quota_out'] = now().isoformat()
+    if not dry:
+        try:
+            fill_listen(items)            # 新聞配音樂人的歌(舊新聞也會慢慢補判斷)
+        except QuotaOut as e:
+            print('Gemini 不能用(%s),音樂人下次再判斷' % e)
 
     t = now().isoformat()
     st['last_run'] = t

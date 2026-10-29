@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
-      - run: pip install -q requests feedparser trafilatura opencc-python-reimplemented
+      - run: pip install -q requests feedparser trafilatura opencc-python-reimplemented ytmusicapi
       - name: 抓新聞＋Gemini 免費 AI 寫摘要＋多關審稿
         id: main
         env: { GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}' }

@@ -87,7 +87,18 @@
   ],
   "cat": "吉他手",
   "by": "gemini:gemini-3.5-flash-lite",
-  "problems": []
+  "problems": [],
+  "who": [
+   {
+    "name": "Noel Gallagher",
+    "artist": "Oasis"
+   },
+   {
+    "name": "Johnny Marr",
+    "artist": "Johnny Marr"
+   }
+  ],
+  "listen": "Noel Gallagher"
  },
  {
   "id": "2026-10-29-newly-unearthed-video-shows-amy-winehouse-playing-acoustic-g",
@@ -136,7 +147,22 @@
   ],
   "cat": "新琴・器材",
   "by": "gemini:gemini-3.5-flash-lite",
-  "problems": []
+  "problems": [],
+  "who": [
+   {
+    "name": "Kirk Hammett",
+    "artist": "Metallica"
+   },
+   {
+    "name": "Dave Mustaine",
+    "artist": "Megadeth"
+   },
+   {
+    "name": "Adam Jones",
+    "artist": "Tool"
+   }
+  ],
+  "listen": "Kirk Hammett"
  },
  {
   "id": "2026-10-28-epiphone-makes-a-huge-play-for-metal-players-as-the-prophecy",
@@ -164,7 +190,14 @@
   ],
   "cat": "新琴・器材",
   "by": "gemini:gemini-3.5-flash-lite",
-  "problems": []
+  "problems": [],
+  "who": [
+   {
+    "name": "Eddie Van Halen",
+    "artist": "Van Halen"
+   }
+  ],
+  "listen": "Eddie Van Halen"
  },
  {
   "id": "2026-10-28-behind-the-curtain-at-eastman-guitars-where-a-wizard-named-o",
@@ -196,7 +229,26 @@
   ],
   "cat": "新琴・器材",
   "by": "gemini:gemini-3.5-flash-lite",
-  "problems": []
+  "problems": [],
+  "who": [
+   {
+    "name": "Julian Lage",
+    "artist": "Julian Lage"
+   },
+   {
+    "name": "Bill Frisell",
+    "artist": "Bill Frisell"
+   },
+   {
+    "name": "Danny Gatton",
+    "artist": "Danny Gatton"
+   },
+   {
+    "name": "Charlie Christian",
+    "artist": "Charlie Christian"
+   }
+  ],
+  "listen": "Julian Lage"
  },
  {
   "id": "2026-10-28-gene-simmons-challenges-ace-frehley-s-account-of-an-infamous",
@@ -306,7 +358,18 @@
   ],
   "cat": "拍賣・名琴",
   "by": "gemini:gemini-3.5-flash-lite",
-  "problems": []
+  "problems": [],
+  "who": [
+   {
+    "name": "Joseph Kekuku",
+    "artist": "Joseph Kekuku"
+   },
+   {
+    "name": "Roy Smeck",
+    "artist": "Roy Smeck"
+   }
+  ],
+  "listen": "Roy Smeck"
  },
  {
   "id": "2026-10-28-john-5-on-the-chances-of-m-tley-cr-e-making-a-new-album",
@@ -330,7 +393,18 @@
   ],
   "cat": "吉他手",
   "by": "gemini:gemini-3.5-flash-lite",
-  "problems": []
+  "problems": [],
+  "who": [
+   {
+    "name": "John 5",
+    "artist": "John 5"
+   },
+   {
+    "name": "Nikki Sixx",
+    "artist": "Mötley Crüe"
+   }
+  ],
+  "listen": "John 5"
  },
  {
   "id": "2026-10-28-recording-dojo-what-is-phantom-power",
@@ -349,7 +423,8 @@
   ],
   "cat": "教學・觀念",
   "by": "gemini:gemini-3.5-flash-lite",
-  "problems": []
+  "problems": [],
+  "who": []
  },
  {
   "id": "2026-10-28-paul-simon-s-you-can-call-me-al-has-one-of-the-most-unusual",
@@ -377,7 +452,18 @@
   ],
   "cat": "吉他手",
   "by": "gemini:gemini-3.5-flash-lite",
-  "problems": []
+  "problems": [],
+  "who": [
+   {
+    "name": "Paul Simon",
+    "artist": "Paul Simon"
+   },
+   {
+    "name": "Bakithi Kumalo",
+    "artist": "Bakithi Kumalo"
+   }
+  ],
+  "listen": "Paul Simon"
  },
  {
   "id": "2026-10-28-joe-bonamassa-promises-a-generous-reward-for-the-return-of-j",
@@ -552,7 +638,22 @@
   ],
   "cat": "新琴・器材",
   "by": "gemini:gemini-3.5-flash-lite+人工修訂",
-  "problems": []
+  "problems": [],
+  "who": [
+   {
+    "name": "Dave Murray",
+    "artist": "Iron Maiden"
+   },
+   {
+    "name": "Janick Gers",
+    "artist": "Iron Maiden"
+   },
+   {
+    "name": "Steve Harris",
+    "artist": "Iron Maiden"
+   }
+  ],
+  "listen": "Dave Murray"
  },
  {
   "id": "2026-10-27-it-doesn-t-feel-like-a-lot-of-legacy-artists-go-out-of-their",
