@@ -614,6 +614,11 @@ def load_all():
     return items
 
 def save_all(items):
+    # 10-29 老師「文章不要被刪、要像圖書館」:存檔前比對,已發布的新聞一則都不能少;少了就不存、直接停
+    old_ok = {x['id'] for x in load_all() if x.get('st') == 'ok'}
+    new_ok = {x['id'] for x in items if x.get('st') == 'ok'}
+    if old_ok - new_ok:
+        raise SystemExit('已發布的新聞會少 %d 則(%s…),不存檔' % (len(old_ok - new_ok), sorted(old_ok - new_ok)[:3]))
     os.makedirs(ARCH, exist_ok=True)
     by = {}
     for it in items:
@@ -635,6 +640,8 @@ def save_all(items):
         months.append({'month': m, 'count': sum(1 for x in lst if x['st'] == 'ok')})
     ok = sorted([x for x in items if x['st'] == 'ok'], key=lambda x: x['when'], reverse=True)
     save(NEWS, ok[:200])                      # 網站首頁用:最新 200 則(已通過把關)
+    # 圖書館索引:全部已發布新聞的標題/分類/日期(分類頁、左欄年月目錄、全站搜尋用),不含內文所以很小
+    save(os.path.join(DATA, 'index.json'), [{'id': x['id'], 'date': x['date'], 'title': x['title'], 'cat': x.get('cat', '')} for x in ok])
     save(os.path.join(DATA, 'months.json'), [m for m in reversed(months) if m['count']])
 
 # ---------- 主程式 ----------
