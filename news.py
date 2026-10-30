@@ -44,6 +44,7 @@ GUITARISH = re.compile(r'guitar|bass|amp\b|amplifier|pedal|fret|riff|strat|tele|
 CATS = ['新琴・器材', '吉他手', '拍賣・名琴', '演出・活動', '效果器・科技', '教學・觀念']
 AD = re.compile(r'\b(ad feature|advertorial|sponsored|paid content|partner content|in partnership with|brought to you by)\b', re.I)
 PER_RUN = 4   # 每次最多寫 4 則(一天兩次);Gemini 免費額度每天有次數上限
+DAY_MAX = 1   # 一天最多發 1 則(老師 10-30);當天那則被退回,下一次排程再試
 
 def now():
     return dt.datetime.now(TZ)
@@ -653,6 +654,11 @@ def main():
     items = load_all()
     st = load(STATUS, {})
     stats = {'ok': 0, 'rejected': 0, 'pending': 0}
+    # 老師 10-30:新聞一天一篇就好、不用一大堆;剩下的 Gemini 額度留給故事館、吉他之鑰
+    today_ok = sum(1 for it in items if it['st'] == 'ok' and dt.datetime.fromisoformat(it['when']).astimezone(now().tzinfo).date() == now().date())
+    if '--max' not in sys.argv:
+        mx = min(mx, max(DAY_MAX - today_ok, 0))
+    print('今天已發', today_ok, '則,這次最多寫', mx)
 
     # 老師 10-27:新聞不是義務、不用天天更新;有額度再更新,沒有就等 → 額度用完就停,寫好的照存,下次再接著寫
     try:
