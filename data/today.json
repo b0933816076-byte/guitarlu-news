@@ -24,5 +24,57 @@
    "id": "1e3d14f7e7",
    "added": "2026-10-30T01:40:55.253314+08:00"
   }
+ ],
+ "06-03": [
+  {
+   "y": "2002",
+   "t": "布萊恩·梅（Brian May）在伊莉莎白二世（Elizabeth II）金禧慶典上，登上白金漢宮（Buckingham Palace）屋頂吉他獨奏〈God Save the Queen〉。",
+   "cat": "傳奇演出",
+   "score": 5,
+   "src": "https://en.wikipedia.org/wiki/Brian_May",
+   "story": "lesson-legend-24-brian-may.html",
+   "en": "As part of the Golden Jubilee of Elizabeth II celebrations on 3 June 2002, May performed a guitar solo of \"God Save the Queen\" from the roof of Buckingham Palace, with the performance appearing on the 30th Anniversary DVD edition of A Night at the Opera.",
+   "id": "f7eb864362",
+   "added": "2026-10-31T01:42:41.783119+08:00"
+  }
+ ],
+ "07-02": [
+  {
+   "y": "2005",
+   "t": "平克·佛洛伊德（Pink Floyd）與羅傑·華特斯（Roger Waters）重新聚首，在 Live 8 登台演出。這場演出帶動了精選專輯《Echoes: The Best of Pink Floyd》銷量的增加。",
+   "cat": "傳奇演出",
+   "score": 5,
+   "src": "https://en.wikipedia.org/wiki/David_Gilmour",
+   "story": "lesson-legend-25-david-gilmour.html",
+   "en": "On 2 July 2005, Pink Floyd reunited with Waters to perform at Live 8.",
+   "id": "400738e3d8",
+   "added": "2026-10-31T01:44:03.106297+08:00"
+  }
+ ],
+ "11-07": [
+  {
+   "y": "2014",
+   "t": "大衛·吉爾摩（David Gilmour）與尼克·梅森（Nick Mason）重新審視了先前與理查·萊特（Richard Wright）在《The Division Bell》錄音期間製作的錄音，藉此創作了全新的平克·佛洛伊德（Pink Floyd）專輯《The Endless River》。",
+   "cat": "名曲誕生",
+   "score": 4,
+   "src": "https://en.wikipedia.org/wiki/David_Gilmour",
+   "story": "lesson-legend-25-david-gilmour.html",
+   "en": "Gilmour and Mason revisited recordings made with Wright during the Division Bell sessions to create a new Pink Floyd album, The Endless River, released on 7 November 2014.",
+   "id": "1faedc89a1",
+   "added": "2026-10-31T01:44:43.382157+08:00"
+  }
+ ],
+ "11-10": [
+  {
+   "y": "1969",
+   "t": "黑色安息日（Black Sabbath）在倫敦聖安妮法院的三叉戟錄音室（Trident Studios）錄製了歌曲〈Evil Woman〉與其 B 面曲〈Wicked World〉。",
+   "cat": "名曲誕生",
+   "score": 4,
+   "src": "https://en.wikipedia.org/wiki/Tony_Iommi",
+   "story": "lesson-legend-26-tony-iommi.html",
+   "en": "The band recorded the song \"Evil Woman\" and its B-side '\"Wicked World\" on 10 November 1969 at Trident Studios on St.",
+   "id": "6145ad4e8c",
+   "added": "2026-10-31T01:45:13.937671+08:00"
+  }
  ]
 }
