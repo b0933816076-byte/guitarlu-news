@@ -1,5 +1,67 @@
 [
  {
+  "id": "2026-10-30-the-british-ace-who-had-more-than-a-touch-of-the-chicago-blu",
+  "date": "2026-10-30",
+  "when": "2026-10-30T03:40:44+08:00",
+  "src": "Guitar Player",
+  "url": "https://www.guitarplayer.com/guitarists/billy-gibbons-on-peter-green",
+  "title_en": "The British ace who had more than a touch of the Chicago blues, according to Billy Gibbons",
+  "links": [
+   {
+    "url": "lesson-legend-03-eric-clapton.html",
+    "title": "艾瑞克·克萊普頓（Eric Clapton）：把藍調帶進搖滾的「慢手」"
+   },
+   {
+    "url": "lesson-legend-34-kirk-hammett.html",
+    "title": "柯克·哈米特（Kirk Hammett）：金屬製品樂團的激情主奏"
+   },
+   {
+    "url": "lesson-legend-37-les-paul.html",
+    "title": "萊斯·保羅（Les Paul）：實心電吉他與多軌錄音的先驅"
+   }
+  ],
+  "added": "2026-10-30T10:03:51.373273+08:00",
+  "st": "ok",
+  "title": "比利·吉本斯讚賞彼得·格林完美重現純正芝加哥藍調",
+  "body": [
+   "在1960年代英國藍調熱潮中，已故英國吉他手彼得·格林（Peter Green）於1946年出生。他曾加入約翰·梅爾的藍調狂人（Bluesbreakers），隨後成為佛利伍麥克（Fleetwood Mac）早期成功的核心推手，並以〈Oh Well〉、〈The Green Manalishi (with the Two Prong Crown)〉與〈Albatross〉等經典歌曲聞名。ZZ Top樂團吉他手比利·吉本斯（Billy Gibbons）曾表示，格林擁有如同當地樂手般的純正芝加哥藍調神髓，其演奏風格精煉且充滿感染力。",
+   "吉本斯特別推崇單曲〈Stop Messin' Round〉，認為其表現力足以媲美佛萊迪·金（Freddie King）。格林在樂團全盛時期使用的是一把1959年吉布森（Gibson）萊斯·保羅（Les Paul）電吉他，這把琴後來輾轉由蓋瑞·摩爾（Gary Moore）及金屬製品（Metallica）的柯克·哈米特（Kirk Hammett）收藏。這把名琴因獨特的磁極反相配置而擁有標誌性音色，至今仍深受樂壇推崇。"
+  ],
+  "cat": "吉他手",
+  "by": "gemini:gemini-3.5-flash-lite",
+  "problems": [],
+  "listen": "Billy Gibbons"
+ },
+ {
+  "id": "2026-10-30-ideal-for-beginner-guitarists-it-delivers-a-great-playing-pl",
+  "date": "2026-10-30",
+  "when": "2026-10-30T01:37:00+08:00",
+  "src": "MusicRadar",
+  "url": "https://www.musicradar.com/guitars/guitar-amps/boss-katana-25-review",
+  "title_en": "“Ideal for beginner guitarists, it delivers a great playing platform for bedroom guitar players.”: Boss Katana-25 review",
+  "links": [
+   {
+    "url": "lesson-hist-06-effects-pedal-history.html",
+    "title": "效果器的歷史"
+   },
+   {
+    "url": "lesson-hist-05-amplifier-history.html",
+    "title": "音箱的歷史"
+   }
+  ],
+  "added": "2026-10-30T10:04:09.239507+08:00",
+  "st": "ok",
+  "title": "專為居家練習打造！Boss推出全新Katana-25吉他音箱實測",
+  "body": [
+   "知名音箱品牌Boss（Boss）近期推出全新的Katana-25數位模擬音箱，定位於Katana-50與Katana-Mini X之間，鎖定喜愛在家練琴的吉他手。這款音箱搭載8吋單體與開放式音箱設計，提供25W與0.5W兩段功率切換，並內建藍牙功能，讓樂手能直接透過手機App進行音色調整、串流音樂及搭配背景音樂練習。",
+   "根據專業音樂網站MusicRadar的實測指出，Katana-25具備輕巧堅固的機身、豐富的音箱模擬音色以及經典效果器，低音表現也相當扎實。不過評測也提到，若要完整發揮其實力，高度依賴專屬的App操作，且實體控制面板與預設值調整上較為陽春，外接腳踏開關則需另外選購。整體而言，它依然是一款適合臥室練習的絕佳平台。"
+  ],
+  "cat": "新琴・器材",
+  "by": "gemini:gemini-3.5-flash-lite",
+  "problems": [],
+  "who": []
+ },
+ {
   "id": "2026-10-30-noel-gallagher-gifted-a-guitar-to-an-oasis-tribute-act",
   "date": "2026-10-30",
   "when": "2026-10-30T00:36:33+08:00",
@@ -60,6 +122,53 @@
   "by": "gemini:gemini-3.5-flash-lite",
   "problems": [],
   "who": []
+ },
+ {
+  "id": "2026-10-29-martin-simpson-on-five-decades-as-a-recording-artist-and-the",
+  "date": "2026-10-29",
+  "when": "2026-10-29T23:55:52+08:00",
+  "src": "Guitar World",
+  "url": "https://www.guitarworld.com/artists/guitarists/martin-simpson-some-kind-of-jubilee",
+  "title_en": "Martin Simpson on five decades as a recording artist and the collection of rare guitars that made it happen",
+  "links": [
+   {
+    "url": "lesson-hist-06-effects-pedal-history.html",
+    "title": "效果器的歷史"
+   }
+  ],
+  "added": "2026-10-30T10:04:27.382312+08:00",
+  "st": "ok",
+  "title": "英國民謠吉他大師馬丁·辛普森回顧五十年音樂生涯與珍稀名琴",
+  "body": [
+   "英國民謠吉他手馬丁·辛普森（Martin Simpson）自 1976 年發行首張專輯《Golden Vanity》以來，已展開長達五十年的音樂生涯，並於近期推出全新專輯《Some Kind Of Jubilee》。他在受訪時談到這張融合大提琴與鋼棒吉他（pedal steel）的作品，並分享了錄音過程中的點滴與靈感來源。",
+   "訪談中也展示了他收藏的多把珍貴樂器，包含一把在 2012 年運至日本後在倉庫存放了十三年的保羅·里德·史密斯（Paul Reed Smith）缺角（Cutaway）吉他、一把史蒂芬·索貝爾（Stefan Sobell）於 2022 年製作的四十週年紀念琴，以及由蘿西·海登里奇（Rosie Heydenrych）打造的特製吉他。"
+  ],
+  "cat": "吉他手",
+  "by": "gemini:gemini-3.5-flash-lite",
+  "problems": [],
+  "who": [
+   {
+    "name": "Martin Simpson",
+    "artist": "Martin Simpson"
+   },
+   {
+    "name": "Louis Campbell",
+    "artist": "Louis Campbell"
+   },
+   {
+    "name": "Greg Leisz",
+    "artist": "Greg Leisz"
+   },
+   {
+    "name": "Zak Hobbs",
+    "artist": "Zak Hobbs"
+   },
+   {
+    "name": "Paul Robeson",
+    "artist": "Paul Robeson"
+   }
+  ],
+  "listen": "Martin Simpson"
  },
  {
   "id": "2026-10-29-pete-townshend-reveals-why-he-avoided-led-zeppelin-they-were",
