@@ -1,5 +1,30 @@
 [
  {
+  "id": "2026-11-01-state-of-the-stomp-pedalboards-for-vocalists",
+  "date": "2026-11-01",
+  "when": "2026-11-01T23:00:02+08:00",
+  "src": "Premier Guitar",
+  "url": "https://www.premierguitar.com/columns/gear-talk/state-of-the-stomp-pedalboards-for-vocalists",
+  "title_en": "State of the Stomp: Pedalboards for Vocalists",
+  "links": [
+   {
+    "url": "lesson-hist-06-effects-pedal-history.html",
+    "title": "效果器的歷史"
+   }
+  ],
+  "added": "2026-11-02T01:06:07.161357+08:00",
+  "st": "ok",
+  "title": "人聲也能串接吉他效果器？搞定訊號阻抗打造前衛舞台音色",
+  "body": [
+   "想將人聲接進吉他效果器，常面臨動圈麥克風訊號過弱的限制。若直接串接，聲音容易乾癟，硬調大增益還會引發回授（feedback）與雜訊。最簡便的解法是使用阻抗轉換器，或將被動式直接輸入盒（DI box）反向連接，把訊號拉高至效果器可接受的樂器等級。",
+   "樂手也能運用攜帶型前級提升音量，但須控制增益以免破音；電容麥克風則因需要額外幻象電源（phantom power）且易回授而不易配置。只要成功解決阻抗問題，歌手便能自由串接吉他單顆效果器，探索全新的聲音可能。"
+  ],
+  "cat": "效果器・科技",
+  "by": "gemini:gemini-3.7-flash",
+  "problems": [],
+  "who": []
+ },
+ {
   "id": "2026-11-01-pete-townshend-is-warming-to-led-zeppelin",
   "date": "2026-11-01",
   "when": "2026-11-01T03:00:00+08:00",
