@@ -1,5 +1,49 @@
 [
  {
+  "id": "2026-11-01-pete-townshend-is-warming-to-led-zeppelin",
+  "date": "2026-11-01",
+  "when": "2026-11-01T03:00:00+08:00",
+  "src": "Guitar World",
+  "url": "https://www.guitarworld.com/artists/guitarists/pete-townshend-on-led-zeppelin-and-heavy-metal",
+  "title_en": "Pete Townshend is warming to Led Zeppelin",
+  "links": [
+   {
+    "url": "lesson-legend-02-jimi-hendrix.html",
+    "title": "吉米·罕醉克斯（Jimi Hendrix）：改變電吉他的傳奇"
+   },
+   {
+    "url": "lesson-legend-05-jimmy-page.html",
+    "title": "吉米·佩吉（Jimmy Page）：齊柏林飛船的 Riff 大師與製作人"
+   },
+   {
+    "url": "lesson-legend-32-pete-townshend.html",
+    "title": "彼特·湯森（Pete Townshend）：用強力和弦與搖滾歌劇改寫搖滾的人"
+   }
+  ],
+  "added": "2026-11-01T09:12:43.949441+08:00",
+  "st": "ok",
+  "title": "誰樂團彼特·湯森改觀！重新聆聽齊柏林飛船並主動邀吉米·佩吉共進午餐",
+  "body": [
+   "誰樂團（The Who）吉他手彼特·湯森（Pete Townshend）過去數十年對齊柏林飛船（Led Zeppelin）態度冷淡，甚至曾在1995年公開表示不喜歡該團的任何作品。不過，他近日在訪談中透露自己的看法有所改變，坦言最近重新聆聽了齊柏林飛船的所有專輯，並讚賞其中有非常棒的音樂內容。",
+   "彼特·湯森表示，他日前已傳訊息給吉米·佩吉（Jimmy Page）邀約一起吃午餐。回顧當年反感的原因，他解釋當時齊柏林飛船彷彿搶走了他們的聽眾，那種衝擊就像當年看到吉米·罕醉克斯（Jimi Hendrix）帶著強大破音與哇哇踏板展現吉他天才時一樣，讓他一度產生抗拒心理。"
+  ],
+  "cat": "吉他手",
+  "by": "gemini:gemini-3.8-flash",
+  "problems": [],
+  "photo": {
+   "zh": "彼特·湯森",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Pete_Townshend_%282012%29.jpg/500px-Pete_Townshend_%282012%29.jpg",
+   "w": 500,
+   "h": 683,
+   "artist": "Ross Belot",
+   "license": "CC BY 2.0",
+   "licurl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Pete_Townshend_(2012).jpg",
+   "en": "Pete Townshend"
+  },
+  "listen": "Pete Townshend"
+ },
+ {
   "id": "2026-10-31-seymour-duncan-adds-janick-gers-signature-strat-set-to-iron",
   "date": "2026-10-31",
   "when": "2026-10-31T00:22:45+08:00",
