@@ -1,5 +1,30 @@
 [
  {
+  "id": "2026-11-02-alex-skolnick-on-how-to-explore-legato-and-explains-where-a",
+  "date": "2026-11-02",
+  "when": "2026-11-02T02:00:00+08:00",
+  "src": "Guitar World",
+  "url": "https://www.guitarworld.com/lessons/artist-lessons/alex-skolnick-explores-legato-part-two",
+  "title_en": "Alex Skolnick on how to explore legato – and explains where a little music theory can go a long way",
+  "links": [
+   {
+    "url": "lesson-legend-69-allan-holdsworth.html",
+    "title": "艾倫·霍茲沃斯（Allan Holdsworth）：連奏與和聲的異數天才"
+   }
+  ],
+  "added": "2026-11-02T09:31:46.464697+08:00",
+  "st": "ok",
+  "title": "艾力克斯·史考尼克解析圓滑奏技巧 結合調式樂理鍛鍊流暢指法",
+  "body": [
+   "吉他手艾力克斯·史考尼克（Alex Skolnick）在專欄中分享圓滑奏技巧，並指出傳奇融合爵士吉他手艾倫·霍茲沃斯（Allan Holdsworth）對自己的演奏風格影響深遠。吉他的圓滑奏主要包含捶弦、勾弦（pull-off）與滑音，能創造出流暢且連貫的旋律線條。",
+   "史考尼克示範將指型套用至 B Dorian 調式，利用每弦三音的指法在各把位快速串接。他建議彈奏前可先按壓 Bm7 和弦建立調性聽感，並嘗試將相同概念推廣至包含自然小調（Aeolian）等大調相關調式，藉此全面磨練按弦手的圓滑奏技巧。"
+  ],
+  "cat": "教學・觀念",
+  "by": "gemini:gemini-3.7-flash",
+  "problems": [],
+  "listen": "Allan Holdsworth"
+ },
+ {
   "id": "2026-11-01-state-of-the-stomp-pedalboards-for-vocalists",
   "date": "2026-11-01",
   "when": "2026-11-01T23:00:02+08:00",
