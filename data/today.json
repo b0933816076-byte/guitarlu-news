@@ -25,6 +25,32 @@
    "added": "2026-10-30T11:07:00.595975+08:00"
   }
  ],
+ "02-15": [
+  {
+   "y": "1972",
+   "t": "尼爾·楊（Neil Young）發行了第四張專輯《Harvest》，這張專輯也是美國當年銷量最好的專輯。",
+   "cat": "名曲誕生",
+   "score": 5,
+   "src": "https://en.wikipedia.org/wiki/Neil_Young",
+   "story": "lesson-legend-102-neil-young.html",
+   "en": "The result was Young's fourth album, Harvest (February 15, 1972), which was also the best selling album of 1972 in the US.",
+   "id": "9880bf94f3",
+   "added": "2026-11-03T12:15:15.112277+08:00"
+  }
+ ],
+ "02-17": [
+  {
+   "y": "1975",
+   "t": "澳洲搖滾樂團 AC/DC 在當地發行了他們的首張專輯《High Voltage》，並同步推出單曲〈Baby, Please Don't Go〉與〈Love Song〉。",
+   "cat": "名曲誕生",
+   "score": 5,
+   "src": "https://en.wikipedia.org/wiki/Angus_Young",
+   "story": "lesson-legend-103-angus-young.html",
+   "en": "AC/DC released their debut album, High Voltage, exclusively in Australia on 17 February 1975, along with a single \"Baby, Please Don't Go\" / \"Love Song\".",
+   "id": "c785f2869e",
+   "added": "2026-11-03T12:15:39.301947+08:00"
+  }
+ ],
  "03-18": [
   {
    "y": "1982",
@@ -90,6 +116,19 @@
    "added": "2026-10-31T01:44:03.106297+08:00"
   }
  ],
+ "07-31": [
+  {
+   "y": "1984",
+   "t": "艾瑞克·強森（Eric Johnson）在電視節目《奧斯汀城市極限》（Austin City Limits）帶來突破性的登台演出。這場表演被錄製了下來，日後發行成 CD 與 DVD。",
+   "cat": "傳奇演出",
+   "score": 4,
+   "src": "https://en.wikipedia.org/wiki/Eric_Johnson_(guitarist)",
+   "story": "lesson-legend-36-eric-johnson.html",
+   "en": "His breakthrough appearance at Austin City Limits on July 31, 1984, was recorded and later released on CD/DVD in 2010.",
+   "id": "2c046990f6",
+   "added": "2026-11-03T12:13:59.079818+08:00"
+  }
+ ],
  "08-01": [
   {
    "y": "1971",
@@ -101,6 +140,19 @@
    "en": "Harrison responded to a request from Ravi Shankar by organising a charity event, the Concert for Bangladesh, which took place on 1 August 1971.",
    "id": "bfb0cc9d2c",
    "added": "2026-11-03T05:15:45.301389+08:00"
+  }
+ ],
+ "08-16": [
+  {
+   "y": "1969",
+   "t": "尼爾·楊（Neil Young）與史蒂芬·史提爾斯（Stephen Stills）等人組成的四人樂團在芝加哥首次登台，隨後在伍德斯托克音樂節演出，期間尼爾·楊（Neil Young）跳過大部分的木吉他表演，並拒絕在電吉他表演時被拍攝。",
+   "cat": "傳奇演出",
+   "score": 5,
+   "src": "https://en.wikipedia.org/wiki/Neil_Young",
+   "story": "lesson-legend-102-neil-young.html",
+   "en": "The quartet debuted in Chicago on August 16, 1969, and later performed at the famous Woodstock Festival, during which Young skipped the majority of the acoustic set and refused to be filmed during the electric set, even telling the cameramen: \"One of you fuckin' guys comes near me and I'm gonna fuckin' hit you with my guitar\".",
+   "id": "66ffb83850",
+   "added": "2026-11-03T12:14:45.143802+08:00"
   }
  ],
  "11-07": [
