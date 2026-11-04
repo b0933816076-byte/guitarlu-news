@@ -45,6 +45,7 @@ CATS = ['新琴・器材', '吉他手', '拍賣・名琴', '演出・活動', '�
 AD = re.compile(r'\b(ad feature|advertorial|sponsored|paid content|partner content|in partnership with|brought to you by)\b', re.I)
 PER_RUN = 4   # 每次最多寫 4 則(一天兩次);Gemini 免費額度每天有次數上限
 DAY_MAX = 1   # 一天最多發 1 則(老師 10-30);當天那則被退回,下一次排程再試
+NEWS_EVERY = 7   # 老師 11-04:新聞不用天天,偶而更新就好 → 7 天內發過就不寫
 
 def now():
     return dt.datetime.now(TZ)
@@ -658,6 +659,8 @@ def main():
     today_ok = sum(1 for it in items if it['st'] == 'ok' and dt.datetime.fromisoformat(it['when']).astimezone(now().tzinfo).date() == now().date())
     if '--max' not in sys.argv:
         mx = min(mx, max(DAY_MAX - today_ok, 0))
+        recent = sum(1 for it in items if it['st'] == 'ok' and now() - dt.datetime.fromisoformat(it['when']) < dt.timedelta(days=NEWS_EVERY))
+        if recent: mx = 0; print(NEWS_EVERY, '天內已發', recent, '則,偶而更新就好,這次不寫')
     print('今天已發', today_ok, '則,這次最多寫', mx)
 
     # 老師 10-27:新聞不是義務、不用天天更新;有額度再更新,沒有就等 → 額度用完就停,寫好的照存,下次再接著寫
