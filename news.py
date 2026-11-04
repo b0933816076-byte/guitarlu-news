@@ -116,6 +116,28 @@ def fetch_candidates(seen_urls, seen_titles):
                 pick.append(by[k].pop(0))
     return pick
 
+def rank_worthy(cands):
+    # 老師 11-04:新聞偶而更新、挑值得報導的。一次把候選標題給 AI,只留真的值得報導的、照重要性排。AI 不能用就照原順序。
+    if len(cands) <= 1:
+        return cands
+    cands = cands[:40]
+    lst = '\n'.join('%d. [%s] %s ｜ %s' % (i, c['src'], c['title_en'], re.sub(r'\s+', ' ', c.get('rss', ''))[:160]) for i, c in enumerate(cands))
+    try:
+        o = js(ask_ai('''You pick news for a Taiwanese guitar website (readers: guitar students and players). From the candidates below, keep ONLY items truly worth reporting, ranked by importance:
+- worth it: major guitarists' significant news (new album/tour of a well-known artist, awards, passing, landmark interviews), important new instruments or gear from major makers, guitar history discoveries, museum/auction of historic guitars, notable industry changes.
+- NOT worth it: deals/sales/discounts, buying guides and listicles, minor product reviews, lessons, rumors, gossip, lawsuits, politics, anything not really about guitar.
+Return JSON only: {"keep": [candidate numbers, most important first]}  (empty list if none is worth it)
+
+''' + lst))
+        keep = [int(i) for i in o.get('keep', []) if str(i).lstrip('-').isdigit() and 0 <= int(i) < len(cands)]
+        print('值得報導', len(keep), '/', len(cands))
+        return [cands[i] for i in dict.fromkeys(keep)]
+    except QuotaOut:
+        raise
+    except Exception as e:
+        print('挑選失敗,照原順序', e)
+        return cands
+
 def article_text(url, fallback):
     try:
         r = requests.get(url, headers=UA, timeout=30)
@@ -675,7 +697,7 @@ def main():
 
         seen_urls = {it['url'] for it in items}
         seen_titles = [norm(it['title_en']) for it in sorted(items, key=lambda x: x['when'], reverse=True)[:400]]
-        for c in fetch_candidates(seen_urls, seen_titles)[:max(mx, 0)]:
+        for c in (rank_worthy(fetch_candidates(seen_urls, seen_titles)) if mx > 0 else [])[:max(mx, 0)]:
             print('寫', c['src'], c['title_en'][:70])
             w, links = write_item(c)
             stats[w['st']] += 1
