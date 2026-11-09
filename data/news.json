@@ -1,5 +1,45 @@
 [
  {
+  "id": "2026-11-06-if-you-have-any-respect-for-guitar-playing-you-need-to-liste",
+  "date": "2026-11-06",
+  "when": "2026-11-06T18:19:06+08:00",
+  "src": "Guitar.com",
+  "url": "https://guitar.com/news/music-news/joe-satriani-steve-vai-the-sea-of-emotion/",
+  "title_en": "If you have any respect for guitar playing, you need to listen to Joe Satriani and Steve Vai’s new album",
+  "links": [
+   {
+    "url": "lesson-legend-29-steve-vai.html",
+    "title": "史提夫·范（Steve Vai）：從札帕樂團走出的電吉他魔術師"
+   },
+   {
+    "url": "lesson-legend-30-joe-satriani.html",
+    "title": "喬·沙翠亞尼（Joe Satriani）：讓演奏搖滾登上排行榜的吉他名師"
+   }
+  ],
+  "added": "2026-11-10T02:11:49.817893+08:00",
+  "st": "ok",
+  "title": "結識超過半世紀！喬·沙翠亞尼與史提夫·范首度合作推出專輯",
+  "body": [
+   "吉他大師喬·沙翠亞尼（Joe Satriani）與史提夫·范（Steve Vai）透過唱片公司 earMUSIC，推出首張合作專輯《The Sea of Emotion》。早在1973年，13歲的史提夫·范便向17歲的喬·沙翠亞尼學習吉他，兩人雖曾多次在 G3 巡演合作，但直到2024年初的重聚巡演後，才正式決定攜手打造全專輯。",
+   "本作收錄原創作品與翻唱歌曲《Dancing》，專輯的壓軸曲目、即史詩三部曲的最後一部分《The Sea of Emotion》更以當年吉他課的盤帶錄音開頭。專輯由鍵盤手艾瑞克·高迪克斯（Eric Caudieux）參與製作，並邀請到貝斯手比利·席恩（Billy Sheehan）等多位樂手跨刀錄製。"
+  ],
+  "cat": "吉他手",
+  "by": "gemini:gemini-3.5-flash-lite",
+  "problems": [],
+  "photo": {
+   "zh": "喬·沙翠亞尼",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Satriani_2010_13_12_1112.jpg/500px-Satriani_2010_13_12_1112.jpg",
+   "w": 500,
+   "h": 667,
+   "artist": "Shape Prior",
+   "license": "CC BY-SA 3.0",
+   "licurl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Satriani_2010_13_12_1112.jpg",
+   "en": "Joe Satriani"
+  },
+  "listen": "Joe Satriani"
+ },
+ {
   "id": "2026-11-04-a-terrific-pedal-that-s-loaded-with-character-warm-audio-wa",
   "date": "2026-11-04",
   "when": "2026-11-04T05:41:47+08:00",
