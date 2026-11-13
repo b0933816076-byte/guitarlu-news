@@ -1,5 +1,56 @@
 [
  {
+  "id": "2026-11-13-gene-autry-s-long-lost-martin-missing-for-nearly-100-years-f",
+  "date": "2026-11-13",
+  "when": "2026-11-13T00:22:55+08:00",
+  "src": "Guitar World",
+  "url": "https://www.guitarworld.com/gear/acoustic-guitars/gene-autry-missing-martin-found",
+  "title_en": "Gene Autry’s long-lost Martin, missing for nearly 100 years, found in rural Sweden after it was listed on Marketplace for $50",
+  "links": [
+   {
+    "url": "lesson-hist-140-rare-auction-records.html",
+    "title": "吉他拍賣天價紀錄"
+   },
+   {
+    "url": "lesson-hist-20-brand-fender.html",
+    "title": "芬達（Fender）品牌故事"
+   }
+  ],
+  "added": "2026-11-14T00:02:58.054648+08:00",
+  "st": "ok",
+  "title": "消失近百年的金·奧崔馬丁名琴在瑞典尋獲 卻引發繼承人與遺孀產權爭議",
+  "body": [
+   "美國鄉村音樂傳奇金·奧崔（Gene Autry）於 1930 年代因車輛遭竊而失蹤的一把馬丁（Martin）OM-45 原聲吉他，近百年後在瑞典（Sweden）鄉間重新現身。一位名為桑德拉（Sandra）的女子於 2021 年繼承父親遺物，因不知其來歷證明（provenance），便在網路平台上以 50 美元刊登出售。",
+   "經吉他專家鑑定，該琴為 1930 年代僅生產約 50 把的罕見吉他。樂器製作師安德拉斯·諾瓦克（Andras Novak）發現了隱藏序號，證實與金·奧崔當年失竊的吉他相同。這把市值極高的名琴目前仍在修復中，但桑德拉與金·奧崔的遺孀潔琪（Jackie）已針對吉他所有權爆發爭議。"
+  ],
+  "cat": "拍賣・名琴",
+  "by": "gemini:gemini-3.6-flash",
+  "problems": [],
+  "who": [
+   {
+    "name": "Gene Autry",
+    "artist": "Gene Autry"
+   },
+   {
+    "name": "Peter Frampton",
+    "artist": "Peter Frampton"
+   },
+   {
+    "name": "Zakk Wylde",
+    "artist": "Zakk Wylde"
+   },
+   {
+    "name": "Tosin Abasi",
+    "artist": "Animals As Leaders"
+   },
+   {
+    "name": "Matteo Mancuso",
+    "artist": "Matteo Mancuso"
+   }
+  ],
+  "listen": "Gene Autry"
+ },
+ {
   "id": "2026-11-10-john-mayer-releases-his-most-affordable-martin-signature-gui",
   "date": "2026-11-10",
   "when": "2026-11-10T22:53:48+08:00",
