@@ -25,6 +25,19 @@
    "added": "2026-11-16T11:32:19.966026+08:00"
   }
  ],
+ "01-08": [
+  {
+   "y": "1968",
+   "t": "吉米·罕醉克斯體驗樂團（The Jimi Hendrix Experience）在瑞典斯德哥爾摩的 Konserthuset 首次演出了〈Little Wing〉，這些錄音後來出現在非官方專輯中。",
+   "cat": "傳奇演出",
+   "score": 4,
+   "src": "https://en.wikipedia.org/wiki/Little_Wing",
+   "story": "lesson-song-06-little-wing.html",
+   "en": "On January 8, 1968, the Experience debuted the song at the Konserthuset in Stockholm, Sweden, recordings of which have appeared on bootleg albums.",
+   "id": "6a958ee23c",
+   "added": "2026-11-19T04:06:50.794149+08:00"
+  }
+ ],
  "01-22": [
   {
    "y": "2025",
@@ -194,6 +207,19 @@
    "added": "2026-11-05T03:11:57.673046+08:00"
   }
  ],
+ "05-10": [
+  {
+   "y": "1965",
+   "t": "滾石樂團（The Rolling Stones）在芝加哥（Chicago）切斯錄音室（Chess Studios）首次錄製歌曲〈(I Can't Get No) Satisfaction〉，版本中包含布萊恩·瓊斯（Brian Jones）吹奏的口琴。",
+   "cat": "名曲誕生",
+   "score": 4,
+   "src": "https://en.wikipedia.org/wiki/(I_Can't_Get_No)_Satisfaction",
+   "story": "lesson-song-05-satisfaction.html",
+   "en": "The Rolling Stones first recorded the track on 10 May 1965 at Chess Studios in Chicago, Illinois, which included Brian Jones on harmonica.",
+   "id": "0bbb502d98",
+   "added": "2026-11-19T03:59:02.691419+08:00"
+  }
+ ],
  "05-12": [
   {
    "y": "1967",
@@ -231,6 +257,19 @@
    "en": "As part of the Golden Jubilee of Elizabeth II celebrations on 3 June 2002, May performed a guitar solo of \"God Save the Queen\" from the roof of Buckingham Palace, with the performance appearing on the 30th Anniversary DVD edition of A Night at the Opera.",
    "id": "f7eb864362",
    "added": "2026-10-31T01:42:41.783119+08:00"
+  }
+ ],
+ "06-04": [
+  {
+   "y": "1965",
+   "t": "倫敦唱片（London Records）在美國發行單曲〈Satisfaction〉，並將〈The Under-Assistant West Coast Promotion Man〉作為B面歌曲。",
+   "cat": "名曲誕生",
+   "score": 5,
+   "src": "https://en.wikipedia.org/wiki/(I_Can't_Get_No)_Satisfaction",
+   "story": "lesson-song-05-satisfaction.html",
+   "en": "\"Satisfaction\" was released as a single in the US by London Records on 4 June 1965, with \"The Under-Assistant West Coast Promotion Man\" as its B-side.",
+   "id": "bd089d7523",
+   "added": "2026-11-19T04:06:26.777762+08:00"
   }
  ],
  "06-13": [
