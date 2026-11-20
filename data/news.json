@@ -1,5 +1,49 @@
 [
  {
+  "id": "2026-11-18-this-year-s-must-have-les-paul-has-arrived-as-gibson-unveils",
+  "date": "2026-11-18",
+  "when": "2026-11-18T20:13:25+08:00",
+  "src": "MusicRadar",
+  "url": "https://www.musicradar.com/artists/gibson-launches-usa-standard-version-of-billy-gibbons-pearly-gates-les-paul-and-a-murphy-lab-aged-model-for-collectors",
+  "title_en": "This year’s must-have Les Paul has arrived as Gibson unveils Billy Gibbons’ Pearly Gates as a Standard USA model",
+  "links": [
+   {
+    "url": "lesson-legend-34-kirk-hammett.html",
+    "title": "柯克·哈米特（Kirk Hammett）：金屬製品樂團的激情主奏"
+   },
+   {
+    "url": "lesson-legend-37-les-paul.html",
+    "title": "萊斯·保羅（Les Paul）：實心電吉他與多軌錄音的先驅"
+   },
+   {
+    "url": "lesson-hist-19-brand-gibson.html",
+    "title": "吉布森（Gibson）品牌故事"
+   }
+  ],
+  "added": "2026-11-21T00:46:26.787526+08:00",
+  "st": "ok",
+  "title": "吉布森發表比利·吉本斯 Pearly Gates 萊斯·保羅常規量產琴",
+  "body": [
+   "吉布森（Gibson）正式將樂團 ZZ Top 主唱比利·吉本斯（Billy Gibbons）著名的「Pearly Gates」萊斯·保羅（Les Paul）Standard 納入美國常規量產線。該琴款採用 Slow Iced Tea Fade 塗裝與專屬雙線圈拾音器，讓一般樂手也能體驗這把傳奇吉他的經典風格。",
+   "除了常規琴款外，吉布森墨菲實驗室（Murphy Lab）亦透過 3D 掃描技術精密還原吉本斯原版 1959 年琴款，推出高階 Custom Shop 復刻吉他。今年 9 月，吉布森曾於美國納許維爾（Nashville）發表 30 把親筆簽名的收藏家限量吉他。"
+  ],
+  "cat": "新琴・器材",
+  "by": "gemini:gemini-3.6-flash",
+  "problems": [],
+  "photo": {
+   "zh": "萊斯·保羅",
+   "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Les_Paul%2C_ca._Jan._1947_%28William_P._Gottlieb_07001%29.jpg/500px-Les_Paul%2C_ca._Jan._1947_%28William_P._Gottlieb_07001%29.jpg",
+   "w": 500,
+   "h": 536,
+   "artist": "William P. Gottlieb",
+   "license": "Public domain",
+   "licurl": "",
+   "page": "https://commons.wikimedia.org/wiki/File:Les_Paul,_ca._Jan._1947_(William_P._Gottlieb_07001).jpg",
+   "en": "Les Paul"
+  },
+  "listen": "Les Paul"
+ },
+ {
   "id": "2026-11-17-original-danzig-guitarist-john-christ-dies-at-61",
   "date": "2026-11-17",
   "when": "2026-11-17T22:12:21+08:00",
