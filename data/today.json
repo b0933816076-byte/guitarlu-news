@@ -502,6 +502,19 @@
    "added": "2026-11-20T03:59:02.118224+08:00"
   }
  ],
+ "10-23": [
+  {
+   "y": "1991",
+   "t": "討伐體制（Rage Against the Machine）在加州州立大學北嶺分校（Cal State Northridge）進行首次公開演出，並以加長純器樂形式演奏〈Killing in the Name〉。",
+   "cat": "改變命運",
+   "score": 4,
+   "src": "https://en.wikipedia.org/wiki/Killing_in_the_Name",
+   "story": "lesson-song-30-killing-in-the-name.html",
+   "en": "The song was performed as an extended instrumental at their first public performance at Cal State Northridge, on October 23, 1991.",
+   "id": "7cff6c4857",
+   "added": "2026-11-23T02:48:09.375574+08:00"
+  }
+ ],
  "11-02": [
   {
    "y": "1928",
@@ -552,6 +565,32 @@
    "en": "The band recorded the song \"Evil Woman\" and its B-side '\"Wicked World\" on 10 November 1969 at Trident Studios on St.",
    "id": "6145ad4e8c",
    "added": "2026-10-31T01:45:13.937671+08:00"
+  }
+ ],
+ "11-26": [
+  {
+   "y": "1968",
+   "t": "鮮奶油樂團（Cream）在倫敦（London）皇家亞伯特音樂廳（Royal Albert Hall）舉辦告別演唱會，並在演出中演奏了歌曲〈Crossroads〉。",
+   "cat": "傳奇演出",
+   "score": 4,
+   "src": "https://en.wikipedia.org/wiki/Cross_Road_Blues",
+   "story": "lesson-song-31-cross-road-blues.html",
+   "en": "Cream played \"Crossroads\" during their final concert at the Royal Albert Hall on November 26, 1968.",
+   "id": "ef25693d2a",
+   "added": "2026-11-23T03:06:44.772957+08:00"
+  }
+ ],
+ "11-27": [
+  {
+   "y": "1936",
+   "t": "羅伯特·強生（Robert Johnson）錄製了兩次歌曲〈Cross Road Blues〉。其中一個版本以單曲發行，另一個版本則收錄於合輯並接觸到更廣大的聽眾。",
+   "cat": "名曲誕生",
+   "score": 5,
+   "src": "https://en.wikipedia.org/wiki/Cross_Road_Blues",
+   "story": "lesson-song-31-cross-road-blues.html",
+   "en": "\"Cross Road Blues\" may have been in Johnson's repertoire since 1932 and, on November 27, 1936, he recorded two takes of the song.",
+   "id": "3b4d34abd9",
+   "added": "2026-11-23T02:51:52.732859+08:00"
   }
  ]
 }
