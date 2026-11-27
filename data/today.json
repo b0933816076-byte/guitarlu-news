@@ -567,6 +567,19 @@
    "added": "2026-11-20T03:59:02.118224+08:00"
   }
  ],
+ "09-24": [
+  {
+   "y": "1966",
+   "t": "查斯·錢德勒（Chas Chandler）因賞識吉米·罕醉克斯（Jimi Hendrix）的歌曲版本，將他帶到倫敦（London），並與前動物樂團（Animals）經紀人麥可·傑弗瑞（Michael Jeffery）一同和他簽下經紀與製作合約。",
+   "cat": "改變命運",
+   "score": 5,
+   "src": "https://en.wikipedia.org/wiki/Jimi_Hendrix",
+   "story": "lesson-legend-02-jimi-hendrix.html",
+   "en": "Impressed with Hendrix's version of the song, he brought him to London on September 24, 1966, and signed him to a management and production contract with himself and ex-Animals manager Michael Jeffery.",
+   "id": "214a54223f",
+   "added": "2026-11-28T04:24:13.990365+08:00"
+  }
+ ],
  "09-29": [
   {
    "y": "2001",
@@ -669,6 +682,32 @@
    "en": "\"Cross Road Blues\" may have been in Johnson's repertoire since 1932 and, on November 27, 1936, he recorded two takes of the song.",
    "id": "3b4d34abd9",
    "added": "2026-11-23T02:51:52.732859+08:00"
+  }
+ ],
+ "12-16": [
+  {
+   "y": "1966",
+   "t": "透過與寶麗多唱片（Polydor Records）的發行協議，吉米·罕醉克斯體驗樂團（The Jimi Hendrix Experience）發行首張單曲〈Hey Joe〉，B面為〈Stone Free〉。",
+   "cat": "名曲誕生",
+   "score": 5,
+   "src": "https://en.wikipedia.org/wiki/Jimi_Hendrix",
+   "story": "lesson-legend-02-jimi-hendrix.html",
+   "en": "Through a distribution deal with Polydor Records, the Experience's first single, \"Hey Joe\", backed with \"Stone Free\", was released on December 16, 1966.",
+   "id": "60e247eb5d",
+   "added": "2026-11-28T04:26:01.190065+08:00"
+  }
+ ],
+ "12-20": [
+  {
+   "y": "1967",
+   "t": "吉米·罕醉克斯體驗樂團（The Jimi Hendrix Experience）在奧林匹克錄音室（Olympic Studios）開始錄製第三張也是最後一張錄音室專輯《Electric Ladyland》。",
+   "cat": "名曲誕生",
+   "score": 4,
+   "src": "https://en.wikipedia.org/wiki/Jimi_Hendrix",
+   "story": "lesson-legend-02-jimi-hendrix.html",
+   "en": "Recording for the Experience's third and final studio album, Electric Ladyland, began as early as December 20, 1967, at Olympic Studios.",
+   "id": "91c0813fe9",
+   "added": "2026-11-28T04:28:31.863242+08:00"
   }
  ]
 }
